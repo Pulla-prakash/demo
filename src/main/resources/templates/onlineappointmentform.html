@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body th:onload="offlineappointmentform()">
+
+
+	<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<title>Vcare</title>
+<meta charset="UTF-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+<meta name="description" content="" />
+<meta name="keywords" content="" />
+<meta name="author" content="#" />
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, maximum-scale=1" />
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
+<!-- MAIN CSS -->
+<link rel="stylesheet" href="/dashboard/assets/css/final.css" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="stylesheet" href="styles.css" />
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/css/intlTelInput.css" />
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/intlTelInput.min.js"></script>
+
+
+</head>
+
+<body>
+	<!-- header -->
+	<header class="header">
+		<div class="container-fluid">
+			<div class="header-box">
+				<h4>V care</h4>
+				<a th:href="@{/logout}">LogOut</a>
+			</div>
+		</div>
+	</header>
+	<!-- header end -->
+	<main class="main">
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-xl-2 col-lg-3 col-md-4">
+					<!-- sidebar -->
+					<section class="sidebar">
+						<div class="sidebar-wrap">
+							<div class="Heading">
+								<h4>Dashboard</h4>
+							</div>
+							<div class="sidebar-item">
+								<img src="/images/Icons/app.png" alt=" icon" class="img-fluid" />
+								<a
+									th:href="@{/hospital/hospitalList/{id}(id=${patientObj.patientId})}">Appointments</a>
+							</div>
+
+
+							<div class="sidebar-item">
+								<img src="/images/Icons/pprofile.png" alt="icon"
+									class="img-fluid" /> <a
+									th:href="@{/patientprofile/{id}(id=${patientObj.patientId})}"
+									class="active">Patient Profile</a>
+							</div>
+							<div class="sidebar-item">
+								<img src="/images/Icons/pprofile.png" alt="icon"
+									class="img-fluid" /> <a
+									th:href="@{/med/medhistory/{id}(id=${patientObj.patientId})}"
+									class="active">Medical History</a>
+							</div>
+
+							<div class="sidebar-item">
+								<img src="/images/Icons/pprofile.png" alt="icon"
+									class="img-fluid" /> <a
+									th:href="@{/med/view/{id}(id=${patientObj.patientId})}"
+									class="active">View Reports</a>
+							</div>
+
+
+						</div>
+					</section>
+					<!-- sidebar end -->
+				</div>
+				<!-- main area -->
+				<div class="col-lg-10 col-md-8">
+					<div class="main-area">
+						<!-- page Heading -->
+						<div class="page-heading">
+							<h1>Patient Profile</h1>
+						</div>
+						<!-- page Heading End -->
+
+						<!-- abailablility -->
+
+						<div class="avaliability-box">
+							<div class="form-box">
+
+								<form
+									th:action="@{/saveappointment/{did}(did=${doctor.doctorId})}"
+									class="modal-form" method="post" th:object="${appointment}"
+									id="appointment" name="appointment">
+									<input type="number" id="doctor" name="doctor"
+										th:value="${doctor.doctorId}"> <input
+										class="form-control" name="patient" id="patient"
+										th:value="${patientObj.patientId}" required="required">
+									<div class="row">
+
+
+
+
+										<div class="col-md-4">
+											<label for="name">Slot timings</label> <input type="text"
+												class="form-control" id="slot" name="slot"
+												th:value="${slot}" required>
+										</div>
+
+										<div class="col-md-4">
+											<label for="name">On date:</label> <input type="text"
+												class="form-control" id="date" name="date"
+												th:value="${date}" required>
+										</div>
+
+
+									</div>
+							</div>
+
+
+
+						</div>
+
+
+
+
+					</div>
+
+
+
+
+
+
+
+					<div class="col-md-2">
+						<label for=""></label>
+						<center>
+							<button class="btn btn-danger btn-block">Save</button>
+						</center>
+					</div>
+				</div>
+
+				</form>
+
+			</div>
+		</div>
+
+
+		<!-- abailablility -->
+		</div>
+		</div>
+		</div>
+		<!-- main area end -->
+		</div>
+	</main>
+
+	<!-- SCRIPTS -->
+	<script src="/../js/dropdown.js"></script>
+	<script src="../js/jquery.js"></script>
+	<script src="../js/bootstrap.min.js"></script>
+	<!-- <script src="../js/jquery.sticky.js"></script>
+    <script src="../js/jquery.stellar.min.js"></script>
+    <script src="../js/wow.min.js"></script>
+    <script src="../js/smoothscroll.js"></script>
+    <script src="../js/owl.carousel.min.js"></script>
+    <script src="./assets/js/script.js"></script> -->
+</body>
+
+</html>
+</body>
+</html>

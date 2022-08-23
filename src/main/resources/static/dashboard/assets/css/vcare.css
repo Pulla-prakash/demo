@@ -1,0 +1,26 @@
+@charset "ISO-8859-1";
+/* header */
+.header {
+  background: rgb(32,178,170);
+}
+.header-box {
+  display: flex;
+  justify-content: space-between;
+  align-items: left;
+  padding: 0px 20px 100px 20px;
+}
+.header-box h4 {
+  margin-bottom: 0px;
+  
+}
+@media (max-width: 315px) {
+  .header-box h4 {
+    font-size: 20px;
+  }
+}
+.header-box a {
+  font-weight: 500;
+  font-size: 18px;
+  color: var(--secondary-color);
+}
+/* header end */

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="../../css/idCard.css">
+<!--  <link rel="stylesheet" href="/dashboard/assets/css/final.css" /> -->
+<!--    <style>
+body {
+background-image:url("/images/slider3.jpg");
+background-color: #FFFFFF;
+
+}
+</style> -->
+
+<title>ID Card</title>
+<!--     
+    So lets start -->
+</head>
+<body>
+	<header class="header">
+		<div class="container-fluid">
+			<div class="header-box">
+				<h1>V care</h1>
+				<div align="right">
+					<!-- <a href="#">LogOut</a><br> -->
+				
+				<button  style="width: 2cm;" class="btn btn-primary"><a th:href="@{/List/{did}(did=${objEmployee.departmentId})}">Back</a></button>
+				</div>
+			</div>
+		</div>
+	</header>
+	<div class="container">
+		<div class="padding">
+			<div class="font">
+
+				<div class="top">
+					<center>
+						<br>
+						<h1>V care</h1>
+					</center>
+					<img th:src="*{'data:profile/jpeg;base64,'+{objEmployee.profile}}">
+				</div>
+				<div class="bottom">
+					<p>
+						<span th:text="${objEmployee.employeeName}"></span>
+					</p>
+					<p>
+						<span th:text="${objEmployee.employeePosition}"></span>
+					</p>
+
+					<div class="barcode">
+						<img
+							th:src="*{'data:empQrCode/jpeg;base64,'+{objEmployee.empQrCode}}">
+					</div>
+					<br>
+					<!-- <p class="no"><span th:text></span></p>
+                        <p class="no">part-1,89 harinadad d...sdv..sdf..sfd..sd.</p> -->
+				</div>
+			</div>
+		</div>
+		<div class="back">
+			<h1 class="Details">information</h1>
+			<hr class="hr">
+			<div class="details-info">
+				<p>
+					<b>Email : </b>
+				</p>
+				<p>
+					<span th:text="${objEmployee.email}"></span>
+				</p>
+				<p>
+					<b>Mobile No: </b>
+				</p>
+				<p>
+					<span th:text="${objEmployee.contactNo}"></span>
+				</p>
+				<p>
+					<b>Address:</b>
+				</p>
+				<p>
+					<span th:text="${objEmployee.address}"></span>
+				</p>
+			</div>
+			<div class="logo">
+				<!-- <img src="barcode.PNG"> -->
+			</div>
+
+
+			<hr>
+		</div>
+	</div>
+	</div>
+</body>
+</html>

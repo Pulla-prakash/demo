@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<title>Vcare</title>
+	<meta charset="UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+	<meta name="description" content="" />
+	<meta name="keywords" content="" />
+	<meta name="author" content="#" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
+	<!-- MAIN CSS -->
+	<link rel="stylesheet" th:href="@{/dashboard/assets/css/final.css}" />
+
+</head>
+
+<body>
+	<!-- header -->
+	<header class="header">
+		<div class="container-fluid">
+			<div class="header-box">
+				<h4>Vcare</h4>
+				<div class="sidebar-item">
+                                <img src="/../images/Icons/pprofile.png" alt="icon"
+                                    class="img-fluid" /> <a
+                                    th:href="@{/editEmployee/{id}(id=${employeeId})}">Employee
+                                    Profile</a>
+                            </div>
+
+								<div class="sidebar-item">
+									<img src="/../images/Icons/pprofile.png" alt="icon"
+										class="img-fluid" /><a
+										th:href="@{/receptionform/{rid}(rid=${employeeId})}">Book Appointment</a>
+								</div> 
+								<div class="sidebar-item">
+									<img src="/../images/Icons/pprofile.png" alt="icon"
+										class="img-fluid" /> <a
+										th:href="@{/selectambulancedriver/{hbranchId}/{empid}(hbranchId=${hosp},empid=${employeeId})}">Ambulance
+										Booking</a>
+								</div> 
+			</div>
+		</div>
+	</header>
+	<!-- header end -->
+	<main class="main">
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-xl-2 col-lg-3 col-md-4">
+					<!-- sidebar -->
+					
+					<!-- sidebar end -->
+				</div>
+				<!-- main area -->
+				<div class="col-lg-10 col-md-8">
+					<div class="main-area">
+						<!-- page Heading -->
+						<div class="page-heading">
+							<center>
+								<b><i>
+										<h1>Patient Appointment</h1>
+										<h4 style=color:red th:text="${appmsg}"></h4>
+									</i></b>
+							</center>
+						</div>
+						
+						<input type="hidden" id="doctor" name="doctor" th:value="${did}">
+						<input type="hidden" id="employeeId" name="employeeId" th:value="${employeeId}">
+						<input type="hidden" id="hospitalBranchId" name="hospitalBranchId"
+							th:value="${hospitalBranchId}"> <input type="hidden"
+							name="patient" id="patient" th:value="${pid}" required="required">
+						<table align="center">
+							<thead>
+								<tr>
+									<th>Name&emsp;&emsp;</th>
+									<td name="patientName"
+										th:text="${patientName}+' '+${patientLastName}" required></td>
+								</tr>
+								<tr>
+									<th>On date:&emsp;&emsp;</th>
+									<td id="date" name="date" th:text="${date}" required></td>
+								</tr>
+								<tr>
+									<th>Slot:&emsp;&emsp;</th>
+									<td id="slot" name="slot" th:text="${slot}" required></td>
+								</tr>
+
+								<tr>
+									<th>Doctor:&emsp;&emsp;</th>
+									<td id="doctorName" name="doctorName" th:text="${doctorName}"
+										required></td>
+								</tr>
+								<tr>
+									<th>Fees&emsp;&emsp;</th>
+									<td id="doctorFee" name="doctorFee"
+											th:text="${doctorFee}" required></td>
+								</tr>
+							</thead>
+
+							<tr></tr>
+							</tbody>
+						</table>
+						
+						<!-- page Heading End -->
+
+						<!-- availablility -->
+
+						<div class="avaliability-box">
+							<div class="form-box">
+								
+							</div>
+						</div>
+
+						<!-- abailablility -->
+					</div>
+				</div>
+			</div>
+			<!-- main area end -->
+		</div>
+	</main>
+
+	<!-- SCRIPTS -->
+	<script src="../js/jquery.js"></script>
+	<script src="../js/bootstrap.min.js"></script>
+	<!-- <script src="../js/jquery.sticky.js"></script>
+    <script src="../js/jquery.stellar.min.js"></script>
+    <script src="../js/wow.min.js"></script>
+    <script src="../js/smoothscroll.js"></script>
+    <script src="../js/owl.carousel.min.js"></script>
+    <script src="./assets/js/script.js"></script> -->
+</body>
+
+</html>

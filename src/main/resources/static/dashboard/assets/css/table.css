@@ -1,0 +1,46 @@
+@charset "ISO-8859-1";
+/* .name(class=name<in html>) */
+table {
+border-collapse: collapse;
+border: 1px solid var(--primary-color);
+text-align: center;
+vertical-align: middle;
+}
+
+th{
+	
+
+}
+
+ td {
+
+
+padding: 0px;
+}
+thead th {
+width: 5%;
+text-align:center;
+}
+thead {
+background-color: var(--background-color);
+color: var(--secondary-color);
+font-size: 0.875rem;
+text-transform: uppercase;
+letter-spacing: 0%;
+}
+tbody tr:nth-child(odd) {
+background-color: #fff;
+}
+
+
+
+tbody tr:nth-child(even) {
+background-color: #eee;
+}
+
+
+
+
+
+
+

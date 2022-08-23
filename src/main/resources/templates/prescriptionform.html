@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>>
+	<title>Vcare</title>
+	<meta charset="UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+	<meta name="description" content="" />
+	<meta name="keywords" content="" />
+	<meta name="author" content="#" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
+	<!-- MAIN CSS -->
+	<link rel="stylesheet" th:href="@{/dashboard/assets/css/final.css}" />
+	
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <script src="https://cdn.tiny.cloud/1/vyae8xi0ny5tqluee5rz3sbzi3p6wdp0f51vmhh33svm0dzd/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
+
+</head>
+
+
+<body>
+	<!-- header -->
+	<header class="header">
+		<div class="container-fluid">
+			<div class="header-box">
+				<div text-align="right" class="row">
+					<h4>Vcare</h4>
+					<h4>
+						<a th:href="@{/logout}">LogOut</a>
+					</h4>
+				</div>
+			</div>
+		</div>
+	</header>
+	<!-- header end -->
+	<main class="main">
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-xl-2 col-lg-3 col-md-4">
+					<!-- sidebar -->
+					<section class="sidebar">
+						<div class="sidebar-wrap">
+							<div class="Heading">
+								<h4>Dashboard</h4>
+							</div>
+							<div class="sidebar-item">
+								<img src="../images/Icons/app.png" alt=" icon" class="img-fluid" />
+								<a th:href="@{/appointmentlist/{did}(did=${session.DocId})}">Appointments</a>
+							</div>
+							
+							<div class="sidebar-item">
+								<img src="../images/Icons/cal.png" alt="icon" class="img-fluid" />
+								<a th:href="@{/availabilityList/{id}(id=${session.DocId})}">Availability</a>
+							</div>
+							<div class="sidebar-item">
+								<img src="../images/Icons/profile.png" alt="icon" class="img-fluid" />
+								<a th:href="@{/updatedDoctorProfile/{did}(did=${session.DocId})}">Doctor Profile</a>
+							</div>
+							<div class="sidebar-item">
+								<img src="../images/Icons/prescription.jpg" alt="icon" class="img-fluid" />
+								<a th:href="@{/prescription/{did}(did=${session.DocId})}">Patients Prescription</a>
+							</div>
+						</div>
+					</section>
+					<!-- sidebar end -->
+				</div>
+				<!-- main area -->
+				<div class="col-lg-10 col-md-8">
+					<div class="main-area">
+						<!-- page Heading -->
+						<div class="page-heading">
+							<center>
+								<b><i>
+										<h1>Patient Prescription</h1>
+									</i></b>
+							</center>
+						</div>
+						<!-- page Heading End -->
+
+						<!-- abailablility -->
+
+						<div class="avaliability-box">
+							<div class="form-box">
+								<form id="prescription_form" th:action="@{/saveprescription}" th:object="${prescriptionobj}"
+									method="post" novalidate>
+									
+									<div class="row">
+										<div class="col-md-3">
+											<label for="patientName"></label> <input type="hidden"
+												class="form-control" id="patient" name="patient"
+												th:value="${appointment.patient.patientId}" th:minlength="1"
+												th:maxlength="100" required>
+										</div>
+										<div class="col-md-3">
+											<label for="patientName"></label> <input type="hidden"
+												class="form-control" name="prescriptionId"
+												th:value="*{prescriptionId}" th:minlength="1"
+												th:maxlength="100" required>
+										</div>
+										<div th:object="${appointment}">
+											<input type="hidden"
+												class="form-control" id="appointment" name="appointment"
+												th:value="*{appointmentId}" th:minlength="1"
+												th:maxlength="100" required>
+										</div>
+									</div>
+
+									<div class="row">
+										<div class="col-md-3">
+											<label for="patientName">Name</label> <input type="text"
+												class="form-control" name="patientName"
+												th:value="${appointment.patient.firstName}" th:minlength="1"
+												th:maxlength="100" placeholder="Enter Your Name" required>
+										</div>
+										<div class="col-md-3">
+											<label for="patientName">Age</label> <input type="number"
+												class="form-control" name="patientAge"
+												th:value="${appointment.patient.patientAge}" th:minlength="1"
+												th:maxlength="100" required>
+										</div>
+									
+										<div class="col-md-3">
+											<label for="Gender">Gender</label> <input type="text" class="form-control"
+												name="patientGender" th:value="${appointment.patient.patientGender}"
+												th:minlength="1" th:maxlength="100" required>
+										</div>
+										<div class="col-md-3">
+											<label for="patientName">Mobile</label> <input type="tel"
+												class="form-control" name="patientMobile"
+												th:value="${appointment.patient.patientMobile}" th:minlength="1"
+												th:maxlength="15"  required>
+										</div>
+									</div>
+
+									<div class="row">
+										<div class="col-md-3">
+											<label for="patientType">patientType</label><br>
+											<select id="patinetType" name="patientType" th:value="${patinetType}">
+												<option th:if="*{patientType}!=''" th:text="*{patientType}">Select</option>
+											
+												<option value="In-Patient">In-Patient</option>
+												<option value="Out-Patient">Out-Patient</option>
+											</select>
+										</div>
+
+										<div class="col-md-3">
+											<label for="loc">Hospital Name</label> <input type="text"
+												class="form-control" name="hospitalBranchName"
+												th:value="${hositalBranch.hospitalBranchName}"
+												required="required" th:minlength="1" th:maxlength="100">
+										</div>
+									
+										<div class="col-md-3">
+											<label for="name">Hospital Address</label> <input type="textarea"
+												class="form-control" name="hospitalBranchAddress"
+												th:value="${hositalBranch.hospitalBranchAddress}"
+												required="required" th:minlength="1" th:maxlength="200">
+
+										</div>
+
+										<div class="col-md-3">
+											<label for="loc">Doctor Name</label> <input type="text" class="form-control"
+												name="doctorName"
+												th:value="${appointment.doctor.doctorName}"
+												required="required" th:minlength="1" th:maxlength="100">
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-md-3">
+											<label for="name">Purpose</label> <input type="text" class="form-control"
+												name="ConsultantFee" th:value="${appointment.patientPurpose}"
+												required="required" th:minlength="1" th:maxlength="100">
+
+										</div>
+
+										
+										<div class="col-md-9+">
+										<label> Prescription</label>
+										
+										<textarea  id="prescriptions" contenteditable="true"
+											class="form-control" name="prescription"  th:value="*{prescription}"
+											required="required" minlength="1" maxlength="500" maxwidth="200"
+											th:utext="*{prescription}"></textarea>
+
+									</div>
+									</div>
+
+									<div class="row">
+
+										<div class="col-md-3">
+											<label for=""></label>
+											<button id="submit"class="btn btn-danger btn-block">Submit</button>
+											
+											
+										</div>
+									</div>
+								</form>
+							</div>
+						</div>
+
+						<!-- abailablility -->
+					</div>
+				</div>
+			</div>
+			<!-- main area end -->
+		</div>
+	</main>
+
+	<!-- SCRIPTS -->
+	<script>
+      tinymce.init({
+        selector: '#prescriptions',
+        plugins: [
+          'a11ychecker','advlist','advcode','advtable','autolink','checklist','export',
+          'lists','link','image','charmap','preview','anchor','searchreplace','visualblocks',
+          'powerpaste','fullscreen','formatpainter','insertdatetime','media','table','help','wordcount'
+        ],
+        toolbar: 'undo redo | formatpainter casechange blocks | bold italic backcolor | ' +
+          'alignleft aligncenter alignright alignjustify | ' +
+          'bullist numlist checklist outdent indent | removeformat | a11ycheck code table help'
+      });
+    </script>
+	<script src="../js/jquery.js"></script>
+	<script src="../js/bootstrap.min.js"></script>
+	<!-- <script src="../js/jquery.sticky.js"></script>
+    <script src="../js/jquery.stellar.min.js"></script>
+    <script src="../js/wow.min.js"></script>
+    <script src="../js/smoothscroll.js"></script>
+    <script src="../js/owl.carousel.min.js"></script>
+    <script src="./assets/js/script.js"></script> -->
+</body>
+
+</html>

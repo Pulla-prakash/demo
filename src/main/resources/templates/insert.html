@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<title>Vcare</title>
+	<meta charset="UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+	<meta name="description" content="" />
+	<meta name="keywords" content="" />
+	<meta name="author" content="#" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
+	<!-- MAIN CSS -->
+	<link rel="stylesheet" th:href="@{/dashboard/assets/css/final.css}" />
+
+</head>
+
+<body>
+	<!-- header -->
+	<header class="header">
+		<div class="container-fluid">
+			<div class="header-box">
+				<h4>Vcare</h4>
+				<a href="/">LogOut</a>
+			</div>
+		</div>
+	</header>
+	<!-- header end -->
+	<main class="main">
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-xl-2 col-lg-3 col-md-4">
+					<!-- sidebar -->
+					<section class="sidebar">
+						<div class="sidebar-wrap">
+							<div class="Heading">
+								<h4>Dashboard</h4>
+							</div>
+										<div class="sidebar-item">
+								<img src="/images/Icons/app.png" alt=" icon" class="img-fluid" />
+								<a th:href="@{/hospital/hospitalList/{id}(id=${pid})}">Appointments</a>
+							</div>
+
+
+							<div class="sidebar-item">
+								<img src="/images/Icons/pprofile.png" alt="icon" class="img-fluid" />
+								<a th:href="@{/patientprofile/{id}(id=${pid})}">Patient
+									Profile</a>
+							</div>
+							<div class="sidebar-item">
+								<img src="/images/Icons/pprofile.png" alt="icon" class="img-fluid" />
+								<a th:href="@{/med/medhistory/{id}(id=${pid})}" >Medical
+									History</a>
+							</div>
+									
+									<div class="sidebar-item">
+								<img src="/images/Icons/pprofile.png" alt="icon" class="img-fluid" />
+								<a th:href="@{/med/view/{id}(id=${pid})}" >View Reports</a>
+							</div>
+							
+							<div class="sidebar-item">
+								<img src="/images/Icons/pprofile.png" alt="icon" class="img-fluid" />
+								<a th:href="@{/list/{pid}(pid=${pid})}">View Prescription</a>
+							</div>
+							
+						</div>
+					</section>
+					<!-- sidebar end -->
+				</div>
+				<!-- main area -->
+				<div class="col-lg-10 col-md-8">
+					<div class="main-area">
+						<!-- page Heading -->
+						<div class="page-heading">
+							<center>
+								<b><i>
+										<h1>Patient Appointment</h1>
+										<h4 style=color:red th:text="${appmsg}"></h4>
+									</i></b>
+							</center>
+						</div>
+						<!-- page Heading End -->
+
+						<!-- availablility -->
+
+						<div class="avaliability-box">
+							<div class="form-box">
+								<form id="appointment_form" th:action="@{/linksave/{apid}(apid=${pid})}" th:object="${appointment}"
+									method="post">
+									<input type="hidden" class="form-control" id="appointmentId" name="appointmentId"
+										th:value="*{appointmentId}">
+									<input type="hidden" name="doctorid" th:value="${doctorid}">
+									<input type="hidden" name="patientid" th:value="${patientid}">
+									<input type="hidden" name="from" th:value="${from}">
+									<input type="hidden" name="to" th:value="${to}">
+
+									<input type="hidden" class="form-control" id="patient" name="patient"
+										th:value="${pid}" th:minlength="1" th:maxlength="100"
+										placeholder="Enter Your Name" required>
+									
+										
+									<div class="row">
+										<div class="col-md-6">
+											<label for="">Link</label> <textarea type="text"
+												id="link" class="form-control" name="link"
+												th:value="*{link}" th:text="*{link}"
+												placeholder="Insert the link" required></textarea>
+										</div>
+										
+									</div>
+									
+									
+
+									<center>
+										<button style="width:10cm;" class="btn btn-danger btn-block">Send</button>
+											
+									</center>
+								</form>
+							</div>
+						</div>
+
+						<!-- abailablility -->
+					</div>
+				</div>
+			</div>
+			<!-- main area end -->
+		</div>
+	</main>
+
+	<!-- SCRIPTS -->
+	<script src="../js/jquery.js"></script>
+	<script src="../js/bootstrap.min.js"></script>
+	<!-- <script src="../js/jquery.sticky.js"></script>
+    <script src="../js/jquery.stellar.min.js"></script>
+    <script src="../js/wow.min.js"></script>
+    <script src="../js/smoothscroll.js"></script>
+    <script src="../js/owl.carousel.min.js"></script>
+    <script src="./assets/js/script.js"></script> -->
+</body>
+
+</html>

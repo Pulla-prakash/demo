@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeLeaf.org">
+
+<head>
+	<meta charset="ISO-8859-1">
+	<title>Vcare</title>
+	<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+	<meta name="description" content="">
+	<meta name="keywords" content="">
+	<meta name="author" content="#">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css"
+		href="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.4/css/jquery.dataTables.css">
+	<!-- MAIN CSS -->
+	<link rel="stylesheet" th:href="@{/dashboard/assets/css/final.css}" />
+	<link rel="stylesheet" th:href="@{/dashboard/assets/css/table.css}" />
+	<link rel="stylesheet" th:href="@{/dashboard/assets/css/dropdownlink.css}" />
+</head>
+
+<body>
+
+	<!-- header -->
+	<header class="header-box">
+		<div class="container-fluid">
+			<div class="header-box">
+				<h4>Vcare</h4>
+				<a href="#">LogOut</a>
+
+			</div>
+	</header>
+	<!-- header end -->
+	<main class="main">
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-xl-2 col-lg-3 col-md-4">
+					<!-- sidebar -->
+					<section class="sidebar">
+						<div class="sidebar-wrap">
+							<div class="Heading">
+								<h4>Dashboard</h4>
+							</div>
+							<div class="sidebar-item">
+								<img src="../images/Icons/app.png" alt=" icon" class="img-fluid">
+								<a href="/hospital/hospitalList">Hospital</a>
+							</div>
+							
+							<div class="sidebar-item">
+								<img src="../images/Icons/cal.png" alt="icon" class="img-fluid">
+								<a th:href="@{/Drlist}">Doctor</a>
+							</div>
+							<div class="sidebar-item">
+								<img src="../images/Icons/profile.png" alt="icon" class="img-fluid">
+								<a th:href="@{/patientsList}">Patient</a>
+							</div>
+							<div class="sidebar-item">
+								<img src="../images/Icons/profile.png" alt="icon" class="img-fluid">
+								<a th:href="@{/Appointment}">Appointments</a>
+							</div>
+							
+							<div class="sidebar-item">
+								<img src="../images/Icons/profile.png" alt="icon" class="img-fluid">
+								<a th:href="@{/insurancelist/{id}(id=${session.AdminId})}">Insurance</a>
+							</div>
+
+							
+							<div class="sidebar-item">
+								<img src="../images/Icons/pprofile.png" alt="icon" class="img-fluid">
+								<a th:href="@{/news/newstable}">News</a>
+							</div>
+							
+							<div class="sidebar-item">
+								<img src="../images/Icons/pprofile.png" alt="icon" class="img-fluid">
+								<a th:href="@{/network}">Social Network</a>
+							</div>
+
+
+						</div>
+					</section>
+					<!-- sidebar end -->
+				</div>
+				<!-- main area -->
+				<div class="col-lg-10 col-md-8">
+					<div class="main-area">
+						<!-- page Heading -->
+						<div class="page-heading">
+							<!-- <h1>Hospital Details</h1> -->
+							<div class="header-box">
+								<h1>Insurance List</h1>
+								<a th:href="@{/addInsurance/{id}(id=${admin.adminId})}" class="img-fluid">Add
+									Insurance</a>
+							</div>
+							<h5 style=color:darkgreen th:text="${adminmsg}"></h5>
+						</div>
+						<table style="width:100%" ; id="example">
+							<thead>
+								<tr>
+
+									<th>profile</th>
+									<th style="width:30%">Name</th>
+									<th>Description</th>
+									<!-- <th>Created By</th>
+									<th>Updated By</th> -->
+									<th>Action</th>
+								</tr>
+							</thead>
+							<tbody>
+
+								<tr th:each="insuranceObj:${insurancelist}">
+									<th scope="row"><img alt=" "
+											th:src="*{'data:insurencepic/jpeg;base64,'+{insuranceObj.insurencepic}}"
+											style="width: 100px;height: 100px;"></th>
+									<td th:text="${insuranceObj.insuranceName}"></td>
+									<td th:text="${insuranceObj.insuranceDescription}"></td>
+									<!-- <td th:text="${insuranceObj.insurencepic}"></td> -->
+									<!-- <td th:text="${insuranceObj.createdBy}"></td>
+									<td th:text="${insuranceObj.updateBy}"></td> -->
+									<td class="select">
+										<ul class="pm">
+											<li><a href="#" title="#">Select</a>
+												<ul class="cm">
+													<li><a
+															th:href="@{/editIns/{id}/{insid}(id=${admin.adminId},insid=${insuranceObj.insuranceId})}">Edit</a>
+													</li>
+													<li><a
+															th:href="@{/deleteInsurance/{id}/{delid} (id=${admin.adminId},delid=${insuranceObj.insuranceId})}">Delete</a>
+													</li>
+												</ul>
+											</li>
+										</ul>
+									</td>
+								</tr>
+
+
+					</div>
+				</div>
+			</div>
+			<!-- main area end -->
+		</div>
+	</main>
+
+	<!-- SCRIPTS -->
+	<script src="../js/jquery.js"></script>
+	<script src="../js/bootstrap.min.js"></script>
+	<!-- <script src="../js/jquery.sticky.js"></script>
+    <script src="../js/jquery.stellar.min.js"></script>
+    <script src="../js/wow.min.js"></script	>
+    <script src="../js/smoothscroll.js"></script>
+    <script src="../js/owl.carousel.min.js"></script>
+    <script src="./assets/js/script.js"></script> -->
+	<script type="text/javascript" charset="utf8"
+		src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.2.min.js"></script>
+	<script type="text/javascript" charset="utf8"
+		src="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.4/jquery.dataTables.min.js"></script>
+	<script>
+		$(function () {
+			$("#example").dataTable();
+		})
+	</script>
+
+	</tbody>
+	</table>
+	</div>
+
+
+	</div>
+</body>
+
+</html>

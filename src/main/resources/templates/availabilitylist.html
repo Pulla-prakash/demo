@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeLeaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Vcare</title>
+<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+<meta name="description" content="">
+<meta name="keywords" content="">
+<meta name="author" content="#">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, maximum-scale=1">
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css"
+	href="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.4/css/jquery.dataTables.css">
+<!-- MAIN CSS -->
+<link rel="stylesheet" href="/dashboard/assets/css/final.css" />
+<link rel="stylesheet" href="/dashboard/assets/css/table.css" />
+<link rel="stylesheet" href="/dashboard/assets/css/dropdownlink.css" />
+</head>
+<body>
+	<!-- header -->
+	<header class="header-box">
+		<div class="container-fluid">
+			<div class="header-box">
+				<h4>Vcare</h4>
+				<a href="/">LogOut</a>
+			</div>
+	</header>
+	<!-- header end -->
+	<main class="main">
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-xl-2 col-lg-3 col-md-4">
+					<!-- sidebar -->
+					<section class="sidebar">
+						<div class="sidebar-wrap">
+							<div class="Heading">
+								<h4>Dashboard</h4>
+							</div>
+							<div class="sidebar-item">
+								<img src="../images/Icons/app.png" alt=" icon" class="img-fluid" />
+								<a th:href="@{/appointmentlist/{did}(did=${session.DocId})}">Appointments</a>
+							</div>
+							
+							<div class="sidebar-item">
+								<img src="../images/Icons/cal.png" alt="icon" class="img-fluid" />
+								<a th:href="@{/availabilityList/{id}(id=${session.DocId})}">Availability</a>
+							</div>
+							<div class="sidebar-item">
+								<img src="../images/Icons/profile.png" alt="icon" class="img-fluid" />
+								<a th:href="@{/updatedDoctorProfile/{did}(did=${session.DocId})}">Doctor Profile</a>
+							</div>
+							<div class="sidebar-item">
+								<img src="../images/Icons/prescription.jpg" alt="icon" class="img-fluid" />
+								<a th:href="@{/prescriptionlist/{did}(did=${session.DocId})}">Patients Prescription</a>
+							</div>
+							
+							<div class="sidebar-item">
+								<img src="../images/Icons/prescription.jpg" alt="icon" class="img-fluid" />
+								<a th:href="@{/payment/{docId}(docId=${session.DocId})}">Payments</a>
+							</div>
+						</div>
+					</section>
+					<!-- sidebar end -->
+				</div>
+				<!-- main area -->
+				<div class="col-lg-10 col-md-8">
+					<div class="main-area">
+						<!-- page Heading -->
+						<div class="row">
+							<!-- <form class="col-md-3" th:action="@{/hospital/search}" method="get">
+<input type="text" name="hospitalName" th:value="${hospitalName}" placeholder="Find by Hospital Name " size="20" >
+<button type="submit"><i class="fa fa-search">Search</i></button>
+</form>
+-->
+						</div>
+						<div class="page-heading">
+							<div class="header-box">
+								<h1>Availability Details</h1>
+								<a th:href="@{/addAvailability/{did}(did=${id})}" class="img-fluid">Add availability</a>
+							</div>
+							&ensp;&ensp;&ensp;<span style="color:#006400;font-size:30px" th:text="${session.docAvailExists}"></span>
+						</div>
+						<div>
+							<div>
+								<h1></h1>
+								<table border="1"
+									class="table table-striped table-responsive-md" id="example">
+									<thead>
+										<tr>
+											<th>Doctor</th>
+											<th>Hospital</th>
+											<th>start Timings</th>
+											<th>end Timings</th>
+											<th>Action</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr th:each="availabilityObj : ${availabilityList}">
+											<td th:text="${availabilityObj.doctor.doctorName}"></td>
+											<td th:text="${availabilityObj.hospitalBranch.hospitalBranchName}"></td>
+											<td th:text="${availabilityObj.startTimings}"></td>
+											<td th:text="${availabilityObj.endTimings}"></td>
+											<td class="select">
+												<ul class="pm">
+													<li><a href="#" title="#" th:href="@{/editAvailability/{id}(id=${availabilityObj.availabilityId})}">Edit</a>
+														
+												</ul>
+											</td>
+										</tr>
+										<!-- SCRIPTS -->
+										<script src="../js/jquery.js"></script>
+										<script src="../js/bootstrap.min.js"></script>
+										<!-- <script src="../js/jquery.sticky.js"></script>
+<script src="../js/jquery.stellar.min.js"></script>
+<script src="../js/wow.min.js"></script>
+<script src="../js/smoothscroll.js"></script>
+<script src="../js/owl.carousel.min.js"></script>
+<script src="./assets/js/script.js"></script> -->
+										<script type="text/javascript" charset="utf8"
+											src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.2.min.js"></script>
+										<script type="text/javascript" charset="utf8"
+											src="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.4/jquery.dataTables.min.js"></script>
+										<script>
+$(function(){
+$("#example").dataTable();
+})
+</script>
+									</tbody>
+								</table>
+							</div>
+							<!-- <p><a th:href="@{/hospital/addHospital}" class="btn btn-primary btn-sm mb-3" >Add a new Hospital</a></p> -->
+						</div>
+						<!-- abailablility -->
+					</div>
+				</div>
+			</div>
+			<!-- main area end -->
+		</div>
+	</main>
+</body>
+</html>
+

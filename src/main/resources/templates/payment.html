@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeLeaf.org">
+
+<head>
+	<meta charset="ISO-8859-1">
+	<title>Vcare</title>
+	<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+	<meta name="description" content="">
+	<meta name="keywords" content="">
+	<meta name="author" content="#">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css"
+		href="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.4/css/jquery.dataTables.css">
+
+	<!-- MAIN CSS -->
+
+	<link rel="stylesheet" th:href="@{/dashboard/assets/css/final.css}" />
+	<link rel="stylesheet" th:href="@{/dashboard/assets/css/table.css}" />
+	<link rel="stylesheet" th:href="@{/dashboard/assets/css/dropdownlink.css}" />
+	<meta
+name="viewport"
+content="width=device-width, initial-scale=1, maximum-scale=1"
+/>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<link
+rel="stylesheet"
+href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+/>
+<link rel="stylesheet" href="https://cdn.datatables.net/1.10.12/css/jquery.dataTables.min.css" />
+<link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.2.2/css/buttons.dataTables.min.css" />
+<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.3.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/buttons/1.2.2/js/dataTables.buttons.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jszip/2.5.0/jszip.min.js"></script>
+<script type="text/javascript" src="https://cdn.rawgit.com/bpampuch/pdfmake/0.1.18/build/pdfmake.min.js"></script>
+<script type="text/javascript" src="https://cdn.rawgit.com/bpampuch/pdfmake/0.1.18/build/vfs_fonts.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/buttons/1.2.2/js/buttons.html5.min.js"></script>
+<script type="text/javascript">
+$(function () {
+$('#example').DataTable({
+dom: 'Bfrtip',
+buttons: [{
+extend: 'excel',
+text: 'Excel',
+className: 'exportExcel',
+filename: 'Test_Excel',
+exportOptions: { modifier: { page: 'all'} }
+},
+{
+extend: 'pdf',
+text: 'PDF',
+className: 'exportExcel',
+filename: 'Test_Pdf',
+exportOptions: { modifier: { page: 'all'} }
+
+},
+     { extend: 'copy',
+            text: 'Copy ',
+            className: 'exportExcel',
+            exportOptions: { modifier: { modifier: {    page: 'current'} }  }     
+            },
+{
+extend: 'csv',
+text: 'csv ',
+exportOptions: {
+modifier: {
+search: 'none' } } 
+}]
+});
+
+});
+</script>
+
+	<style type="text/css">
+		/* reset */
+
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800;900&display=swap");
+* {
+  margin: 0px;
+  padding: 0px;
+  font-size: 16px;
+  box-sizing: border-box;
+  --poppins: "Poppins", sans-serif;
+
+  /* color scehm */
+  --primary-color: 	 rgb(1, 197, 162, 0.2);
+  --secondary-color: #0164a0;
+  --background-color: #f9f9f9;
+  --white: #fff;
+  --black: #000;
+  --light-black: #454545;
+  --light-green: #7FFFD4;
+  scroll-behavior: smooth;
+}
+*::after,
+*::before {
+  box-sizing: border-box;
+}
+
+
+
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+  font-family: "Times New Roman", Times, serif;
+}
+/* body {
+  font-family: var(--poppins);
+  scroll-behavior: smooth;
+
+  background: var(--background-color);
+} */
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.hero-image {
+  background-image: url("/images/slider1.jpg");
+  background-color: #cccccc;
+  height: 500px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+}
+
+.hero-text {
+  text-align: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+}
+
+
+
+
+
+
+main {
+  padding: 20px;
+}
+/* header */
+.header {
+  background: rgb(236, 236, 236);
+}
+.header-box {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 5px 20px;
+}
+.header-box h4 {
+  margin-bottom: 0px;
+}
+@media (max-width: 315px) {
+  .header-box h4 {
+    font-size: 20px;
+  }
+}
+.header-box a {
+  font-weight: 500;
+  font-size: 18px;
+  color: var(--black);
+}
+/* header end */
+/* sidebar */
+.sidebar {
+	 /* background-image: url("/images/sidebar2.jpg"); */
+	 background :var(--light-gray) ;
+  height: 180px;
+  width: 65px;
+  background-size: cover;
+
+  
+  max-width: 100%;
+  width: 100%;
+
+  padding: 10px 10px;
+  border-radius: 10px;
+  min-height: calc(100vh - 78px);
+  /* position: fixed; */
+/*   box-shadow: 0px 10px 20px rgba(1, 197, 162, 0.021); */
+}
+@media (min-width: 1650px) {
+  .sidebar {
+    max-width: 250px;
+    min-width: 250px;
+  }
+}
+@media (max-width: 768px) {
+  .sidebar {
+    min-height: auto;
+    margin-bottom: 20px;
+  }
+}
+.sidebar-wrap .Heading h4 {
+  font-weight: 600;
+  font-size: 24px;
+  color: var(--secondary-color);
+}
+.sidebar-wrap .Heading {
+  margin-bottom: 40px;
+}
+.sidebar-item {
+  display: grid;
+  grid-template-columns: 45px 100%;
+  padding: 2px;
+  align-items: center;
+  margin-bottom: 20px;
+}
+.sidebar-item img {
+  max-width: 30px;
+}
+.sidebar-item a {
+  display: block;
+  padding: 10px 5px;
+  color: var(--secondary-color);
+  text-decoration: none;
+}
+/* .sidebar-item:hover, */
+/* .sidebar-item .active {
+  background: var(--background-color);
+} */
+/* sidebar end */
+
+/* main-area */
+
+/* page heading */
+.page-heading {
+  background: rgb(1, 197, 162, 0.2);
+  padding: 10px 20px;
+  border-radius: 10px;
+}
+.page-heading h1 {
+  margin-top: 0px;
+  margin-bottom: 0px;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+@media (max-width: 450px) {
+  .page-heading h1 {
+    font-size: 28px;
+  }
+}
+/*page heading end */
+
+/* appoiments area start */
+.appoi-box {
+  background: var(--white);
+  padding: 10px 20px;
+  margin-top: 20px;
+  border-radius: 10px;
+}
+.appoi-box h3 {
+  margin-top: 0px;
+  margin-bottom: 0px;
+  color: var(--secondary-color);
+}
+@media (max-width: 550px) {
+  .appoi-box h3 {
+    font-size: 20px;
+  }
+}
+.appoi-box .head-area {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+@media (max-width: 550px) {
+  .appoi-box .head-area {
+    flex-wrap: wrap;
+  }
+}
+.appoi-box .head-area span {
+  display: inline-block;
+  margin-right: 10px;
+  font-weight: 600;
+  font-size: 17px;
+}
+.appoi-box .head-area a {
+  display: inline-block;
+  margin-right: 10px;
+  padding: 5px 15px;
+  background: #ffebeb;
+  font-size: 17px;
+}
+@media (max-width: 550px) {
+  .appoi-box .head-area a,
+  .appoi-box .head-area span {
+    margin-top: 10px;
+  }
+}
+.appoi-box .head-area .btn-accept {
+  background: var(--primary-color);
+  color: var(--white);
+}
+/* appoiments area end here */
+.avaliability-box .btn {
+  background: var(--primary-color);
+  border: 1px solid var(--primary-color);
+  display: inline-block;
+  margin-top: 8px;
+  font-size: 22px;
+  padding: 1px !important;
+  border-radius: 5px;
+}
+.btn-history {
+  background: white !important;
+  color: var(--primary-color) !important;
+  border: 1px solid var(--primary-color);
+}
+
+
+/* avaliability-box */
+.avaliability-box {
+  margin-top: 20px;
+}
+
+/* heading */
+
+/* table */
+
+table { font-size: 75%; table-layout: fixed; width: 100%; }
+table { border-collapse: separate; border-spacing: 2px; }
+th, td { border-width: 1px; padding: 0.5em; position: relative; text-align: left; }
+th, td { border-radius: 0.25em; border-style: solid; }
+th { background: #EEE; border-color: #BBB; }
+td { border-color: #DDD; }
+
+
+/* header */
+
+
+/* header:after { clear: both; content: ""; display: table; }
+
+header h1 { background: #000; border-radius: 0.25em; color: #FFF; margin: 0 0 1em; padding: 0.5em 0; }
+header address { float: left; font-size: 75%; font-style: normal; line-height: 1.25; margin: 0 1em 1em 0; }
+header address p { margin: 0 0 0.25em; }
+header span, header img { display: block; float: right; }
+header span { margin: 0 0 1em 1em; max-height: 25%; max-width: 60%; position: relative; }
+header img { max-height: 100%; max-width: 100%; }
+header input { cursor: pointer; -ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=0)"; height: 100%; left: 0; opacity: 0; position: absolute; top: 0; width: 100%; }
+ */
+/* article */
+
+article, article address, table.meta, table.inventory { margin: 0 0 3em; }
+article:after { clear: both; content: ""; display: table; }
+article h1 { clip: rect(0 0 0 0); position: absolute; }
+
+article address { float: left; font-size: 125%; font-weight: bold; }
+
+/* table meta & balance */
+
+table.meta, table.balance { float: right; width: 36%; }
+table.meta:after, table.balance:after { clear: both; content: ""; display: table; }
+
+/* table meta */
+
+table.meta th { width: 40%; }
+table.meta td { width: 60%; }
+
+/* table items */
+
+table.inventory { clear: both; width: 100%; }
+table.inventory th { font-weight: bold; text-align: center; }
+
+table.inventory td:nth-child(1) { width: 26%; }
+table.inventory td:nth-child(2) { width: 38%; }
+table.inventory td:nth-child(3) { text-align: right; width: 12%; }
+table.inventory td:nth-child(4) { text-align: right; width: 12%; }
+table.inventory td:nth-child(5) { text-align: right; width: 12%; }
+
+/* table balance */
+
+table.balance th, table.balance td { width: 50%; }
+table.balance td { text-align: right; }
+
+/* aside */
+
+aside h1 { border: none; border-width: 0 0 1px; margin: 0 0 1em; }
+aside h1 { border-color: #999; border-bottom-style: solid; }
+
+
+
+		
+		</style>
+
+<style type="text/css">
+
+
+
+
+section {
+float: right;
+margin:0 1.5%;
+width: 30%;
+}
+
+</style>
+<style type="text/css">
+<!--
+
+
+
+@media print
+{
+.noprint {display:none;}
+}
+
+@media screen
+{
+
+}
+
+-->
+</style><style type="text/css">
+<!--
+
+@media print
+{
+.noprint {display:none;}
+}
+
+@media screen
+{
+
+}
+</style>
+</head>
+
+<body>
+	<!-- header -->
+	<header class="header-box">
+		<div class="container-fluid">
+			<div class="header-box">
+				<h4>Vcare</h4>
+				<a th:href="@{/logout}">LogOut</a>
+
+			</div>
+	</header>
+	<!-- header end -->
+	<main class="main">
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-xl-2 col-lg-3 col-md-4">
+					<!-- sidebar -->
+					<section class="sidebar">
+						<div class="sidebar-wrap">
+							<div class="Heading">
+								<h4>Dashboard</h4>
+								<div class="sidebar-item">
+								<img src="../images/Icons/app.png" alt=" icon" class="img-fluid" />
+								<a th:href="@{/appointmentlist/{did}(did=${session.DocId})}">Appointments</a>
+							</div>
+							
+							<div class="sidebar-item">
+								<img src="../images/Icons/cal.png" alt="icon" class="img-fluid" />
+								<a th:href="@{/availabilityList/{id}(id=${session.DocId})}">Availability</a>
+							</div>
+							<div class="sidebar-item">
+								<img src="../images/Icons/profile.png" alt="icon" class="img-fluid" />
+								<a th:href="@{/updatedDoctorProfile/{did}(did=${session.DocId})}">Doctor Profile</a>
+							</div>
+							<div class="sidebar-item">
+								<img src="../images/Icons/prescription.jpg" alt="icon" class="img-fluid" />
+								<a th:href="@{/prescriptionlist/{did}(did=${session.DocId})}">Patients Prescription</a>
+							</div>
+							
+							<div class="sidebar-item">
+								<img src="../images/Icons/prescription.jpg" alt="icon" class="img-fluid" />
+								<a th:href="@{/payment/{docId}(docId=${session.DocId})}">Payments</a>
+							</div>
+							</div>
+							
+
+						</div>
+					</section>
+					<!-- sidebar end -->
+				</div>
+				<!-- main area -->
+				<div class="col-lg-10 col-md-8">
+					<div class="main-area">
+						<!-- page Heading -->
+						<div class="row">
+
+							
+
+						</div>
+						<div class="page-heading">
+							<div class="header-box">
+								<h1>Payments</h1>
+
+							</div>
+						</div>
+<address >
+				<h2>Doctor Name:&ensp; Dr.<span  th:text="${name}"> </span></h2>
+							
+			</address>
+			
+			<table class="inventory">
+				<thead>
+					<tr>
+						<th><span >Patient Name</span></th>
+						<th><span >Purpose</span></th>
+						<th><span >Time</span></th>
+						<th><span >Fee</span></th>
+					</tr>
+				</thead>
+				<tbody align="center">
+					<tr th:each="pay:${objectapp}">
+						<td><a class="cut"></a><span  th:text="${pay.getPatient().getFirstName()}"></span></td>
+						<td><a class="cut"></a><span  th:text="${pay.getPatient().getPurpose()}"></span></td>
+						<td><a class="cut"></a><span th:text="${pay.getDate()}+'  ; '+${pay.getSlot()}"><span data-suffix>mins</span></span></td>
+					<td  ><a class="cut"></a><span data-prefix></span><span th:text="${pay.getDoctor().getDoctorFee()}"></span></td>
+					</tr>
+				</tbody>
+			</table>
+			<h2 align="right">Total Amount :<span th:text="${amount}"></span></h2>
+
+
+						<div>
+							<div>
+
+								
+							</div>
+							<!--     <p><a th:href="@{/hospital/addHospital}" class="btn btn-primary btn-sm mb-3" >Add a new Hospital</a></p>  -->
+						</div>
+
+						<!-- abailablility -->
+					</div>
+				</div>
+			</div>
+			<!-- main area end -->
+		</div>
+	</main>
+
+	<!-- SCRIPTS -->
+	<script src="../js/jquery.js"></script>
+	<script src="../js/bootstrap.min.js"></script>
+	<!-- <script src="../js/jquery.sticky.js"></script>
+    <script src="../js/jquery.stellar.min.js"></script>
+    <script src="../js/wow.min.js"></script>
+    <script src="../js/smoothscroll.js"></script>
+    <script src="../js/owl.carousel.min.js"></script>
+    <script src="./assets/js/script.js"></script> -->
+
+
+	<script type="text/javascript" charset="utf8"
+		src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.2.min.js"></script>
+	<script type="text/javascript" charset="utf8"
+		src="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.4/jquery.dataTables.min.js"></script>
+	<script>
+		$(function () {
+			$("#example").dataTable();
+		})
+	</script>
+
+</body>
+
+</html>

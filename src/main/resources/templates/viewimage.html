@@ -1,0 +1,84 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<title>V Care Patient Profile</title>
+	<meta charset="UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+	<meta name="description" content="" />
+	<meta name="keywords" content="" />
+	<meta name="author" content="#" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
+	<!-- MAIN CSS -->
+	<link rel="stylesheet" th:href="@{/dashboard/assets/css/final.css}" />
+</head>
+
+<body>
+	<!-- header -->
+	<header class="header">
+		<div class="container-fluid">
+			<div class="header-box">
+				<h4>V care</h4>
+				<h8 style="color:blue; font-size:14px"> Patient&nbsp;&nbsp;:&nbsp;&nbsp;<span
+						style="color:blue; font-size:14px" th:text="${session.name}" /> &nbsp;&nbsp;&nbsp;&ensp;<a
+						th:href="@{/logout}">LogOut</a> </span></h8>
+			</div>
+		</div>
+	</header>
+	<!-- header end -->
+	<main class="main">
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-xl-2 col-lg-3 col-md-4">
+					<!-- sidebar -->
+					<section class="sidebar">
+						<div class="sidebar-wrap">
+							<div class="Heading">
+								<h4>Dashboard</h4>
+							</div>
+							<div class="sidebar-item">
+								<img src="/images/Icons/app.png" alt=" icon" class="img-fluid" />
+								<a th:href="@{/hospital/hospitalList/{id}(id=${patientObj})}">Appointments</a>
+							</div>
+							<div class="sidebar-item">
+								<img src="/images/Icons/pprofile.png" alt="icon" class="img-fluid" />
+								<a th:href="@{/patientprofile/{id}(id=${patientObj})}" class="active">Patient
+									Profile</a>
+							</div>
+							<div class="sidebar-item">
+								<img src="/images/Icons/pprofile.png" alt="icon" class="img-fluid" />
+								<a th:href="@{/med/medhistory/{id}(id=${patientObj})}" class="active">Medical
+									History</a>
+							</div>
+							<div class="sidebar-item">
+								<img src="/images/Icons/pprofile.png" alt="icon" class="img-fluid" />
+								<a th:href="@{/med/view/{id}(id=${patientObj})}" class="active">View Reports</a>
+							</div>
+						</div>
+					</section>
+					<!-- sidebar end -->
+				</div> <!-- main area -->
+				<div class="col-lg-10 col-md-8">
+					<div class="main-area">
+						<!-- page Heading -->
+						<div class="page-heading">
+							<h1 th:text="${name}"></h1>
+							<h3>REPORTS</h3>
+						</div>
+						<!-- page Heading End -->
+						<!-- abailablility -->
+						<div th:object="${medObj}">
+						</div>
+						<div class="avaliability-box">
+							<div class="form-box">
+								<div>
+									<input type="hidden" id="patientId" name="patientId" th:value="${patientObj}" />
+									<input type="hidden" id="medicalId" name="medicalId" th:value="${medObj}" />
+								</div>
+								<div>
+									<div>
+										<span><img style="height: 500px;width: 400px" th:src="'/../'+${medObj}"
+												class="img-fluid bg-img" alt=" " /></span>
+									</div>

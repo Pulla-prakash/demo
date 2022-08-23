@@ -1,0 +1,25 @@
+@charset "ISO-8859-1";
+/*SCROLLER*/
+.scroll-comments {
+                margin:4px, 4px;
+                padding:30px;
+                background-color: #f9f9f9;
+                width: 860px;
+                height: 15cm;
+                overflow-x: hidden;
+                overflow-y: auto;
+                text-align:left;
+                float:left;
+            }
+.scroll-slots {
+                margin:4px, 4px;
+                padding:30px;
+                background-color: #f9f9f9;
+                width: 20cm;
+                height: 15cm;
+                overflow-x: hidden;
+                overflow-y: auto;
+                text-align:left;
+                float:left;
+            }    
+        

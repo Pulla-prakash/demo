@@ -1,0 +1,174 @@
+
+<!DOCTYPE html>
+<html lang="en" xmls:th="http://www.thymeleaf.org">
+
+<head>
+<title>Vcare</title>
+<meta charset="UTF-8" />
+<script src="https://ajax.googleapis.com/ajax/libs/jquery.min.js"></script>
+<meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+<meta name="description" content="" />
+<meta name="keywords" content="" />
+<meta name="author" content="#" />
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, maximum-scale=1" />
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
+<!-- MAIN CSS -->
+<link rel="stylesheet" href="/dashboard/assets/css/final.css" />
+<script
+	src="https://cdn.tiny.cloud/1/xsqkidrxta3zg6czz7munozzg81prejrityd07h52wl5ixi6/tinymce/6/tinymce.min.js"
+	referrerpolicy="origin"></script>
+<!-- <link rel="stylesheet" th:href="@{/richtext/richtext.min.css}"/>
+<script type="text/javascript" th:href="@{/richtext/jquery.richtext.js}"></script> -->
+</head>
+
+<body>
+	<!-- header -->
+	<header class="header">
+		<div class="container-fluid">
+			<div class="header-box">
+				<h4>Vcare</h4>
+				<a href="#">LogOut</a>
+			</div>
+		</div>
+	</header>
+	<!-- header end -->
+	<main class="main">
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-xl-2 col-lg-3 col-md-4">
+					<!-- sidebar -->
+					<section class="sidebar">
+						<div class="sidebar-wrap">
+							<div class="Heading">
+								<h4>Dashboard</h4>
+							</div>
+							<div class="sidebar-item">
+								<img src="/images/Icons/app.png" alt=" icon" class="img-fluid">
+								<a href="/hospital/hospitalList">Hospital</a>
+							</div>
+							<!-- <div class="sidebar-item">
+								<img src="/images/Icons/pa.png" alt="icon" class="img-fluid">
+								<a th:href="@{/Dephome}">Department</a>
+							</div> -->
+							<div class="sidebar-item">
+								<img src="/images/Icons/cal.png" alt="icon" class="img-fluid">
+								<a th:href="@{/Drlist}">Doctor</a>
+							</div>
+							<div class="sidebar-item">
+								<img src="/images/Icons/profile.png" alt="icon"
+									class="img-fluid"> <a th:href="@{/patientsList}">Patient</a>
+							</div>
+
+							<!-- <div class="sidebar-item">
+								<img src="../images/Icons/pprofile.png" alt="icon" class="img-fluid">
+								<a th:href="@{/insurancelist}" >Insurances</a>
+							</div> -->
+							<div class="sidebar-item">
+								<img src="/images/Icons/pprofile.png" alt="icon"
+									class="img-fluid"> <a th:href="@{/news/newstable}">News</a>
+							</div>
+
+							<div class="sidebar-item">
+								<img src="/images/Icons/pprofile.png" alt="icon"
+									class="img-fluid"> <a th:href="@{/network}">Social
+									Network</a>
+							</div>
+
+						</div>
+					</section>
+					<!-- sidebar end -->
+				</div>
+				<!-- main area -->
+				<div class="col-lg-10 col-md-8">
+					<div class="main-area">
+						<!-- page Heading -->
+						<div class="page-heading">
+							<h1>Latest News</h1>
+						</div>
+						<!-- page Heading End -->
+						<!-- abailablility -->
+						<div class="avaliability-box">
+							<div class="form-box">
+								<form th:action="@{/news/savenews}" th:object="${objnews}"
+									method="post" novalidate enctype="multipart/form-data">
+									<div class="col-md-6">
+										<input type="hidden" class="form-control" id="NewsId"
+											name="NewsId" th:value="*{NewsId}" required>
+									</div>
+									<div class="row">
+										<div class="col-md-3">
+											<label for="Branch"> Content Header</label> <input
+												type="text" class="form-control" id="ContentName"
+												name="ContentName" th:value="*{ContentName}" required>
+										</div>
+										<div class="col-md-3">
+											<label for="Branch">News Image</label>
+											<input type="hidden"
+												class="form-control" id="newsImage" name="newsImage"
+												 th:value="*{newsImage}">
+												  <input type="file"
+												class="form-control" id="newsImage" name="file"
+												accept="image/*" th:value="*{newsImage}"
+												th:minlength="1" th:maxlength="100">
+										</div>
+										<div class="col-md-3">
+											<label for="Branch">News Video</label> <input type="file"
+												class="form-control" id="video" name="file1"
+												accept="video/*" th:value="*{video}" required="required"
+												th:minlength="1" th:maxlength="100">
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-md-5">
+											<label for="sep"> Description</label>
+											<textarea class="form-control" id="NewsDescription"
+												name="NewsDescription" th:value="*{NewsDescription}" th:text="*{NewsDescription}" 
+												required></textarea>
+										</div>
+									</div>
+
+
+
+
+
+
+
+									<div class="col-md-2">
+										<label for=""></label>
+										<button class="btn btn-danger btn-block" type="submit">
+											Save</button>
+									</div>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- abailablility -->
+			</div>
+		</div>
+		<!-- main area end -->
+	</main>
+	<!-- SCRIPTS -->
+	<script>
+		tinymce.init({
+			selector: '#NewsDescription',
+			plugins: 'a11ychecker advcode casechange export formatpainter image editimage linkchecker autolink lists checklist media mediaembed pageembed permanentpen powerpaste table advtable tableofcontents tinycomments tinymcespellchecker',
+			toolbar: 'a11ycheck addcomment showcomments casechange checklist code export formatpainter image editimage pageembed permanentpen table tableofcontents',
+			toolbar_mode: 'floating',
+			tinycomments_mode: 'embedded',
+			tinycomments_author: 'Author name',
+		});
+	</script>
+	<script src="../js/jquery.js"></script>
+	<script src="../js/bootstrap.min.js"></script>
+	<!-- <script src="../js/jquery.sticky.js"></script>
+<script src="../js/jquery.stellar.min.js"></script>
+<script src="../js/wow.min.js"></script>
+<script src="../js/smoothscroll.js"></script>
+<script src="../js/owl.carousel.min.js"></script>
+<script src="./assets/js/script.js"></script> -->
+</body>
+
+</html>

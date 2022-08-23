@@ -1,0 +1,260 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<title>Vcare</title>
+<meta charset="UTF-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+<meta name="description" content="" />
+<meta name="keywords" content="" />
+<meta name="author" content="#" />
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, maximum-scale=1" />
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
+<!-- MAIN CSS -->
+<link rel="stylesheet" href="/dashboard/assets/css/final.css" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="stylesheet" href="styles.css" />
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/css/intlTelInput.css" />
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/intlTelInput.min.js"></script>
+
+
+</head>
+
+<body>
+	<!-- header -->
+	<header class="header">
+		<div class="container-fluid">
+			<div class="header-box">
+				<h4>V care</h4>
+				<a th:href="@{/logout}">LogOut</a>
+			</div>
+		</div>
+	</header>
+	<!-- header end -->
+	<main class="main">
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-xl-2 col-lg-3 col-md-4">
+					<!-- sidebar -->
+					<section class="sidebar">
+						<div class="sidebar-wrap">
+							<div class="Heading">
+								<h4>Dashboard</h4>
+							</div>
+							<div class="sidebar-item">
+								<img src="/../images/Icons/pprofile.png" alt="icon"
+									class="img-fluid" /> <a
+									th:href="@{/editEmployee/{id}(id=${employeeObj.employeeId})}">Employee
+									Profile</a>
+							</div>
+
+							<div class="sidebar-item">
+								<img src="/../images/Icons/pprofile.png" alt="icon"
+									class="img-fluid" /><a
+									th:href="@{/receptionform/{rid}(rid=${employee.employeeId})}">Book
+									Appointment</a>
+							</div>
+							<div class="sidebar-item">
+								<img src="/../images/Icons/pprofile.png" alt="icon"
+									class="img-fluid" /> <a
+									th:href="@{/selectambulancedriver/{hbranchId}/{empid}(hbranchId=${hosp},empid=${employee.employeeId})}">Ambulance
+									Booking</a>
+							</div>
+
+						</div>
+					</section>
+					<!-- sidebar end -->
+				</div>
+				<!-- main area -->
+				<div class="col-lg-8 col-md-6">
+					<div class="main-area">
+						<!-- page Heading -->
+						<div class="page-heading">
+							<h1>Patient Profile</h1>
+						</div>
+						<!-- page Heading End -->
+
+						<!-- abailablility -->
+
+						<div class="avaliability-box">
+							<div class="form-box">
+								<form
+									th:action="@{/patientupload/{hbid}/{did}/{eid}(hbid=${hbid},did=${doctor.doctorId},eid=${employee.employeeId})}"
+									class="modal-form" method="post" th:object="${patientObj}">
+									<input type="hidden" id="doctorId" name="doctorId"
+										th:value="${doctor.doctorId}"> <input type="hidden"
+										id="employeeId" name="empId" th:value="${employee.employeeId}">
+
+									<input type="hidden" class="form-control"
+										name="hospitalBranchId" id="hospitalBranchId"
+										th:value="${branchId}" required="required">
+
+
+									<div class="row">
+										<div class="col-md-3">
+											<label for="name">Doctor Name</label> <input type="text"
+												class="form-control" id="doctorName" name="doctorName"
+												th:value="${doctor.doctorName}" required>
+										</div>
+
+										<div class="col-md-3">
+											<label for="name">Slot timings</label> <input type="text"
+												class="form-control" id="slot" name="slot"
+												th:value="${slot}" required>
+										</div>
+
+										<div class="col-md-4">
+											<label for="name">On date:</label> <input type="text"
+												class="form-control" id="date" name="date"
+												th:value="${date}" required>
+										</div>
+
+										<div class="row">
+											<div class="col-md-4">
+												<label for="name">FirstName</label> <input type="text"
+													class="form-control" id="firstName" name="firstName"
+													th:value="*{firstName}" required>
+											</div>
+											<div class="col-md-4">
+												<label for="name"> LastName</label> <input type="text"
+													class="form-control" id="lastName" name="lastName"
+													th:value="*{lastName}" required>
+											</div>
+											<br>
+
+
+
+
+
+
+											<div class="col-md-4">
+
+												<label for="sep">Age</label> <input type="tel"
+													class="form-control" id="patientAge" name="patientAge"
+													oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"
+													required>
+											</div>
+										</div>
+
+										<div class="row">
+											<div class="col-md-4">
+												<label for="email">Email</label> <input type="email"
+													class="form-control" id="patientMailId"
+													name="patientMailId" th:value="*{patientMailId}" />
+											</div>
+
+											<div class="col-md-4">
+												<label for="loc"> Location</label> <input type="text"
+													class="form-control" id="patientAddress"
+													name="patientAddress" th:value="*{patientAddress}" required>
+											</div>
+
+											<div class="col-md-3">
+												<label for="loc"> Contact No:</label><br> <input
+													type="text" class="form-control" id="patientMobile"
+													name="patientMobile" th:value="*{patientMobile}" required>
+												<script type="text/javascript">
+												var inputBox = document.getElementById("patientMobile"); var invalidChars = [
+													"-",
+													"+",
+													"e",
+												]; inputBox.addEventListener("keydown", function (e) {
+													if (invalidChars.includes(e.key)) {
+														e.preventDefault();
+													}
+												});
+											</script>
+												<div class="alert alert-info" style="display: none"></div>
+												<div class="alert alert-error" style="display: none"></div>
+												<script type="text/javascript">
+												const phoneInputField = document.querySelector("#patientMobile");
+												const phoneInput = window.intlTelInput(phoneInputField, {
+													utilsScript:
+														"https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js",
+												}); const info = document.querySelector(".alert-info");
+												const error = document.querySelector(".alert-error"); function process(event) {
+													event.preventDefault(); const phoneNumber = phoneInput.getNumber(); info.style.display = "";
+													info.innerHTML = `Phone number in E.164 format: <strong>${phoneNumber}</strong>`;
+												}
+											</script>
+
+
+											</div>
+
+										</div>
+
+										<div class="row">
+											<div class="col-md-6">
+
+												<label for="gender"> Gender</label> <br> <select
+													id=patientGender name=patientGender
+													th:value="*{patientGender}" th:maxlength="100">
+													<option value="none" selected>Gender</option>
+													<option value="male">Male</option>
+													<option value="female">Female</option>
+													<option value="other">Transgender</option>
+												</select>
+											</div>
+
+
+											<div class="col-md-6">
+												<label for="gender">Consultant Type</label><br> <select
+													id="consultantType" name="consultantType"
+													th:value="(this.value)">
+													<option value="none" selected>Select</option>
+													<option value="FtoF">FaceTOFace</option>
+													<option value="video call">VideoCall</option>
+
+												</select> <input th:if="${appointment.consultantType=='video call'}"
+													type="text" th:value="${appointment.consultantType}" />
+											</div>
+										</div>
+
+
+									</div>
+
+
+
+
+
+									<div class="col-md-2">
+										<label for=""></label>
+
+										<button class="btn btn-danger btn-block">Save</button>
+
+									</div>
+								</form>
+							</div>
+
+
+
+						</div>
+					</div>
+
+
+					<!-- abailablility -->
+				</div>
+			</div>
+		</div>
+		<!-- main area end -->
+		</div>
+	</main>
+
+	<!-- SCRIPTS -->
+	<script src="../js/jquery.js"></script>
+	<script src="../js/bootstrap.min.js"></script>
+	<!-- <script src="../js/jquery.sticky.js"></script>
+    <script src="../js/jquery.stellar.min.js"></script>
+    <script src="../js/wow.min.js"></script>
+    <script src="../js/smoothscroll.js"></script>
+    <script src="../js/owl.carousel.min.js"></script>
+    <script src="./assets/js/script.js"></script> -->
+</body>
+
+</html>

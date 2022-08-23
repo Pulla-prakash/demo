@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<title>Vcare</title>
+	<meta charset="UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+	<meta name="description" content="" />
+	<meta name="keywords" content="" />
+	<meta name="author" content="#" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
+
+	<!-- MAIN CSS -->
+	<link rel="stylesheet" th:href="@{/dashboard/assets/css/final.css}" />
+</head>
+
+<body>
+	<!-- header -->
+	<header class="header">
+		<div class="container-fluid">
+			<div class="header-box">
+				<h4>Vcare</h4>
+				<a th:href="@{/logout}">LogOut</a>
+			</div>
+		</div>
+	</header>
+	<!-- header -->
+	<main class="main">
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-xl-2 col-lg-3 col-md-4">
+					<!-- sidebar -->
+					<section class="sidebar">
+						<div class="sidebar-wrap">
+							<div class="Heading">
+								<h4>Dashboard</h4>
+							</div>
+							<div class="sidebar-item">
+								<img src="../images/Icons/app.png" alt=" icon" class="img-fluid" />
+								<a href="./index.html" class="active">Appointments</a>
+							</div>
+							<div class="sidebar-item">
+								<img src="../images/Icons/pa.png" alt="icon" class="img-fluid" />
+								<a href="./patients.html">Patients</a>
+							</div>
+							<div class="sidebar-item">
+								<img src="../images/Icons/cal.png" alt="icon" class="img-fluid" />
+								<a href="./avaliability.html">Availability</a>
+							</div>
+							<div class="sidebar-item">
+								<img src="../images/Icons/profile.png" alt="icon" class="img-fluid" />
+								<a href="./profile.html">Doctor Profile</a>
+							</div>
+							<div class="sidebar-item">
+								<img src="../images/Icons/pprofile.png" alt="icon" class="img-fluid" />
+								<a href="./pprofile.html">Patient Profile</a>
+							</div>
+						</div>
+					</section>
+					<!-- sidebar end -->
+				</div>
+				<!-- main area -->
+				<div class="col-xl-10 col-lg-9 col-md-8">
+					<div class="main-area">
+						<!-- page Heading -->
+						<div class="page-heading">
+							<div class="header-box">
+								<h1>Consultant Fee</h1><a th:href="@{/consultant/AddFee}" class="btn btn-default">back
+									to form</a>
+							</div>
+						</div>
+						<!-- page Heading End -->
+
+						<!-- all appointments -->
+						<div class="Doctor-list">
+							<div class="appoi-box">
+								<div class="head-area">
+									<div class="heading-box">
+
+										<table border="1" class="table table-striped table-responsive-md">
+											<thead>
+												<tr>
+
+
+													<th>ConsultantFee</th>
+													<th>Id</th>
+
+													<th>Created</th>
+
+												</tr>
+											</thead>
+
+											<tbody>
+
+												<tr th:each="Consultant: ${ConsultantList}">
+
+													<!-- <td th:text="${Consultant.doctorName}"></td> -->
+													<td th:text="${Consultant.ConsultantFee}"></td>
+													<td th:text="*{Consultant.doctorId}"></td>
+													<td th:text="${Consultant.Created}"></td>
+													<TD class="select">
+														<select name="table" onchange="location=this.value;">
+															<option>select</option>
+															<option
+																th:value="@{/consultant/deleteconsultant/{Id}(Id=${Consultant.ConsultantId})}"
+																class="btn btn-default">Delete</option>
+															<option
+																th:value="@{/consultant/Updateconsultant/{Id}(Id=${Consultant.ConsultantId})}"
+																class="btn btn-default">Update</option>
+
+														</select>
+
+													</TD>
+												</tr>
+
+											</tbody>
+											<!-- <a th:href ="@{/consultant/AddFee}">AddconsultantFee</a> -->
+
+										</table>
+									</div>
+								</div>
+								<!-- all appointments end -->
+							</div>
+						</div>
+						<!-- main area end -->
+					</div>
+				</div>
+	</main>
+
+	<!-- SCRIPTS -->
+	<script src="../js/jquery.js"></script>
+	<script src="../js/bootstrap.min.js"></script>
+	<!-- <script src="../js/jquery.sticky.js"></script>
+    <script src="../js/jquery.stellar.min.js"></script>
+    <script src="../js/wow.min.js"></script>
+    <script src="../js/smoothscroll.js"></script>
+    <script src="../js/owl.carousel.min.js"></script>
+    <script src="./assets/js/script.js"></script> -->
+</body>

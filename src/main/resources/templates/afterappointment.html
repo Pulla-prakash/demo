@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Vcare</title>
+<meta charset="UTF-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+<meta name="description" content="" />
+<meta name="keywords" content="" />
+<meta name="author" content="#" />
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, maximum-scale=1" />
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
+<!-- MAIN CSS -->
+<link rel="stylesheet" th:href="@{/dashboard/assets/css/final.css}" />
+</head>
+
+<body>
+	<!-- header -->
+	<header class="header">
+		<div class="container-fluid">
+			<div class="header-box">
+				<h4>Vcare</h4>
+				<h5 th:text="'Hi Dr.'+${session.drname}"></h5>
+				<a href="#">LogOut</a>
+			</div>
+		</div>
+	</header>
+	<!-- header -->
+	<main class="main">
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-xl-2 col-lg-3 col-md-4">
+					<!-- sidebar -->
+					<section class="sidebar">
+						<div class="sidebar-wrap">
+							<div class="Heading">
+								<h4>Dashboard</h4>
+							</div>
+							<div class="sidebar-item">
+								<img src="../images/Icons/app.png" alt=" icon" class="img-fluid" />
+								<a href="./index.html">Appointments</a>
+							</div>
+							<div class="sidebar-item">
+								<img src="../images/Icons/pa.png" alt="icon" class="img-fluid" />
+								<a href="./patients.html" class="active">Patients</a>
+							</div>
+							<div class="sidebar-item">
+								<img src="../images/Icons/cal.png" alt="icon" class="img-fluid" />
+								<a href="./avaliability.html">Availability</a>
+							</div>
+							<div class="sidebar-item">
+								<img src="../images/Icons/profile.png" alt="icon"
+									class="img-fluid" /> <a href="./profile.html">Doctor
+									Profile</a>
+							</div>
+							<div class="sidebar-item">
+								<img src="../images/Icons/pprofile.png" alt="icon"
+									class="img-fluid" /> <a href="./pprofile.html">Patient
+									Profile</a>
+							</div>
+						</div>
+					</section>
+					<!-- sidebar end -->
+				</div>
+				<!-- main area -->
+				<div class="col-lg-10 col-md-10">
+					<div class="main-area">
+						<!-- page Heading -->
+
+						<div class="page-heading">
+							<h1>Patients Appointment</h1>
+						<!-- 	<span th:if="${applist.link == null}"></span> -->
+					<!-- 		<form th:action="@{/getallappointments/{id}(id=${doctorid})}" >
+							<div class="row">
+								<div class="col-md-0">
+								<label for="name"><b>From:</b></label>  
+								</div>
+								<div class="col-md-4">
+								<input type="date"
+								class="form-control" required="required"th:minlength="1" th:maxlength="100" id="from" name="from" >   
+								</div>
+								<div class="col-md-0">
+								 <label for="name"><b>To:</b></label>  
+								</div>
+								<div class="col-md-4">
+							<input type="date"
+										class="form-control" required="required" th:minlength="1" th:maxlength="100" id="to" name="to">              
+								</div>
+								<div class="col-md-0">
+									<button class="btn btn-accept btn-history" type="submit">Search</button>
+								</div>
+							</div>
+							</form> -->
+						</div>
+						
+					</div>
+
+					                            
+				</div>
+
+
+			</div>
+
+			<!-- page Heading End -->
+
+			<!-- all appointments -->
+			<table>
+				<tbody>
+					<tr th:each="applist:${appList}">
+						<div class="appoiment-list">
+						
+							<!-- 3rd -->
+							<div class="appoi-box">
+								<div class="head-area">
+								
+									<div class="heading-box">
+										<h3 th:text="${applist.patient.firstName}"></h3>
+
+									</div>
+									<div class="action-box">
+									
+										<span th:text="${applist.date}" class="date"></span> <span
+											th:text="${applist.slot}" class="date"></span> <a
+											th:if="${applist.link!=null}" th:href="${applist.link}"
+											class="btn btn-accept btn-history">Join Meet</a> <a
+											th:if="${applist.link==null}"
+											th:href="@{/insert/{pid}(pid=${applist.appointmentId})}"
+											class="btn btn-accept btn-history">Create Link</a> <a
+											th:href="@{/deleteappointment/{aid}(aid=${applist.appointmentId})}"
+											class="btn btn-accept btn-history">Reject</a> <a href=""
+											class="btn btn-accept btn-history">Show History</a> <a
+											th:href="@{/addprescription/{id}(id=${applist.appointmentId})}"
+											class="btn btn-accept">Upload Prescription</a>
+									</div>
+								</div>
+								<p th:text="${applist.patientPurpose}"></p>
+							</div>
+						</div>
+					</tr>
+				</tbody>
+			</table>
+			<!-- all appointments end -->
+		</div>
+		</div>
+		<!-- main area end -->
+		</div>
+		</div>
+	</main>
+
+	<!-- SCRIPTS -->
+	<script src="../js/jquery.js"></script>
+	<script src="../js/bootstrap.min.js"></script>
+	<script src="../js/jquery.sticky.js"></script>
+	<script src="../js/jquery.stellar.min.js"></script>
+	<script src="../js/wow.min.js"></script>
+	<script src="../js/smoothscroll.js"></script>
+	<script src="../js/owl.carousel.min.js"></script>
+	<!-- <script src="../dashboard/assets/js/script.js"></script>
+ -->
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+<!-- 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Vcare</title>
+<meta charset="UTF-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+<meta name="description" content="" />
+<meta name="keywords" content="" />
+<meta name="author" content="#" />
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, maximum-scale=1" />
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
+MAIN CSS
+<link rel="stylesheet" th:href="@{/dashboard/assets/css/final.css}" />
+</head>
+
+<body>
+	header
+	<header class="header">
+		<div class="container-fluid">
+			<div class="header-box">
+				<h4>Vcare</h4>
+				<h5 th:text="'Hi Dr.'+${session.drname}"></h5>
+				<a href="#">LogOut</a>
+			</div>
+		</div>
+	</header>
+	header
+	<main class="main">
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-xl-2 col-lg-3 col-md-4">
+					sidebar
+					<section class="sidebar">
+						<div class="sidebar-wrap">
+							<div class="Heading">
+								<h4>Dashboard</h4>
+							</div>
+							<div class="sidebar-item">
+								<img src="../images/Icons/app.png" alt=" icon" class="img-fluid" />
+								<a th:href="@{/appointmentlist/{dname}(dname=${doctorid})}">Appointments</a>
+							</div>
+							<div class="sidebar-item">
+								<img src="../images/Icons/pa.png" alt="icon" class="img-fluid" />
+								<a th:href="@{/#}">Patients</a>
+							</div>
+							<div class="sidebar-item">
+								<img src="../images/Icons/cal.png" alt="icon" class="img-fluid" />
+								<a th:href="@{/addAvailability/{did}(did=${doctorid})}">Availability</a>
+							</div>
+							<div class="sidebar-item">
+								<img src="../images/Icons/profile.png" alt="icon"
+									class="img-fluid" /> <a
+									th:href="@{/updatedDoctorProfile/{did}(did=${doctorid})}">Doctor
+									Profile</a>
+							</div>
+							<div class="sidebar-item">
+								<img src="../images/Icons/pprofile.png" alt="icon"
+									class="img-fluid" /> <a
+									th:href="@{/hospitalBranch/hospitalBranchList}">Branch List</a>
+							</div>
+						</div>
+					</section>
+					sidebar end
+				</div>
+				main area
+				<div class="col-lg-10 col-md-8">
+					<div class="main-area">
+						page Heading
+						<div class="page-heading">
+							<h1>Patients Appointment</h1>
+							<div class="row">
+								<div class="col-md-0">
+									<label for="name">From:</label>
+								</div>
+								<div class="col-md-4">
+									<input type="date" class="form-control" required="required"
+										th:minlength="1" th:maxlength="100" id="from" name="from"
+										placeholder="123-45-678">
+								</div>
+								<div class="col-md-0">
+									<label for="name">To:</label>
+								</div>
+								<div class="col-md-4">
+									<input type="date" class="form-control" required="required"
+										th:minlength="1" th:maxlength="100" id="to" name="to">
+								</div>
+							</div>
+						</div>
+						page Heading End
+
+						all appointments
+						<table>
+							<tbody>
+								<tr th:each="applist:${appointmentlist}">
+									<div class="appoiment-list">
+										3rd
+										<div class="appoi-box">
+											<div class="head-area">
+												<div class="heading-box">
+													<h3 th:text="${applist.patient.firstName}"></h3>
+
+												</div>
+												<div class="action-box">
+													<span th:text="${applist.date}" class="date"></span> <span
+														th:text="${applist.slot}" class="date"></span> <a
+														th:if="${applist.paymentStatus=='paid'}"
+														class="btn btn-accept btn-history">Paid</a> <a
+														th:if="${applist.paymentStatus=='not paid'}"
+														class="btn btn-accept btn-history">Not Paid</a> <a
+														th:if="${meetingLink==''}"
+														th:href="@{/insert/{pid}(pid=${applist.appointmentId})}"
+														class="btn btn-accept btn-history">Create Link</a> <a
+														th:if="${meetingLink!=''}" th:href="${applist.link}"
+														class="btn btn-accept btn-history">Join Meet</a> <a
+														th:href="@{/deleteappointment/{aid}(aid=${applist.appointmentId})}"
+														class="btn btn-accept btn-history">Reject</a> <a href=""
+														class="btn btn-accept btn-history">Show History</a> <a
+														th:href="@{/addprescription/{id}(id=${applist.appointmentId})}"
+														class="btn btn-accept">Upload Prescription</a>
+												</div>
+											</div>
+											<p th:text="${applist.patientPurpose}"></p>
+										</div>
+									</div>
+								</tr>
+							</tbody>
+						</table>
+						all appointments end
+					</div>
+				</div>
+				main area end
+			</div>
+		</div>
+	</main>
+
+	SCRIPTS
+	<script src="../js/jquery.js"></script>
+	<script src="../js/bootstrap.min.js"></script>
+	<script src="../js/jquery.sticky.js"></script>
+	<script src="../js/jquery.stellar.min.js"></script>
+	<script src="../js/wow.min.js"></script>
+	<script src="../js/smoothscroll.js"></script>
+	<script src="../js/owl.carousel.min.js"></script>
+	<script src="../assets/js/script.js"></script>
+</body>
+</html>
+ -->

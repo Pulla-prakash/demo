@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<title>Vcare</title>
+	<meta charset="UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+	<meta name="description" content="" />
+	<meta name="keywords" content="" />
+	<meta name="author" content="#" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
+
+	<!-- MAIN CSS -->
+	<link rel="stylesheet" th:href="@{/dashboard/assets/css/dropdownlink.css}" />
+	<link rel="stylesheet" th:href="@{/dashboard/assets/css/final.css}" />
+	<link rel="stylesheet" type="text/css"
+		href="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.4/css/jquery.dataTables.css">
+		
+		
+
+<body>
+	<!-- header -->
+	<header class="header">
+		<div class="container-fluid">
+			<div class="header-box">
+				<h4>Vcare</h4>
+				<a th:href="@{/logout}">LogOut</a>
+			</div>
+		</div>
+	</header>
+	<!-- header -->
+	<main class="main">
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-xl-2 col-lg-3 col-md-4">
+					<!-- sidebar -->
+					<section class="sidebar">
+						<div class="sidebar-wrap">
+							<div class="Heading">
+								<h4>Dashboard</h4>
+							</div>
+							<div class="sidebar-item">
+								<img src="/images/Icons/app.png" alt=" icon" class="img-fluid" />
+								<a th:href="@{/bookAppointment/{id}(id=${session.pId})}">Appointments</a>
+							</div>
+
+
+							<div class="sidebar-item">
+								<img src="/images/Icons/pprofile.png" alt="icon" class="img-fluid" />
+								<a th:href="@{/patientprofile/{id}(id=${session.pId})}">Patient
+									Profile</a>
+							</div>
+							<div class="sidebar-item">
+								<img src="/images/Icons/pprofile.png" alt="icon" class="img-fluid" />
+								<a th:href="@{/med/medhistory/{id}(id=${session.pId})}">Medical
+									History</a>
+							</div>
+
+							<div class="sidebar-item">
+								<img src="/images/Icons/pprofile.png" alt="icon" class="img-fluid" />
+								<a th:href="@{/med/view/{id}(id=${session.pId})}">View Reports</a>
+							</div>
+							
+							<div class="sidebar-item">
+                                <img src="../images/Icons/cal.png" alt="icon" class="img-fluid">
+                                <a th:href="@{/patientappointments/{pid}(pid=${session.pId})}">My Appointments</a>
+                            </div>
+
+						<div class="sidebar-item">
+								<img src="/images/Icons/pprofile.png" alt="icon" class="img-fluid" />
+								<a th:href="@{/list/{pid}(pid=${session.pId})}">View Prescription</a>
+							</div>
+							
+							<div class="sidebar-item">
+                                <img src="../images/Icons/cal.png" alt="icon" class="img-fluid">
+                                <a th:href="@{/Doctorlist/{pid}(pid=${session.pId})}">Doctors List</a>
+                            </div>
+
+						</div>
+					</section>
+					<!-- sidebar end -->
+				</div>
+				<!-- main area -->
+				<div class="col-xl-10 col-lg-6 col-md-5">
+					<div class="main-area">
+						<!-- page Heading -->
+						<div class="page-heading">
+							<h1>Doctors List</h1>
+						</div>
+						<!-- page Heading End -->
+
+						<!-- all appointments -->
+						<div class="Doctor-list">
+							<div class="appoi-box">
+								<div class="head-area">
+									<div class="heading-box">
+
+										<table id="example" border="2" class="table table-striped table-responsive-md">
+											<thead>
+												<tr>
+
+													<!-- <th>doctor Branch</th> -->
+													<th>Name</th>
+													<th>Specialization</th>
+													<th>Experience</th>
+													<th>Mobile Number</th>
+													<th>EMailid</th>
+													<!-- <th>Qualification</th>
+													<th>Age</th>
+													<th>profile</th>
+													<th>Qr Code</th> -->
+													<th>Action</th>
+
+												</tr>
+											</thead>
+
+											<tbody>
+
+												<tr th:each="Doctors: ${doctorlist}">
+
+													<!-- 	<td th:text="${Doctors.doctorBranch}"></td> -->
+													<td th:text="${Doctors.doctorName}"></td>
+													<td th:text="${Doctors.doctorSpecialization}"></td>
+													<td th:text="${Doctors.doctorExperience}"></td>
+													<td th:text="${Doctors.doctorMobileNo}"></td>
+													<td th:text="${Doctors.doctorMailId}"></td>
+													<td>
+
+														<ul class="pm">
+															<li><a th:href="@{/Viewdoctors/{pid}/{doctorId}(pid=${pid},doctorId=${Doctors.doctorId})}"><span  class=doctorview  th:text=View></span></a>
+																<ul class="cm">
+																	
+																	
+																</ul>
+															</li>
+														</ul>
+													</td>
+
+
+													
+												</tr>
+
+											</tbody>
+
+										</table>
+
+
+									</div>
+								</div>
+								<!-- all appointments end -->
+							</div>
+						</div>
+						<!-- main area end -->
+					</div>
+				</div>
+	</main>
+
+	<!-- SCRIPTS -->
+	<script type="text/javascript" charset="utf8"
+		src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.2.min.js"></script>
+	<script type="text/javascript" charset="utf8"
+		src="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.4/jquery.dataTables.min.js"></script>
+	<script>
+		$(function () {
+			$("#example").dataTable();
+		})
+	</script>
+	<!-- <script src="../js/jquery.js"></script>
+	<script src="../js/bootstrap.min.js"></script>  -->
+	<!-- <script src="../js/jquery.sticky.js"></script>
+    <script src="../js/jquery.stellar.min.js"></script>
+    <script src="../js/wow.min.js"></script>
+    <script src="../js/smoothscroll.js"></script>
+    <script src="../js/owl.carousel.min.js"></script>
+    <script src="./assets/js/script.js"></script> -->
+</body>
+
+</html>

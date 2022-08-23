@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<title>V care</title>
+<meta charset="UTF-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+<meta name="description" content="" />
+<meta name="keywords" content="" />
+<meta name="author" content="#" />
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, maximum-scale=1" />
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/css/intlTelInput.css" />
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/intlTelInput.min.js"></script>
+<!-- MAIN CSS -->
+<link rel="stylesheet" th:href="@{/dashboard/assets/css/final.css}" />
+</head>
+
+<body>
+	<!-- header -->
+	<header class="header">
+		<div class="container-fluid">
+			<div class="header-box">
+				<h4>Vcare</h4>
+				<a href="/">LogOut</a>
+			</div>
+		</div>
+	</header>
+	<!-- header end -->
+	<main class="main">
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-xl-2 col-lg-3 col-md-4">
+					<!-- sidebar -->
+					<section class="sidebar">
+						<div class="sidebar-wrap">
+							<div class="Heading">
+								<h4>Dashboard</h4>
+							</div>
+							<div class="sidebar-item">
+								<img src="/images/Icons/app.png" alt=" icon" class="img-fluid">
+								<a href="/hospital/hospitalList">Hospital</a>
+							</div>
+							<div class="sidebar-item">
+								<img src="/images/Icons/pa.png" alt="icon" class="img-fluid">
+								<a th:href="@{/Dephome}">Department</a>
+							</div>
+							<div class="sidebar-item">
+								<img src="/images/Icons/cal.png" alt="icon" class="img-fluid">
+								<a th:href="@{/Drlist}">Doctor</a>
+							</div>
+							<div class="sidebar-item">
+								<img src="/images/Icons/profile.png" alt="icon" class="img-fluid">
+								<a th:href="@{/patientsList}">Patient</a>
+							</div>
+							<div class="sidebar-item">
+								<img src="/images/Icons/pprofile.png" alt="icon" class="img-fluid">
+								<a th:href="@{/page/service}" class="active">Services</a>
+							</div>
+							<!-- <div class="sidebar-item">
+								<img src="/images/Icons/pprofile.png" alt="icon" class="img-fluid">
+								<a th:href="@{/insurancelist}" class="active">Insurances</a>
+							</div> -->
+							<div class="sidebar-item">
+								<img src="/images/Icons/pprofile.png" alt="icon" class="img-fluid">
+								<a th:href="@{/news/newstable}" class="active">News</a>
+							</div>
+
+						</div>
+					</section>
+					<!-- sidebar end -->
+				</div>
+				<!-- main area -->
+				<div class="col-lg-10 col-md-8">
+					<div class="main-area">
+						<!-- page Heading -->
+						<div class="page-heading">
+							<h1>
+								<span style="color: black; font-size: 40px" th:text="${Hname}"></span>Ambulance
+								Details
+							</h1>
+						</div>
+						<!-- page Heading End -->
+
+						<!-- abailablility -->
+
+						<div class="avaliability-box">
+							<div class="form-box">
+								<form th:action="@{/saveAmbulance/{hbrnchId}(hbrnchId=${branchId})}" th:object="${ambulanceobj}"
+									method="post">
+									<div class="col-md-3">
+										<input type="hidden" class="form-control" id="ambulanceId"
+											name="ambulanceId" th:value="*{ambulanceId}"
+											required="required">
+									</div>
+									<div class="col-md-3">
+										<input type="hidden" class="form-control" id="hospitalbranch"
+											name="hospitalbranch" th:value="${branchId}"
+											required="required">
+									</div>
+									<div class="row">
+										<div class="col-md-3">
+											<label for="name">Ambulancetype</label> <input type="text"
+												class="form-control" id="ambulanceType" name="ambulanceType"
+												th:value="*{ambulanceType}" required="required"
+												th:minlength="1" th:maxlength="100">
+										</div>
+
+										<div class="col-md-3">
+											<label for="avl">VechileType</label> <input type="text"
+												class="form-control" id="vechileType" name="vechileType"
+												th:value="*{vechileType}" required="required"
+												th:minlength="1" th:maxlength="100">
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-md-3">
+											<label for="avl">Vechile Number</label> <input type="text"
+												class="form-control" id="vechilenumber" name="vechilenumber"
+												th:value="*{vechilenumber}" required="required"
+												th:minlength="1" th:maxlength="100">
+										</div>
+
+
+										<div class="col-md-3">
+											<label for="sep">Charges</label> <input type="number"
+												class="form-control" id="charges" name="charges"
+												th:value="*{charges}" required="required">
+										</div>
+									</div>
+									<div class="row">
+
+										<div class="col-md-2">
+											<label for=""></label>
+											<button class="btn btn-danger btn-block">save</button>
+										</div>
+									</div>
+								</form>
+							</div>
+						</div>
+
+						<!-- abailablility -->
+					</div>
+				</div>
+			</div>
+			<!-- main area end -->
+		</div>
+	</main>
+
+	<!-- SCRIPTS -->
+	<script src="../js/jquery.js"></script>
+	<script src="../js/bootstrap.min.js"></script>
+	<!-- <script src="../js/jquery.sticky.js"></script>
+    <script src="../js/jquery.stellar.min.js"></script>
+    <script src="../js/wow.min.js"></script>
+    <script src="../js/smoothscroll.js"></script>
+    <script src="../js/owl.carousel.min.js"></script>
+    <script src="./assets/js/script.js"></script> -->
+</body>
+
+</html>

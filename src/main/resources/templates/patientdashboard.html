@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="ISO-8859-1">
+	<title>Vcare</title>
+	<meta charset="UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+	<meta name="description" content="" />
+	<meta name="keywords" content="" />
+	<meta name="author" content="#" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
+	<!-- MAIN CSS -->
+	<link rel="stylesheet" th:href="@{/dashboard/assets/css/final.css}" />
+	<style>
+		body {
+			background-image: url("/images/patientss.jpg");
+			background-size: cover;
+
+
+		}
+	</style>
+</head>
+</head>
+
+<body>
+	<!-- header -->
+	<header class="header">
+		<div class="container-fluid">
+			<div class="header-box">
+				<h4>V care</h4>
+				<center><b4 th:text="${patientmsg}"></b4></center>
+				<a th:href="@{/logout}">LogOut</a>
+			</div>
+		</div>
+	</header>
+	<!-- header end -->
+	<main class="main">
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-xl-2 col-lg-3 col-md-4">
+					<!-- sidebar -->
+					<section class="sidebar">
+						<div class="sidebar-wrap">
+							<div class="Heading">
+								<h4>Dashboard</h4>
+							</div>
+							<div class="sidebar-item">
+								<img src="/images/Icons/app.png" alt=" icon" class="img-fluid" />
+								<a th:href="@{/bookAppointment/{id}(id=${session.pId})}">Appointments</a>
+							</div>
+
+
+							<div class="sidebar-item">
+								<img src="/images/Icons/pprofile.png" alt="icon" class="img-fluid" />
+								<a th:href="@{/patientprofile/{id}(id=${session.pId})}">Patient
+									Profile</a>
+							</div>
+							<div class="sidebar-item">
+								<img src="/images/Icons/pprofile.png" alt="icon" class="img-fluid" />
+								<a th:href="@{/med/medhistory/{id}(id=${session.pId})}">Medical
+									History</a>
+							</div>
+
+							<div class="sidebar-item">
+								<img src="/images/Icons/pprofile.png" alt="icon" class="img-fluid" />
+								<a th:href="@{/med/view/{id}(id=${session.pId})}">View Reports</a>
+							</div>
+							
+							<div class="sidebar-item">
+                                <img src="../images/Icons/cal.png" alt="icon" class="img-fluid">
+                                <a th:href="@{/patientappointments/{pid}(pid=${session.pId})}">My Appointments</a>
+                            </div>
+
+							<div class="sidebar-item">
+								<img src="/images/Icons/pprofile.png" alt="icon" class="img-fluid" />
+								<a th:href="@{/list/{pid}(pid=${session.pId})}">View Prescription</a>
+							</div>
+							
+							<div class="sidebar-item">
+                                <img src="../images/Icons/cal.png" alt="icon" class="img-fluid">
+                                <a th:href="@{/Doctorlist/{pid}(pid=${session.pId})}">Doctors List</a>
+                            </div>
+
+						</div>
+					</section>
+					<!-- sidebar end -->
+				</div>
+
+
+
+				<!-- SCRIPTS -->
+				<script src="../js/jquery.js"></script>
+				<script src="../js/bootstrap.min.js"></script>
+				<!-- <script src="../js/jquery.sticky.js"></script>
+    <script src="../js/jquery.stellar.min.js"></script>
+    <script src="../js/wow.min.js"></script>
+    <script src="../js/smoothscroll.js"></script>
+    <script src="../js/owl.carousel.min.js"></script>
+    <script src="./assets/js/script.js"></script> -->
+</body>
+
+</html>

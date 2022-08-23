@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeLeaf.org">
+
+<head>
+	<meta charset="ISO-8859-1">
+	<title>vcare</title>
+	<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+	<meta name="description" content="">
+	<meta name="keywords" content="">
+	<meta name="author" content="#">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css"
+		href="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.4/css/jquery.dataTables.css" />
+	<!-- MAIN CSS -->
+	<link rel="stylesheet" th:href="@{/dashboard/assets/css/final.css}" />
+	<link rel="stylesheet" th:href="@{/dashboard/assets/css/table.css}" />
+	<link rel="stylesheet" th:href="@{/dashboard/assets/css/dropdownlink.css}" />
+</head>
+
+<body>
+
+
+
+	<!-- header -->
+	<header class="header-box">
+		<div class="container-fluid">
+			<div class="header-box">
+				<h4>Vcare</h4>
+						<a
+						th:href="@{/logout}">LogOut</a> </span>
+
+
+
+
+			</div>
+		</div>
+	</header>
+	<!-- header end -->
+	<main class="main">
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-xl-2 col-lg-3 col-md-4">
+					<!-- sidebar -->
+					<section class="sidebar">
+						<div class="sidebar-wrap">
+							<div class="Heading">
+								<h4>Dashboard</h4>
+							</div>
+							<div class="sidebar-item">
+								<img src="/images/Icons/app.png" alt=" icon" class="img-fluid" />
+								<a th:href="@{/bookAppointment/{id}(id=${session.pId})}">Appointments</a>
+							</div>
+
+
+							<div class="sidebar-item">
+								<img src="/images/Icons/pprofile.png" alt="icon" class="img-fluid" />
+								<a th:href="@{/patientprofile/{id}(id=${session.pId})}">Patient
+									Profile</a>
+							</div>
+							<div class="sidebar-item">
+								<img src="/images/Icons/pprofile.png" alt="icon" class="img-fluid" />
+								<a th:href="@{/med/medhistory/{id}(id=${session.pId})}">Medical
+									History</a>
+							</div>
+
+							<div class="sidebar-item">
+								<img src="/images/Icons/pprofile.png" alt="icon" class="img-fluid" />
+								<a th:href="@{/med/view/{id}(id=${session.pId})}">View Reports</a>
+							</div>
+							
+							<div class="sidebar-item">
+                                <img src="/images/Icons/cal.png" alt="icon" class="img-fluid">
+                                <a th:href="@{/patientappointments/{pid}(pid=${session.pId})}">My Appointments</a>
+                            </div>
+
+							<div class="sidebar-item">
+								<img src="/images/Icons/pprofile.png" alt="icon" class="img-fluid" />
+								<a th:href="@{/list/{pid}(pid=${session.pId})}">View Prescription</a>
+							</div>
+							<div class="sidebar-item">
+                                <img src="/images/Icons/cal.png" alt="icon" class="img-fluid">
+                                <a th:href="@{/Doctorlist/{pid}(pid=${session.pId})}">Doctors List</a>
+                            </div>
+
+						</div>
+					</section>
+					<!-- sidebar end -->
+				</div>
+				<!-- main area -->
+				<div class="col-lg-10 col-md-8">
+					<div class="main-area">
+						<!-- page Heading -->
+						<div class="page-heading">
+							<!-- <h1>Hospital Details</h1> -->
+							<div class="header-box">
+								<h2>Reports</h2>
+							</div>
+							<h5 style="color:darkgreen" th:text="${patientmsg}"></h5>
+						</div>
+						<input type="hidden" id="patientId" name="patientId" th:value="${patientObj}" /> <input
+							type="hidden" id="medicalId" name="medicalId" th:value="${medObj}" />
+						<table border="3" id="table1">
+							<thead>
+								<tr>
+									<th>Files</th>
+									<th>Delete</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr th:each="medObj:${medicalHistoryList}">
+									<td><a th:href="@{/med/getimage/{id}(id=${medObj.medicalId})}"
+											th:text="${medObj.ImageName}"></a></td>
+
+									<td><a th:href="@{/med/deleteimage/{id}(id=${medObj.medicalId})}">Delete</a></td>
+								</tr>
+							</tbody>
+						</table>
+
+
+
+					</div>
+					<!-- Total Items : [[${totalItems}]] - Page [[${currentPage}]] of [[${totalpage}]]
+&nbsp; - &nbsp;
+<a th:if="${currentPage>1}" th:href="@{'/hospitalBranch/page/1'}">Frist</a>
+<span th:unless="${currentPage>1}">Frist</span>
+&nbsp;&nbsp;
+<a th:if="${currentPage>1}" th:href="@{'/hospitalBranch/page/' + ${currentPage - 1}}">Previous</a>
+<span th:unless="${currentPage>1}">Previous</span>
+&nbsp;&nbsp;
+<p><a th:href="@{/hospital/hospitalList}" class="btn btn-primary btn-sm mb-3" >Add a new HospitalBranch</a></p>
+<span th:each="i: ${#numbers.sequence(1,totalpage)}">
+<a th:href="@{'/hospitalBranch/page/'+${i}}">[[${i}]]</a>&nbsp;&nbsp;
+</span>
+<a th:if="${currentPage<totalPage}" th:href="@{'/hospitalBranch/page/' + ${currentPage + 1}}">Next</a>
+<span th:unless ="${currentPage<totalPage}">Next</span>
+&nbsp;&nbsp;
+<a th:if="${currentPage<totalPage}" th:href="@{'/hospitalBranch/page/' + ${totalPage}}">Last</a>
+<span th:unless ="${currentPage < totalPage}">Last</span>
+
+-->
+					<!-- <a th:if="${currentPage<totalPages}" th:href="@{'/page/' + ${currentPage + 1} + '?sortField =' + ${sortField} + '&sortDir=' + ${sortDir} + ${keyword != null ? '&keyword=' + keyword :''}}">Next</a>
+<span th:unless="${currentPage<totalPages}" >Next</span>&nbsp;&nbsp;
+<a th:if="${currentPage<totalPages}" th:href="@{'/page/' + ${totalPages} + '?sortField =' + ${sortField} + '&sortDir=' + ${sortDir} + ${keyword != null ? '&keyword=' + keyword :''}}">Last</a>
+<span th:unless="${currentPage<totalPages}" >Last</span>
+</div> -->
+
+
+
+				</div>
+			</div>
+		</div>
+		<!-- main area end -->
+
+
+
+	</main>
+
+
+
+
+
+	<!-- SCRIPTS -->
+	<script src="../js/jquery.js"></script>
+	<script src="../js/bootstrap.min.js"></script>
+	<!-- <script src="../js/jquery.sticky.js"></script>
+<script src="../js/jquery.stellar.min.js"></script>
+<script src="../js/wow.min.js"></script >
+<script src="../js/smoothscroll.js"></script>
+<script src="../js/owl.carousel.min.js"></script>
+<script src="./assets/js/script.js"></script> -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+	<script type="text/javascript" src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+	<script>
+		$(document).ready(function () {$('#table1').DataTable();});</script>
+</body>
+
+</html>

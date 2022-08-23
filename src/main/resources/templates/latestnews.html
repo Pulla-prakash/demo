@@ -1,0 +1,24 @@
+<div>
+	<div>
+		<h2>news</h2>
+		<table>
+			<thead>
+				<tr>
+					<th>ContentName</th>
+					<th>NewsDescription</th>
+					<th>Edit</th>
+					<th>Delete</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="empObj : ${newsLists}">
+					<td th:text="${empObj.ContentName}"></td>
+					<td th:text="${empObj.NewsDescription}"></td>
+					<td><a th:href="@{/news/editnews/{NewsId}(NewsId=${empObj.NewsId})}">Edit</a></td>
+					<td><a th:href="@{/news/deletenews/{NewsId}(NewsId=${empObj.NewsId})}">Delete</a></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+
+</div>

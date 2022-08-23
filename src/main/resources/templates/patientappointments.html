@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Vcare</title>
+<meta charset="UTF-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+<meta name="description" content="" />
+<meta name="keywords" content="" />
+<meta name="author" content="#" />
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, maximum-scale=1" />
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
+<!-- MAIN CSS -->
+<link rel="stylesheet" th:href="@{/../dashboard/assets/css/final.css}" />
+</head>
+
+<body>
+	<!-- header -->
+	<header class="header">
+		<div class="container-fluid">
+			<div class="header-box">
+				<h4>Vcare</h4>
+				<!-- <h5 th:text="'Hello Dr.'+${session.drname}"></h5> -->
+				<a href="@{/logout}">LogOut</a>
+			</div>
+		</div>
+	</header>
+	<!-- header -->
+	<main class="main">
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-xl-2 col-lg-3 col-md-4">
+					<!-- sidebar -->
+					<section class="sidebar">
+						<div class="sidebar-wrap">
+							<div class="Heading">
+								<h4>Dashboard</h4>
+							</div>
+							<div class="sidebar-item">
+								<img src="/images/Icons/app.png" alt=" icon" class="img-fluid" />
+								<a th:href="@{/bookAppointment/{id}(id=${session.pId})}">Appointments</a>
+							</div>
+
+
+							<div class="sidebar-item">
+								<img src="/images/Icons/pprofile.png" alt="icon" class="img-fluid" />
+								<a th:href="@{/patientprofile/{id}(id=${session.pId})}">Patient
+									Profile</a>
+							</div>
+							<div class="sidebar-item">
+								<img src="/images/Icons/pprofile.png" alt="icon" class="img-fluid" />
+								<a th:href="@{/med/medhistory/{id}(id=${session.pId})}">Medical
+									History</a>
+							</div>
+
+							<div class="sidebar-item">
+								<img src="/images/Icons/pprofile.png" alt="icon" class="img-fluid" />
+								<a th:href="@{/med/view/{id}(id=${session.pId})}">View Reports</a>
+							</div>
+
+							<div class="sidebar-item">
+								<img src="/images/Icons/pprofile.png" alt="icon" class="img-fluid" />
+								<a th:href="@{/list/{pid}(pid=${session.pId})}">View Prescription</a>
+							</div>
+							
+							<div class="sidebar-item">
+                                <img src="../images/Icons/cal.png" alt="icon" class="img-fluid">
+                                <a th:href="@{/patientappointments/{pid}(pid=${session.pId})}">My Appointments</a>
+                            </div>
+                            
+                            <div class="sidebar-item">
+                                <img src="../images/Icons/cal.png" alt="icon" class="img-fluid">
+                                <a th:href="@{/Doctorlist/{pid}(pid=${session.pId})}">Doctors List</a>
+                            </div>
+							
+						</div>
+					</section>
+					<!-- sidebar end -->
+				</div>
+				<!-- main area -->
+				<div class="col-lg-10 col-md-10">
+					<div class="main-area">
+						<!-- page Heading -->
+
+						<div class="page-heading">
+							<center><h1> Appointments</h1></center>
+						<!-- 	<span th:if="${applist.link == null}"></span> -->
+							<form th:action="@{/patientappointments/{id}(id=${patient.patientId})}" >
+							<div class="row">
+								<div class="col-md-0">
+								<label for="name"><b>From:</b></label>  
+								</div>
+								<div class="col-md-4">
+								<input type="date"
+								class="form-control" required="required"th:minlength="1" th:maxlength="100" id="from" name="from"  th:value="${from}">   
+								</div>
+								<div class="col-md-0">
+								 <label for="name"><b>To:</b></label>  
+								</div>
+								<div class="col-md-4">
+							<input type="date"
+										class="form-control" required="required" th:minlength="1" th:maxlength="100" id="to" name="to" th:value="*{to}">              
+								</div>
+								<div class="col-md-0">
+									<button class="btn btn-accept btn-history" type="submit">Search</button>
+									
+								</div>
+								</div>
+								<h5 style=color:red th:text="${nodata}"></h5>	
+							 </form>
+						</div>
+						
+					</div>
+
+			<!-- page Heading End -->
+
+			<!-- all appointments -->
+			<table>
+				<tbody>
+					<tr th:each="applist:${patientappointments}">
+						<div class="appoiment-list">
+						
+							<!-- 3rd -->
+							<div class="appoi-box">
+								<div class="head-area">
+								
+									<div class="heading-box">
+										<h3 th:text="${applist.patient.firstName}"></h3>
+
+									</div>
+									<div class="action-box">
+										<span th:text="${applist.date}" class="date"></span> <span
+											th:text="${applist.slot}" class="date"></span> 
+											
+											<!-- <span th:if="${applist.link}!=null"> <a th:if="${applist.isactive}!='N'" th:href="${applist.link}"
+											class="btn btn-accept btn-history">Join Meet</a> </span> -->
+											<span th:if="${applist.link}!=null"> <a th:if="${applist.isactive}!='N'" th:href="@{/patientjoinmeet/{id}(id=${applist.appointmentId})}"
+											class="btn btn-accept btn-history">Join Meet</a> </span>
+											<a
+											th:if="${applist.consultantType=='Direct Consult'}"
+											class="btn btn-accept btn-history">Direct Consultant</a> 
+											<a th:if="${applist.isactive}=='Y'"
+                                            th:href="@{/appointmentReschedule/{appid}(appid=${applist.appointmentId})}"
+                                            class="btn btn-accept btn-history">Reschedule</a>
+											<a th:if="${applist.isactive}=='N'"
+											class="btn btn-accept btn-history">Expired</a>
+											 <!-- <a th:href="@{/med/view/{id}(id=${applist.patient.patientId})}"
+											class="btn btn-accept btn-history">Show History</a>  -->
+											<a
+											th:href="@{/patientappointmentview/{appid}(appid=${applist.appointmentId})}"
+											class="btn btn-accept">View</a>
+									</div>
+								</div>
+								<p th:text="${applist.patientPurpose}"></p>
+							</div>
+						</div>
+					</tr>
+				</tbody>
+			</table>
+			<!-- all appointments end -->
+		</div>
+		</div>
+		<!-- main area end -->
+		</div>
+		</div>
+	</main>
+
+	<!-- SCRIPTS -->
+	<script src="../js/jquery.js"></script>
+	<script src="../js/bootstrap.min.js"></script>
+	<script src="../js/jquery.sticky.js"></script>
+	<script src="../js/jquery.stellar.min.js"></script>
+	<script src="../js/wow.min.js"></script>
+	<script src="../js/smoothscroll.js"></script>
+	<script src="../js/owl.carousel.min.js"></script>
+</body>
+</html>
+
+
+

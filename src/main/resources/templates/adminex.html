@@ -1,0 +1,131 @@
+<html lang="en">
+
+<head>
+	<title>Vcare</title>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+	<meta name="description" content="">
+	<meta name="keywords" content="">
+	<meta name="author" content="#">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+	<!-- MAIN CSS -->
+	<link rel="stylesheet" href="dashboard/assets/css/final.css">
+	<style>
+		body {
+		
+			background-image: url("/images/h1.jpg");
+			background-size: cover;
+
+
+		}
+	</style>
+</head>
+
+<body>
+	<!-- header -->
+	<header class="header">
+		<div class="container-fluid">
+			<div class="header-box">
+				<h4>Vcare </h4>
+				<a th:href="@{/logout}">LogOut</a>
+			</div>
+		</div>
+	</header>
+	<!-- header end -->
+	<main class="main">
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-xl-2 col-lg-3 col-md-4">
+					<!-- sidebar -->
+					<section class="sidebar">
+						<div class="sidebar-wrap">
+							<div class="Heading">
+								<h4>Dashboard</h4>
+							</div>
+							<div class="sidebar-item">
+								<img src="../images/Icons/app.png" alt=" icon" class="img-fluid">
+								<a href="/hospital/hospitalList">Hospital</a>
+							</div>
+							
+							<div class="sidebar-item">
+								<img src="../images/Icons/cal.png" alt="icon" class="img-fluid">
+								<a th:href="@{/Drlist}">Doctor</a>
+							</div>
+							<div class="sidebar-item">
+								<img src="../images/Icons/profile.png" alt="icon" class="img-fluid">
+								<a th:href="@{/patientsList}">Patient</a>
+							</div>
+							<div class="sidebar-item">
+								<img src="../images/Icons/profile.png" alt="icon" class="img-fluid">
+								<a th:href="@{/Appointment}">Appointments</a>
+							</div>
+							
+							<div class="sidebar-item">
+								<img src="../images/Icons/profile.png" alt="icon" class="img-fluid">
+								<a th:href="@{/insurancelist/{id}(id=${session.AdminId})}">Insurance</a>
+							</div>
+
+							
+							<div class="sidebar-item">
+								<img src="../images/Icons/pprofile.png" alt="icon" class="img-fluid">
+								<a th:href="@{/news/newstable}">News</a>
+							</div>
+							
+							<div class="sidebar-item">
+								<img src="../images/Icons/pprofile.png" alt="icon" class="img-fluid">
+								<a th:href="@{/network}">Social Network</a>
+							</div>
+							
+							<div class="sidebar-item">
+								<img src="../images/Icons/prescription.jpg" alt="icon" class="img-fluid" />
+								<a th:href="@{/payments}">Payments</a>
+							</div>
+							
+							<div class="sidebar-item">
+								<img src="../images/Icons/prescription.jpg" alt="icon" class="img-fluid" />
+								<a th:href="@{/addabout}">About Us</a>
+							</div>
+
+
+						</div>
+
+					</section>
+					<!-- sidebar end -->
+				</div>
+				<!-- main area -->
+				<div class="col-lg-10 col-md-8">
+					<div class="main-area">
+						<!-- page Heading -->
+
+						<div class="col-md-6 col-sm-6">
+							<img src="images/hospital.jpg" class="img-responsive" alt="">
+
+						</div>
+						<!-- page Heading End -->
+
+						<!-- abailablility -->
+
+						<div class="avaliability-box">
+							<div class="form-box">
+								
+							</div>
+						</div>
+
+						<!-- abailablility -->
+					</div>
+				</div>
+			</div>
+			<!-- main area end -->
+		</div>
+	</main>
+
+	<!-- SCRIPTS -->
+	<script src="../js/jquery.js"></script>
+	<script src="../js/bootstrap.min.js"></script>
+	
+
+
+</body>
+
+</html>

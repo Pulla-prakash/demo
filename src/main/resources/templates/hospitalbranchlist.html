@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeLeaf.org">
+
+<head>
+	<meta charset="ISO-8859-1">
+	<title>Vcare</title>
+	<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+	<meta name="description" content="">
+	<meta name="keywords" content="">
+	<meta name="author" content="#">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css"
+		href="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.4/css/jquery.dataTables.css">
+	<!-- MAIN CSS -->
+	<link rel="stylesheet" th:href="@{/dashboard/assets/css/final.css}" />
+	<link rel="stylesheet" th:href="@{/../../../dashboard/assets/css/dropdownlink.css}" />
+</head>
+
+<body>
+
+	<!-- header -->
+	<header class="header-box">
+		<div class="container-fluid">
+			<div class="header-box">
+				<h4>Vcare</h4>
+				<a href="@{/logout}">LogOut</a>
+
+			</div>
+	</header>
+	<!-- header end -->
+	<main class="main">
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-xl-2 col-lg-3 col-md-4">
+					<!-- sidebar -->
+					<section class="sidebar">
+						<div class="sidebar-wrap">
+							<div class="Heading">
+								<h4>Dashboard</h4>
+							</div>
+							
+							<div class="sidebar-item">
+								<img src="/images/Icons/app.png" alt=" icon" class="img-fluid">
+								<a href="/hospital/hospitalList">Hospital</a>
+							</div>
+							
+							<div class="sidebar-item">
+								<img src="/images/Icons/cal.png" alt="icon" class="img-fluid">
+								<a th:href="@{/Drlist}">Doctor</a>
+							</div>
+							<div class="sidebar-item">
+								<img src="/images/Icons/profile.png" alt="icon" class="img-fluid">
+								<a th:href="@{/patientsList}">Patient</a>
+							</div>
+							<div class="sidebar-item">
+								<img src="/images/Icons/profile.png" alt="icon" class="img-fluid">
+								<a th:href="@{/Appointment}">Appointments</a>
+							</div>
+							
+							<div class="sidebar-item">
+								<img src="/images/Icons/profile.png" alt="icon" class="img-fluid">
+								<a th:href="@{/insurancelist/{id}(id=${session.AdminId})}">Insurance</a>
+							</div>
+
+							
+							<div class="sidebar-item">
+								<img src="/images/Icons/pprofile.png" alt="icon" class="img-fluid">
+								<a th:href="@{/news/newstable}">News</a>
+							</div>
+							
+							<div class="sidebar-item">
+								<img src="/images/Icons/pprofile.png" alt="icon" class="img-fluid">
+								<a th:href="@{/network}">Social Network</a>
+							</div>
+
+
+						</div>
+					</section>
+					<!-- sidebar end -->
+				</div>
+				<!-- main area -->
+				<div class="col-lg-10 col-md-8">
+					<div class="main-area">
+						<!-- page Heading -->
+						<div class="page-heading">
+
+							<div class="header-box">
+								<h1>Branch Details</h1>
+								<a th:href="@{/hospital/hospitalList}" class="img-fluid">Add HospitalBranch</a>
+							</div>
+							<h5 style=color:darkgreen th:text="${Branch}"></h5>
+						</div>
+
+
+
+
+						<table border="1" class="table table-striped table-responsive-md" id="example">
+							<thead>
+								<tr>
+
+									<th>BranchName</th>
+									<th>Country</th>
+									<th>State</th>
+									<th>City</th>
+									<th>Address</th>
+									<th>Pincode</th>
+									<th>Contact No</th>
+									<th>EmailId</th>
+									<th>License</th>
+
+									<th>Branch Description</th>
+									<th>latitude</th>
+									<th>longitude</th>
+									<th>Branch Type</th>
+									<th>Image</th>
+									<th>Action</th>
+
+									<!-- <th>Edit</th>
+                    <th>Delete</th> -->
+									<!-- <th>Add Branch</th> -->
+								</tr>
+							</thead>
+							<tbody>
+								<tr th:each="hospObj : ${hospitalBranchList}">
+
+									<td th:text="${hospObj.hospitalBranchName}"></td>
+									<td th:text="${hospObj.hospitalBranchLocation}"></td>
+									<td th:text="${hospObj.hospitalBranchState}"></td>
+									<td th:text="${hospObj.hospitalBranchCity}"></td>
+									<td th:text="${hospObj.hospitalBranchAddress}"></td>
+									<td th:text="${hospObj.hospitalBranchPincode}"></td>
+									<td th:text="${hospObj.hospitalBranchNumber}"></td>
+									<td th:text="${hospObj.hospitalBranchEmailId}"></td>
+									<td th:text="${hospObj.hospitalBranchLicense}"></td>
+
+									<td th:utext="${hospObj.branchDescription}"></td>
+									<td th:text="${hospObj.latitude}"></td>
+									<td th:text="${hospObj.longitude}"></td>
+									<td th:text="${hospObj.branchType}"></td>
+									<td scope="row"><img alt=" "
+											th:src="*{'data:hospitalBranchImage/jpeg;base64,'+{hospObj.hospitalBranchImage}}"
+											style="width: 100px;height: 100px;"></td>
+
+
+									<!--  <td><a th:href="@{/hospitalBranch/editHospitalBranch/{id}(id=${hospObj.hospitalBranchId})}">Edit</a></td>
+                    <td><a th:href="@{/hospitalBranch/deleteHospitalBranch/{id}(id=${hospObj.hospitalBranchId})}">Delete</a></td> -->
+									<!-- <td><a th:href="@{/hospitalBranch/addHospitalBranch/{id}(id=${hospObj.hospitalId})}" class="btn btn-primary btn-sm mb-3" >Add a new HospitalBranch</a></td> -->
+
+									<td class="select">
+
+										<ul class="pm">
+											<li><a href="#" title="#">Select</a>
+												<ul class="cm">
+													<li><a
+															th:href="@{/hospitalBranch/editHospitalBranch/{id}(id=${hospObj.hospitalBranchId})}">Edit</a>
+													</li>
+													<li><a
+															th:href="@{/hospitalBranch/deleteHospitalBranch/{id}(id=${hospObj.hospitalBranchId})}">Delete</a>
+													</li>
+													<li><a th:href="@{/page/serPage/{id}(id=${hospObj.hospitalBranchId})}">Show Services</a></li>
+													<!-- <li><a th:href="@{/page/serPage/{id}(id=${hospObj.hospitalBranchId})}" class="btn btn-default" >Show Services</a></li>-->
+													<li><a th:href="@{/page/addHospitalBranch/{id}(id=${hospObj.hospitalBranchId})}"
+															>Add Services</a></li>
+													<!-- <li><a th:href="@{/hospitalBranchList/{id}(id=${hospObj.hospitalBranchId})}"
+															>Patients List</a></li>
+												
+													<li><a
+															th:href="@{/doctorProfile/{Bid}(Bid=${hospObj.hospitalBranchId})}">Add
+															Profile</a></li> -->
+															
+															<li><a th:href="@{/Dephome/{bid}(bid=${hospObj.hospitalBranchId})}"
+                                                            >DepartmentList</a></li>
+													<li><a
+															th:href="@{/addAmbulance/{branchId}(branchId=${hospObj.hospitalBranchId})}">Add
+															Ambulance</a></li>
+													<li><a
+															th:href="@{/AddAmbdriver/{HbranchId}(HbranchId=${hospObj.hospitalBranchId})}">Add
+															Driver</a></li>
+												</ul>
+											</li>
+										</ul>
+									</td>
+								</tr>
+
+					</div>
+				</div>
+			</div>
+			<!-- main area end -->
+		</div>
+	</main>
+
+	<!-- SCRIPTS -->
+	<script src="../js/jquery.js"></script>
+	<script src="../js/bootstrap.min.js"></script>
+	<!-- <script src="../js/jquery.sticky.js"></script>
+    <script src="../js/jquery.stellar.min.js"></script>
+    <script src="../js/wow.min.js"></script	>
+    <script src="../js/smoothscroll.js"></script>
+    <script src="../js/owl.carousel.min.js"></script>
+    <script src="./assets/js/script.js"></script> -->
+	<script type="text/javascript" charset="utf8"
+		src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.2.min.js"></script>
+	<script type="text/javascript" charset="utf8"
+		src="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.4/jquery.dataTables.min.js"></script>
+	<script>
+		$(function () {
+			$("#example").dataTable();
+		})
+	</script>
+
+	</tbody>
+	</table>
+	</div>
+
+
+	</div>
+
+</body>
+
+</html>

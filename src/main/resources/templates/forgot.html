@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="ISO-8859-1">
+	<title>Insert title here</title>
+	<meta charset="UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+	<meta name="description" content="" />
+	<meta name="keywords" content="" />
+	<meta name="author" content="#" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
+	<!-- MAIN CSS -->
+	<link rel="stylesheet" th:href="@{/dashboard/assets/css/final.css}" />
+	<style>
+		body {
+			background-image: url("/images/slider3.jpg");
+
+		}
+	</style>
+</head>
+
+<body>
+
+	<!-- header -->
+	<header class="header">
+		<div class="container-fluid">
+			<div class="header-box">
+				<h4>Vcare</h4><span th:text="${objMobile}"></span>
+				<a href="/">back</a>
+			</div>
+		</div>
+	</header>
+	<!-- header end -->
+	<main class="main">
+		<div class="container-fluid">
+			<div class="row">
+
+				<!-- main area -->
+
+				<div class="col-lg-10 col-md-8">
+					<div class="main-area">
+						<!-- page Heading -->
+						<div class="page-heading">
+							<center>
+								<span style="color: black; font-size: 40px" th:text="${Hsptlbranchname}"></span>
+								<h3>Forgot Password</h3>
+							</center>
+						</div>
+					</div>
+
+					<!-- page Heading End -->
+
+					<!-- abailablility -->
+
+					<div class="avaliability-box">
+						<div class="form-box">
+							<!-- <div><h3><b><span style=color:red th:text="${message}"></span></b> </h3></div> -->
+							<form method="post" id="login-form" th:action="@{/validate}" th:object="${objdoctor}">
+								<center>
+									<div>
+
+										<h3><b><span style=color:red th:text="${message}"></span></b> </h3><br>
+									</div>
+									<div style="align:center">
+										<h6 style="align:center">Enter your registered email to reset your password.
+										</h6><br>
+									</div>
+
+									<div>
+										<div class="col-md-3">
+											<label for="username">Email</label><br>
+											<input style="height:60px;font-size:14pt;" type="email" name="doctorMailId"
+												th:text="${doctorMailId}" id="doctorMailId" required="required">
+											<p></p>
+											<button type="submit" class="btn btn-danger btn-block">Reset
+												Password</button>
+										</div>
+
+								</center>
+						</div>
+						<div class="footer">
+
+							<!-- <h5>New here? <a href="#">Sign Up.</a></h5>
+			<h5>Already have an account? <a href="#">Sign In.</a></h5>
+			<p class="information-text"><span class="symbols" title="Lots of love from me to YOU!">&hearts; </span><a href="https://www.facebook.com/adedokunyinka.enoch" target="_blank" title="Connect with me on Facebook">Yinka Enoch Adedokun</a></p>-->
+
+							</form>
+						</div>
+					</div>
+</body>
+
+</html>

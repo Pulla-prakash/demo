@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<title>Vcare</title>
+	<meta charset="UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+	<meta name="description" content="" />
+	<meta name="keywords" content="" />
+	<meta name="author" content="#" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
+	<!-- MAIN CSS -->
+	<link rel="stylesheet" href="/dashboard/assets/css/final.css" />
+
+</head>
+
+<body>
+	<!-- header -->
+	<header class="header">
+		<div class="container-fluid">
+			<div class="header-box">
+				<h4>Vcare</h4>
+				<a href="/">LogOut</a>
+			</div>
+		</div>
+	</header>
+	<!-- header end -->
+	<main class="main">
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-xl-2 col-lg-3 col-md-4">
+					<!-- sidebar -->
+					<section class="sidebar">
+						<div class="sidebar-wrap">
+							<div class="Heading">
+								<h4>Dashboard</h4>
+							</div>
+							<div class="sidebar-item">
+								<img src="/images/Icons/app.png" alt=" icon" class="img-fluid" />
+								<a th:href="@{/bookAppointment/{id}(id=${session.pId})}">Appointments</a>
+							</div>
+
+
+							<div class="sidebar-item">
+								<img src="/images/Icons/pprofile.png" alt="icon" class="img-fluid" />
+								<a th:href="@{/patientprofile/{id}(id=${session.pId})}">Patient
+									Profile</a>
+							</div>
+							<div class="sidebar-item">
+								<img src="/images/Icons/pprofile.png" alt="icon" class="img-fluid" />
+								<a th:href="@{/med/medhistory/{id}(id=${session.pId})}">Medical
+									History</a>
+							</div>
+
+							<div class="sidebar-item">
+								<img src="/images/Icons/pprofile.png" alt="icon" class="img-fluid" />
+								<a th:href="@{/med/view/{id}(id=${session.pId})}">View Reports</a>
+							</div>
+
+							<div class="sidebar-item">
+								<img src="/images/Icons/pprofile.png" alt="icon" class="img-fluid" />
+								<a th:href="@{/list/{pid}(pid=${session.pId})}">View Prescription</a>
+							</div>
+							
+							<div class="sidebar-item">
+                                <img src="../images/Icons/cal.png" alt="icon" class="img-fluid">
+                                <a th:href="@{/Doctorlist/{pid}(pid=${session.pId})}">Doctors List</a>
+                            </div>
+                           
+						</div>
+					</section>
+					<!-- sidebar end -->
+				</div>
+				<!-- main area -->
+				<div class="col-lg-10 col-md-8">
+					<div class="main-area">
+						<!-- page Heading -->
+						<div class="page-heading">
+							<center>
+								<b><i>
+										<h1>Patient Appointment</h1>
+										<h4 style=color:red th:text="${appmsg}"></h4>
+									</i></b>
+							</center>
+						</div>
+						<!-- page Heading End -->
+
+						<!-- availablility -->
+
+						<div class="avaliability-box">
+							<div class="form-box">
+								<form th:action="@{/}" th:object="${appointment}" 
+									id="appointment" method="post">
+									<input type="hidden" class="form-control" id="appointmentId" name="appointmentId"
+										th:value="*{appointmentId}">
+
+									<input type="hidden" class="form-control" id="patient" name="patient"
+										th:value="${patient.patientId}" th:minlength="1" th:maxlength="100"
+										placeholder="Enter Your Name" required>
+									<!-- <input type="hidden" class="form-control" id="doctor" name="doctor"
+										th:value="" th:minlength="1" th:maxlength="100"
+										placeholder="Enter Your Name" required> -->
+									<div class="row">
+										<div class="col-md-6">
+											<label for="patientName">Name</label> <input type="text"
+												class="form-control" name="patientName" th:value="${patient.firstName}"
+												th:minlength="1" th:maxlength="100" placeholder="Enter Your Name"
+												required>
+										</div>
+										<div class="col-md-6">
+											<label for="patientName">Age</label> <input type="number"
+												class="form-control" name="patientAge" th:value="${patient.patientAge}"
+												th:minlength="1" th:maxlength="100" required>
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-md-6">
+											<label for="patientName">Gender</label> <input type="text"
+												class="form-control" name="patientGender" th:value="${patient.patientGender}"
+												th:minlength="1" th:maxlength="100" required>
+										</div>
+										<div class="col-md-6">
+											<label for="patientName">Contanct Number</label> <input type="tel"
+												class="form-control" name="patientMobile" id="patientMobile"
+												th:value="${patient.patientMobile}" th:minlength="1" th:maxlength="15"
+												placeholder="" required>
+
+											<script type="text/javascript">
+												var inputBox = document.getElementById("patientMobile");
+
+
+
+												var invalidChars = [
+													"-",
+													"+",
+													"e",
+												];
+
+
+
+												inputBox.addEventListener("keydown", function (e) {
+													if (invalidChars.includes(e.key)) {
+														e.preventDefault();
+													}
+												});
+
+											</script>
+											<div class="alert alert-info" style="display: none"></div>
+											<div class="alert alert-error" style="display: none"></div>
+											<script type="text/javascript">
+												const phoneInputField = document.querySelector("#patientMobile");
+												const phoneInput = window.intlTelInput(phoneInputField, {
+													utilsScript:
+														"https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js",
+												});
+
+												const info = document.querySelector(".alert-info");
+												const error = document.querySelector(".alert-error");
+
+												function process(event) {
+													event.preventDefault();
+
+													const phoneNumber = phoneInput.getNumber();
+
+													info.style.display = "";
+													info.innerHTML = `Phone number in E.164 format: <strong>${phoneNumber}</strong>`;
+												}
+											</script>
+										</div>
+									</div>
+									
+									<div class="row">
+										<div class="col-md-4">
+										
+											<label for="loc">Select Service</label> 
+											<select 
+												class="form-control" id="serviceName" name="serviceName"
+												th:value="this.value"
+												required="required"
+												th:onchange="selectedService(this.value)">
+												<option class="col-md-6" placeholder="Select Service Name" ><span th:text="${serviceName}"></span></option>
+												<option class="col-md-6" th:each="entry:${serviceNames}" 
+													th:value="${entry}" th:text="${entry}"
+													></option>
+											</select>
+										</div>
+										<div class="col-md-4">
+											<label>Select HospitalBranch :</label>
+											<select 
+												class="form-control" id="HospitalName" name="HospitalName"
+												th:value="this.value"
+												required="required"
+												th:onchange="selectedBranches(this.value)">
+											<option class="col-md-6" placeholder="Select Branch Name" th:text="${branchName}"></option>
+											 <option th:each="hb:${hblist}" 
+											 name="BranchId"  id="BranchId"
+												th:text="${hb.hospitalBranchName}+'('+${hb.hospitalBranchLocation}+')'"
+												th:value="${hb.hospitalBranchId}" 
+												/>
+												</select>
+										</div>
+										<div class="col-md-4">
+											<label>Select Doctor</label>
+											<select 
+												class="form-control" id="DoctorName" name="DoctorName"
+												th:value="this.value"
+												required="required"
+												th:onchange="selectedDoctors(this.value)">
+											<option class="col-md-6"></option>
+											 <option th:each="doctorList:${doctorNames}" 
+											 name="Doctor"  id="${doctorList.doctorId}"
+												th:text="${doctorList.doctorName}"
+												th:value="${doctorList.doctorId}" 
+												/>
+												</select>
+										</div>
+								
+									</div>
+									
+
+									<center>
+										<button style="width:10cm;" class="btn btn-danger btn-block">Book
+											Appointment</button>
+											
+									</center>
+								</form>
+							</div>
+						</div>
+
+						<!-- abailablility -->
+					</div>
+				</div>
+			</div>
+			<!-- main area end -->
+		</div>
+	</main>
+
+	<!-- SCRIPTS -->
+	<script src="../js/dropdown.js"></script>
+	<script src="../js/jquery.js"></script>
+	<script src="../js/bootstrap.min.js"></script>
+	<!-- <script src="../js/jquery.sticky.js"></script>
+    <script src="../js/jquery.stellar.min.js"></script>
+    <script src="../js/wow.min.js"></script>
+    <script src="../js/smoothscroll.js"></script>
+    <script src="../js/owl.carousel.min.js"></script>
+    <script src="./assets/js/script.js"></script> -->
+</body>
+
+</html>

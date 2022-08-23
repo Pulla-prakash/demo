@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Cancer V care Admin</title>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+    <meta name="author" content="#" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1"
+    />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    />
+    <!-- MAIN CSS -->
+    <link rel="stylesheet" href="./assets/css/final.css" />
+  </head>
+
+  <body>
+    <!-- header -->
+    <header class="header">
+      <div class="container-fluid">
+        <div class="header-box">
+          <h4>Cancer V care</h4>
+          <a href="#">LogOut</a>
+        </div>
+      </div>
+    </header>
+    <!-- header end -->
+    <main class="main">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-xl-2 col-lg-3 col-md-4">
+            <!-- sidebar -->
+            <section class="sidebar">
+              <div class="sidebar-wrap">
+                <div class="Heading"><h4>Dashboard</h4></div>
+                <div class="sidebar-item">
+                  <img
+                    src="../images/Icons/app.png"
+                    alt=" icon"
+                    class="img-fluid"
+                  />
+                  <a href="./index.html">Appointments</a>
+                </div>
+                <div class="sidebar-item">
+                  <img
+                    src="../images/Icons/pa.png"
+                    alt="icon"
+                    class="img-fluid"
+                  />
+                  <a href="./patients.html">Patients</a>
+                </div>
+                <div class="sidebar-item">
+                  <img
+                    src="../images/Icons/cal.png"
+                    alt="icon"
+                    class="img-fluid"
+                  />
+                  <a href="./avaliability.html" class="active">Availability</a>
+                </div>
+                <div class="sidebar-item">
+                  <img
+                    src="../images/Icons/profile.png"
+                    alt="icon"
+                    class="img-fluid"
+                  />
+                  <a href="./profile.html" class="active">Doctor Profile</a>
+                </div>
+                <div class="sidebar-item">
+                  <img
+                    src="../images/Icons/pprofile.png"
+                    alt="icon"
+                    class="img-fluid"
+                  />
+                  <a href="./pprofile.html" >Patient Profile</a>
+                </div>
+              </div>
+            </section>
+            <!-- sidebar end -->
+          </div>
+          <!-- main area -->
+          <div class="col-lg-10 col-md-8">
+            <div class="main-area">
+              <!-- page Heading -->
+              <div class="page-heading">
+                <h1>Availability</h1>
+              </div>
+              <!-- page Heading End -->
+
+              <!-- abailablility -->
+
+              <div class="avaliability-box">
+                <div class="form-box">
+                  <form>
+                    <div class="row">
+                      <div class="col-md-6">
+                        <input type="date" class="form-control" required />
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-12">
+                        <textarea
+                          name="text"
+                          id="text"
+                          cols="30"
+                          rows="10"
+                          class="form-control"
+                          required
+                        ></textarea>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-12">
+                        <textarea
+                          name="text"
+                          id="text"
+                          cols="30"
+                          rows="10"
+                          class="form-control"
+                          required
+                        ></textarea>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-6">
+                        <label for="fee">Appointment Fee</label>
+                        <input
+                          type="text"
+                          class="form-control"
+                          placeholder="Appointment Fee"
+                          id="fee"
+                          value="800/-"
+                        />
+                      </div>
+                      <div class="col-md-6">
+                        <label for=""></label>
+                        <button class="btn btn-danger btn-block">
+                          Save Changes
+                        </button>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+              </div>
+
+              <!-- abailablility -->
+            </div>
+          </div>
+        </div>
+        <!-- main area end -->
+      </div>
+    </main>
+
+    <!-- SCRIPTS -->
+    <script src="../js/jquery.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
+    <!-- <script src="../js/jquery.sticky.js"></script>
+    <script src="../js/jquery.stellar.min.js"></script>
+    <script src="../js/wow.min.js"></script>
+    <script src="../js/smoothscroll.js"></script>
+    <script src="../js/owl.carousel.min.js"></script>
+    <script src="./assets/js/script.js"></script> -->
+  </body>
+</html>

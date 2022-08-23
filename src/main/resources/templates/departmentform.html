@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="ISO-8859-1">
+	<title>Vcare</title>
+	<meta charset="UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+	<meta name="description" content="" />
+	<meta name="keywords" content="" />
+	<meta name="author" content="#" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
+	<!-- MAIN CSS -->
+	<link rel="stylesheet" th:href="@{/dashboard/assets/css/final.css}" />
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<script src="https://cdn.tiny.cloud/1/vyae8xi0ny5tqluee5rz3sbzi3p6wdp0f51vmhh33svm0dzd/tinymce/6/tinymce.min.js"
+		referrerpolicy="origin"></script>
+
+</head>
+
+<body>
+	<!-- header -->
+	<header class="header">
+		<div class="container-fluid">
+			<div class="header-box">
+				<h4>Vcare</h4>
+				<a th:href="@{/logout}">LogOut</a>
+			</div>
+		</div>
+	</header>
+	<!-- header end -->
+	<main class="main">
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-xl-2 col-lg-3 col-md-4">
+					<!-- sidebar -->
+					<section class="sidebar">
+						<div class="sidebar-wrap">
+							<div class="Heading">
+								<h4>Dashboard</h4>
+							</div>
+<div class="sidebar-item">
+								<img src="../images/Icons/app.png" alt=" icon" class="img-fluid">
+								<a href="/hospital/hospitalList">Hospital</a>
+							</div>
+							
+							<div class="sidebar-item">
+								<img src="../images/Icons/cal.png" alt="icon" class="img-fluid">
+								<a th:href="@{/Drlist}">Doctor</a>
+							</div>
+							<div class="sidebar-item">
+								<img src="../images/Icons/profile.png" alt="icon" class="img-fluid">
+								<a th:href="@{/patientsList}">Patient</a>
+							</div>
+							<div class="sidebar-item">
+								<img src="../images/Icons/profile.png" alt="icon" class="img-fluid">
+								<a th:href="@{/Appointment}">Appointments</a>
+							</div>
+							
+							<div class="sidebar-item">
+								<img src="../images/Icons/profile.png" alt="icon" class="img-fluid">
+								<a th:href="@{/insurancelist/{id}(id=${session.AdminId})}">Insurance</a>
+							</div>
+
+							
+							<div class="sidebar-item">
+								<img src="../images/Icons/pprofile.png" alt="icon" class="img-fluid">
+								<a th:href="@{/news/newstable}">News</a>
+							</div>
+							
+							<div class="sidebar-item">
+								<img src="../images/Icons/pprofile.png" alt="icon" class="img-fluid">
+								<a th:href="@{/network}">Social Network</a>
+							</div>
+
+
+
+							
+						</div>
+					</section>
+					<!-- sidebar end -->
+				</div>
+				<!-- main area -->
+				<div class="col-lg-10 col-md-8">
+					<div class="main-area">
+						<!-- page Heading -->
+						<div class="page-heading">
+							<h1>Department </h1>
+						</div>
+						<!-- page Heading End -->
+
+						<!-- abailablility -->
+
+						<div class="avaliability-box">
+							<div class="form-box">
+								<form th:action="@{/saveDep}" th:object="${departmentObj}" method="post" novalidate>
+
+
+
+									<div class="col-md-3">
+									
+										<label for="name"> </label>
+										<input type="hidden" class="form-control" id="departmentId" name="departmentId"
+											th:value="*{departmentId}" required="required" th:minlength="1"
+											th:maxlength="100" placeholder="departmentId">
+									</div>
+									
+									<div class="col-md-3">
+										<label for="name"> </label>
+										<input type="hidden" class="form-control" id="hospitalBranchId" name="hospitalBranchId"
+											th:value="${hospitalBranchId}" required="required" th:minlength="1"
+											th:maxlength="100" placeholder="hospitalBranchId">
+									</div>
+
+                                         
+                                         <div class="row">
+                                       
+									<div class="col-md-3">
+                                     
+										<label for="loc">Select Branch</label>
+										
+										<select class="form-control" name="hospitalBranch" id="hospitalBranch">
+											<option value="-1">Select branch</option>
+											<option th:each="branch:${branch}" th:value="${branch.hospitalBranchId}"
+												th:text="${branch.hospitalBranchName}" ></option>
+										</select>
+									</div>
+									
+									<div class="col-md-3">
+										<label for="sep"> Name</label>
+										<input type="text" class="form-control" id="departmentName"
+											name="departmentName" th:value="*{departmentName}" required="required"
+											th:minlength="1" th:maxlength="100">
+									</div>
+									</div>
+
+
+
+									<div class="col-md-10">
+										<label for="description"> Description</label>
+										<p id="area"></p>
+										<textarea type="text" id="description" contenteditable="true"
+											class="form-control" name="description" th:value="*{description}"
+											required="required" minlength="1" maxlength="500"
+											th:text="*{description}"></textarea>
+
+									</div>
+									<div class="col-md-2">
+										<button class="btn btn-danger btn-block">
+											Save
+										</button>
+
+									</div>
+								</form>
+							</div>
+
+						</div>
+					</div>
+
+					<!-- abailablility -->
+				</div>
+			</div>
+		</div>
+		<!-- main area end -->
+		</div>
+	</main>
+
+	<!-- SCRIPTS -->
+	<script>
+		tinymce.init({
+			selector: '#description',
+			plugins: [
+				'a11ychecker', 'advlist', 'advcode', 'advtable', 'autolink', 'checklist', 'export',
+				'lists', 'link', 'image', 'charmap', 'preview', 'anchor', 'searchreplace', 'visualblocks',
+				'powerpaste', 'fullscreen', 'formatpainter', 'insertdatetime', 'media', 'table', 'help', 'wordcount'
+			],
+			toolbar: 'undo redo | formatpainter casechange blocks | bold italic backcolor | ' +
+				'alignleft aligncenter alignright alignjustify | ' +
+				'bullist numlist checklist outdent indent | removeformat | a11ycheck code table help'
+		});
+	</script>
+	<script src="../js/jquery.js"></script>
+	<script src="../js/bootstrap.min.js"></script>
+	<!-- <script src="../js/jquery.sticky.js"></script>
+    <script src="../js/jquery.stellar.min.js"></script>
+    <script src="../js/wow.min.js"></script>
+    <script src="../js/smoothscroll.js"></script>
+    <script src="../js/owl.carousel.min.js"></script>
+    <script src="./assets/js/script.js"></script> -->
+</body>
+
+</html>

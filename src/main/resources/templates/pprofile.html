@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<title>Vcare</title>
+<meta charset="UTF-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+<meta name="description" content="" />
+<meta name="keywords" content="" />
+<meta name="author" content="#" />
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, maximum-scale=1" />
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
+<!-- MAIN CSS -->
+<link rel="stylesheet" href="/dashboard/assets/css/final.css" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="stylesheet" th:href="@{styles.css}" />
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/css/intlTelInput.css" />
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/intlTelInput.min.js"></script>
+
+
+</head>
+
+<body>
+	<!-- header -->
+	<header class="header">
+		<div class="container-fluid">
+			<div class="header-box">
+				<h4>V care</h4>
+				<a th:href="@{/logout}">LogOut</a>
+			</div>
+		</div>
+	</header>
+	<!-- header end -->
+	<main class="main">
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-xl-2 col-lg-3 col-md-4">
+					<!-- sidebar -->
+					<section class="sidebar">
+						<div class="sidebar-wrap">
+							<div class="Heading">
+								<h4>Dashboard</h4>
+							</div>
+					<div class="sidebar-item">
+								<img src="/images/Icons/app.png" alt=" icon" class="img-fluid" />
+								<a th:href="@{/bookAppointment/{id}(id=${session.pId})}">Appointments</a>
+							</div>
+
+
+							<div class="sidebar-item">
+								<img src="/images/Icons/pprofile.png" alt="icon" class="img-fluid" />
+								<a th:href="@{/patientprofile/{id}(id=${session.pId})}">Patient
+									Profile</a>
+							</div>
+							<div class="sidebar-item">
+								<img src="/images/Icons/pprofile.png" alt="icon" class="img-fluid" />
+								<a th:href="@{/med/medhistory/{id}(id=${session.pId})}">Medical
+									History</a>
+							</div>
+
+							<div class="sidebar-item">
+								<img src="/images/Icons/pprofile.png" alt="icon" class="img-fluid" />
+								<a th:href="@{/med/view/{id}(id=${session.pId})}">View Reports</a>
+							</div>
+							
+							<div class="sidebar-item">
+                                <img src="../images/Icons/cal.png" alt="icon" class="img-fluid">
+                                <a th:href="@{/patientappointments/{pid}(pid=${session.pId})}">My Appointments</a>
+                            </div>
+
+							<div class="sidebar-item">
+								<img src="/images/Icons/pprofile.png" alt="icon" class="img-fluid" />
+								<a th:href="@{/list/{pid}(pid=${session.pId})}">View Prescription</a>
+							</div>
+							
+							<div class="sidebar-item">
+                                <img src="../images/Icons/cal.png" alt="icon" class="img-fluid">
+                                <a th:href="@{/Doctorlist/{pid}(pid=${session.pId})}">Doctors List</a>
+                            </div>
+
+
+						</div>
+					</section>
+					<!-- sidebar end -->
+				</div>
+				<!-- main area -->
+				<div class="col-lg-10 col-md-8">
+					<div class="main-area">
+						<!-- page Heading -->
+						<div class="page-heading">
+							<h1>Patient Profile</h1>
+							<h5 style="color:red;" th:text="${patientmsg}"></h5>
+						</div>
+						<!-- page Heading End -->
+
+						<!-- abailablility -->
+
+						<div class="avaliability-box">
+							<div class="form-box">
+								<form th:action="@{/patientupload}" class="modal-form"
+									method="post" th:object="${patientObj}">
+									<input type="hidden" id="patientId" name="patientId"
+										th:value="${patientId}"> <input type="hidden"
+										id="hospitalBranch" name="hospitalBranch"
+										th:value="${hospitalBranchId}">
+									<div class="row">
+										<div class="col-md-3">
+											<label for="name">FirstName</label> <input type="text"
+												class="form-control" id="firstName" name="firstName"
+												th:value="*{firstName}" required>
+										</div>
+										<div class="col-md-3">
+											<label for="name"> LastName</label> <input type="text"
+												class="form-control" id="lastName" name="lastName"
+												th:value="*{lastName}">
+										</div>
+									</div>
+
+									<div class="row">
+										<div class="col-md-3">
+											<label for="sep">Age</label> <input type="number"
+												class="form-control" id="patientAge" name="patientAge"
+												th:value="*{patientAge}"
+												oninput="this.value = this.value.replace(/[^0-9.]/g,'').replace(/(\..*)\./g, '$1');"
+												required min="1">
+										</div>
+
+										<div class="col-md-3">
+											<label for="gender"> Select you gender</label> <br> <select
+												id=patientGender name=patientGender
+												th:value="*{patientGender}">
+												<option value="none" th:text="${patientObj.patientGender}" selected>Gender</option>
+												<option value="male">Male</option>
+												<option value="female">Female</option>
+												<option value="other">Transgender</option>
+											</select>
+
+
+										</div>
+									</div>
+
+									<div class="row">
+										<div class="col-md-3">
+											<label for="loc"> Location</label> <input type="text"
+												class="form-control" id="patientAddress"
+												name="patientAddress" th:value="*{patientAddress}" required>
+										</div>
+
+										<div class="col-md-3">
+											<label for="loc"> Contact No:</label><br> <input
+												type="number" class="form-control" id="patientMobile"
+												name="patientMobile" th:value="*{patientMobile}" required min="10">
+											<script type="text/javascript">
+												var inputBox = document
+														.getElementById("patientMobile");
+												var invalidChars = [ "-", "+",
+														"e", ];
+												inputBox
+														.addEventListener(
+																"keydown",
+																function(e) {
+																	if (invalidChars
+																			.includes(e.key)) {
+																		e
+																				.preventDefault();
+																	}
+																});
+											</script>
+											<div class="alert alert-info" style="display: none"></div>
+											<div class="alert alert-error" style="display: none"></div>
+											<script type="text/javascript">
+												const phoneInputField = document
+														.querySelector("#patientMobile");
+												const phoneInput = window
+														.intlTelInput(
+																phoneInputField,
+																{
+																	utilsScript : "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js",
+																});
+												const info = document
+														.querySelector(".alert-info");
+												const error = document
+														.querySelector(".alert-error");
+												function process(event) {
+													event.preventDefault();
+													const phoneNumber = phoneInput
+															.getNumber();
+													info.style.display = "";
+													info.innerHTML = `Phone number in E.164 format: <strong>${phoneNumber}</strong>`;
+												}
+											</script>
+
+
+										</div>
+
+									</div>
+
+									<div class="row">
+										<div class="col-md-3 col-sm-3">
+											<label for="email">Email</label> <input type="email"
+												class="form-control" id="patientMailId" name="patientMailId"
+												th:value="*{patientMailId}" readonly/>
+										</div>
+
+										<div class="col-md-3">
+											<label for="name"></label> <input type="hidden"
+												class="form-control" id="patientPassword"
+												name="patientPassword" th:value="*{patientPassword}"
+												required>
+										</div>
+
+
+									</div>
+
+
+
+									<!--  <form th:action="@{/vcare/upload}" enctype="multipart/form-data" method="post">
+                        <div class="col-md-6">
+                            <label for="fee">Upload Your  Image</label>
+                          <input type="file" class="form-control" id="image" placeholder="Upload Your  Image" required>
+                        </div>
+                         -->
+
+
+
+									<div class="col-md-2" align="center">
+										<div >
+
+										<button class="btn btn-danger btn-block">Save</button>
+                              </div>
+									</div>
+							</div>
+
+							</form>
+
+						</div>
+					</div>
+
+
+					<!-- abailablility -->
+				</div>
+			</div>
+		</div>
+		<!-- main area end -->
+		</div>
+	</main>
+
+	<!-- SCRIPTS -->
+	<script src="../js/jquery.js"></script>
+	<script src="../js/bootstrap.min.js"></script>
+	<!-- <script src="../js/jquery.sticky.js"></script>
+    <script src="../js/jquery.stellar.min.js"></script>
+    <script src="../js/wow.min.js"></script>
+    <script src="../js/smoothscroll.js"></script>
+    <script src="../js/owl.carousel.min.js"></script>
+    <script src="./assets/js/script.js"></script> -->
+</body>
+
+</html>

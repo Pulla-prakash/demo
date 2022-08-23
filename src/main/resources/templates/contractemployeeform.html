@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<title>Vcare</title>
+<meta charset="UTF-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+<meta name="description" content="" />
+<meta name="keywords" content="" />
+<meta name="author" content="#" />
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, maximum-scale=1" />
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
+<!-- MAIN CSS -->
+<link rel="stylesheet" th:href="@{/dashboard/assets/css/final.css}" />
+
+</head>
+
+<body>
+	<!-- header -->
+	<header class="header">
+		<div class="container-fluid">
+			<div class="header-box">
+				<h4>Vcare</h4>
+				<a th:href="@{/logout}">LogOut</a>
+			</div>
+		</div>
+	</header>
+	<!-- header end -->
+	<main class="main">
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-xl-2 col-lg-3 col-md-4">
+					<!-- sidebar -->
+					<section class="sidebar">
+						<div class="sidebar-wrap">
+							<div class="Heading">
+								<h4>Dashboard</h4>
+							</div>
+							
+							
+						<!-- 	<div class="sidebar-item">
+								<img src="../images/Icons/app.png" alt=" icon" class="img-fluid" />
+								<a th:href="@{/appointmentlist/{did}(did=${session.DocId})}">Appointments</a>
+							</div>
+							
+							<div class="sidebar-item">
+								<img src="../images/Icons/cal.png" alt="icon" class="img-fluid" />
+								<a th:href="@{/availabilityList/{id}(id=${session.DocId})}">Availability</a>
+							</div>
+							<div class="sidebar-item">
+								<img src="../images/Icons/profile.png" alt="icon" class="img-fluid" />
+								<a th:href="@{/updatedDoctorProfile/{did}(did=${session.DocId})}">Doctor Profile</a>
+							</div>
+							<div class="sidebar-item">
+								<img src="../images/Icons/prescription.jpg" alt="icon" class="img-fluid" />
+								<a th:href="@{/prescriptionlist/{did}(did=${session.DocId})}">Patients Prescription</a>
+							</div>
+							
+							<div class="sidebar-item">
+								<img src="../images/Icons/prescription.jpg" alt="icon" class="img-fluid" />
+								<a th:href="@{/payment/{docId}(docId=${session.DocId})}">Payments</a>
+							</div>
+							 -->
+							
+						</div>
+					</section>
+					<!-- sidebar end -->
+				</div>
+				<!-- main area -->
+				<div class="col-lg-10 col-md-8">
+					<div class="main-area">
+						<!-- page Heading -->
+						<div class="page-heading">
+
+
+							<h1>
+								<span style="color: black; font-size: 40px" th:text="${name}"></span>
+								Profile
+							</h1>
+							<!-- <h5 style="color:green;" th:text="${doctormsg}"></h5>
+
+ -->
+						</div>
+						<!-- page Heading End -->
+
+						<!-- abailablility -->
+
+						<div class="avaliability-box">
+							<div class="form-box">
+
+								<form th:action="@{/saveContract}"
+									th:object="${objContract}" th:method="post" id="objContract"
+									enctype="multipart/form-data">
+
+
+								
+										<div class="col-md-3">
+
+											<input type="hidden" class="form-control"
+												placeholder="Enter Your Id" id="age" name="age"
+												th:value="${age}" th:readonly="true">
+										</div>
+										
+										<div class="col-md-3">
+
+											<input type="hidden" class="form-control"
+												placeholder="Enter Your Id" id="id" name="id"
+												th:value="*{id}" >
+										</div>
+									<div class="row">
+										<div class="col-md-3">
+											<label for="sep">Name</label> <input type="text"
+												class="form-control" id="name" name="name"
+												th:value="*{name}" required="required"
+												>
+										</div>
+										<div class="col-md-3">
+											<label for="gender">Gender</label><br> <select
+												id="Gender" name="Gender"
+												th:value="*{Gender}">
+												<option th:text="*{Gender}" th:value="*{Gender}">Gender</option>
+												<option value="male">Male</option>
+												<option value="female">Female</option>
+												<option value="other">Others</option>
+											</select>
+										</div>
+										
+										
+									
+										<div class="col-md-3">
+											<label for="Branch">Experience</label> <input
+												type="number" class="form-control" placeholder="Years "
+												id="experience" name="experience"
+												th:value="*{experience}" required>
+										</div>
+										</div>
+										<div class="row">
+
+										<div class="col-md-3">
+											<label for="sep">Mobile Number</label> <input type="tel"
+												class="form-control" placeholder="MobileNumber "
+												id="mobileNo" name="mobileNo"
+												th:value="*{mobileNo}">
+										</div>
+										<div class="col-md-3">
+											<label for="gender">EmailId</label> <input type="text"
+												class="form-control" id="email" name="email"
+												th:value="*{email}" >
+										</div>
+										
+										<div class="col-md-3">
+											<label for="gender">password</label> <input type="text"
+												class="form-control" id="password" name="password"
+												th:value="*{password}" >
+										</div>
+										<div class="col-md-3">
+											<label for="active">Qualification</label> <input type="text"
+												class="form-control" placeholder="Qualification"
+												id="qualification" name="qualification"
+												th:value="*{qualification}" required>
+										</div>
+										
+
+                                                    </div>
+
+
+
+                                              <!--      <div class="col-xl-4">
+                                                        <div class="submit-field">
+                                                            <h5>Age</h5>
+                                                            <input type="text" th:value="*{age}"
+                                                                id="age" name="age" placeholder="age"
+                                                                class="form-control mb-8 col-12" readonly />
+                                                        </div>
+                                                    </div> -->
+										
+										<div class="row">
+<!-- 
+										<div class="col-md-3">
+											<label for="Update">Address</label> <input type="text"
+												class="form-control" placeholder="Address" id="Address"
+												name="Address" th:value="*{Address}">
+										</div>
+									 -->
+									 
+										<div class="submit-field">
+                                                            <h4>Date Of Birth</h4>
+                                                            <input type="date" th:value="*{DOB}"
+                                                                id="date" name="DOB" placeholder="dateOfBirth"
+                                                                class="form-control mb-8 col-12" required />
+                                                        </div>
+
+
+										<div class="col-md-3">
+											<label for="sep"> Fee</label> <input type="Numeric"
+												class="form-control" id="doctorFee" name="doctorFee"
+												th:value="*{Fee}">
+										</div>
+										
+						<!-- 				<div class="col-md-3">
+											<label for="Updated">Medical license Number</label> <input
+												type="text" class="form-control"
+												placeholder="license Number" id="Medicallicense"
+												name="Medicallicense" th:value="*{Medicallicense}" required>
+										</div>
+						
+										<div class="col-md-3">
+											<label for="Updated">About</label>
+											<textarea type="Number" class="form-control"
+												placeholder="about yoursself" id=" About" name=" About"
+												th:value="*{ About}" th:text="*{ About}" required></textarea>
+										</div>
+										</div>
+									<div class="row">
+
+									<div class="col-md-3">
+
+										<label for="profilepic">Upload ProfilePic:</label><input
+											type="hidden" class="form-control" id=" profilepic"
+											name=" profilepic" th:value="*{profilepic}"> <input
+											type="file" class="form-control" id=" profilepic"
+											name=" file" th:value="*{profilepic}">
+									</div>
+									
+									<div class="col-md-3">
+
+										<label for="profilepic">Upload Image:</label> <input
+											type="file" class="form-control" id=" image"
+											name=" file1" th:value="*{image}">
+									</div>
+									
+									<div class="col-md-3">
+
+										<label for="profilepic">Upload Video:</label> <input
+											type="file" class="form-control" id=" video"
+											name=" file2" th:value="*{video}">
+									</div>
+</div>
+<div class="row">
+										<div class="col-md-3">
+
+											<label for="Updated"></label> <input type="hidden"
+												class="form-control" id="password" name="password"
+												th:value="*{password}" required> <label for="loc">Select
+												service</label> <select th:if="${selectedService>=1}"
+												class="form-control" id="serviceName" name="serviceName"
+												th:value="this.value" required="required"
+												th:onchange="selectBranch(this.value)">
+												<option if:th="${ServiceName}!=''" th:text="${ServiceName}"></option>
+												<option th:each="entry:${serviceList}" th:value="${entry}"
+													th:text="${entry}"></option>
+											</select>
+											<div th:if="${noOfService==1}">
+											<input class="form-control" id="serviceName" name="serviceName" th:value="${ServiceName}" readonly/>
+								</div>
+										</div>
+									
+										<div class="col-md-3">
+											<label>Select HospitalbranchName :</label> <input
+												type="checkbox" th:each="hb,count:${hblist}"
+												th:if="${count.size>0}";
+												name="hospitalBranchId" id=hospitalBranchId
+												th:text="${hb.hospitalBranchName}"
+												th:value="${hb.hospitalBranchId}" checked/>
+										</div> -->
+									</div>
+									<div class=row>
+									<div class="col-md-3">
+									</div>
+									<div class="col-md-3">
+										<button id="btn" class="btn btn-danger btn-block">Save</button>
+									</div>
+									</div>
+								</form>
+							</div>
+
+
+
+						</div>
+					</div>
+
+					<!-- abailablility -->
+				</div>
+			</div>
+		</div>
+		<!-- main area end -->
+		</div>
+	</main>
+
+	<!-- SCRIPTS -->
+	<script src="../js/dropdown.js"></script>
+	<script src="../js/jquery.js"></script>
+	<script src="../js/bootstrap.min.js"></script>
+	<!-- <script src="../js/jquery.sticky.js"></script>
+    <script src="../js/jquery.stellar.min.js"></script>
+    <script src="../js/wow.min.js"></script>
+    <script src="../js/smoothscroll.js"></script>
+    <script src="../js/owl.carousel.min.js"></script>
+    <script src="./assets/js/script.js"></script> -->
+</body>
+
+</html>

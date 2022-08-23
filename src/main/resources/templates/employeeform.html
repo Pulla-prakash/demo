@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<meta charset="ISO-8859-1">
+<title>Vcare</title>
+<meta charset="UTF-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+<meta name="description" content="" />
+<meta name="keywords" content="" />
+<meta name="author" content="#" />
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, maximum-scale=1" />
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
+<!-- MAIN CSS -->
+<link rel="stylesheet" th:href="@{/dashboard/assets/css/final.css}" />
+</head>
+
+<body>
+
+	<!-- header -->
+	<header class="header">
+		<div class="container-fluid">
+			<div class="header-box">
+				<h4>Vcare</h4>
+				<a th:href="@{/logout}">LogOut</a>
+			</div>
+		</div>
+	</header>
+	<!-- header end -->
+	<main class="main">
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-xl-2 col-lg-3 col-md-4">
+					<!-- sidebar -->
+					<section class="sidebar">
+						<div class="sidebar-wrap">
+							<div class="Heading">
+								<h4>Dashboard</h4>
+							</div>
+					<span th:if="${employeeObj.employeePosition!='Receptionist'}">
+							<div class="sidebar-item">
+								<img src="/images/Icons/app.png" alt=" icon" class="img-fluid">
+								<a href="/hospital/hospitalList">Hospital</a>
+							</div>
+							<!-- <div class="sidebar-item">
+								<img src="/images/Icons/pa.png" alt="icon" class="img-fluid">
+								<a th:href="@{/Dephome}">Department</a>
+							</div>
+							 <div class="sidebar-item">
+								<img src="/images/Icons/pprofile.png" alt="icon" class="img-fluid" />
+								<a th:href="@{/List}">Employee List</a>
+							</div>  -->
+							<div class="sidebar-item">
+								<img src="/images/Icons/cal.png" alt="icon" class="img-fluid">
+								<a th:href="@{/Drlist}">Doctor</a>
+							</div>
+							<div class="sidebar-item">
+								<img src="/images/Icons/profile.png" alt="icon"
+									class="img-fluid"> <a th:href="@{/patientsList}">Patient</a>
+							</div>
+							<div class="sidebar-item">
+								<img src="/images/Icons/pprofile.png" alt="icon"
+									class="img-fluid"> <a th:href="@{/page/service}"
+									class="active">Services</a>
+							</div>
+							<!-- <div class="sidebar-item">
+								<img src="/images/Icons/pprofile.png" alt="icon" class="img-fluid">
+								<a th:href="@{/insurancelist}" class="active">Insurances</a>
+							</div> -->
+							<div class="sidebar-item">
+								<img src="/images/Icons/pprofile.png" alt="icon"
+									class="img-fluid"> <a th:href="@{/news/newstable}"
+									class="active">News</a>
+							</div>
+						</span>
+						<span th:if="${employeeObj.employeePosition=='Receptionist'}">
+                                <div class="sidebar-item">
+                                <img src="../images/Icons/pprofile.png" alt="icon"
+                                    class="img-fluid" /> <a
+                                    th:href="@{/editEmployee/{id}(id=${employeeObj.employeeId})}">Employee
+                                    Profile</a>
+                            </div>
+
+                                <div class="sidebar-item">
+                                    <img src="../images/Icons/pprofile.png" alt="icon"
+                                        class="img-fluid" /><a
+                                        th:href="@{/receptionform/{rid}(rid=${employeeObj.employeeId})}">Book Appointment</a>
+                                </div>
+                                <div class="sidebar-item">
+                                    <img src="../images/Icons/pprofile.png" alt="icon"
+                                        class="img-fluid" /> <a
+                                        th:href="@{/selectambulancedriver/{hbranchId}/{empid}(hbranchId=${hosp},empid=${employeeObj.employeeId})}">Ambulance
+                                        Booking</a>
+                                </div> 
+                            </span>
+						</div>
+					</section>
+					<!-- sidebar end -->
+				</div>
+				<!-- main area -->
+				<div class="col-lg-10 col-md-8">
+					<div class="main-area">
+						<!-- page Heading -->
+						<div class="page-heading">
+							<h2>Employee Form</h2>
+							<h4 style=color:darkgreen th:text="${empmsg}"></h4>
+						</div>
+						<!-- page Heading End -->
+
+						<!-- abailablility -->
+
+						<div class="avaliability-box">
+							<div class="form-box">
+								<form th:action="@{/saveEmployee}" th:object="${employeeObj}"
+									method="post" enctype="multipart/form-data">
+
+
+									<div class="col-md-3">
+										<label for="name"> </label> <input type="hidden"
+											class="form-control" id="employeeId" name="employeeId"
+											th:value="*{employeeId}" required="required" th:minlength="1"
+											th:maxlength="100">
+									</div>
+
+									<div class="col-md-3">
+										<label for="name"> </label> <input type="hidden"
+											class="form-control" id="departmentId" name="departmentId"
+											th:value="${depObj.departmentId}" required="required"
+											th:minlength="1" th:maxlength="100">
+									</div>
+									<div class="col-md-3">
+										<label for="name"> </label> <input type="hidden"
+											class="form-control" id="hospitalBranch"
+											name="hospitalBranch" th:value="${hObj.hospitalBranchId}"
+											required="required" th:minlength="1" th:maxlength="100">
+									</div>
+
+									<div class="row">
+										<!-- <div class="col-md-3">
+                                            <label for="fee">Select Department </label>
+
+                                            <select class="form-control" id="departmentId" name="departmentId"
+                                                 th:value="this.value" required="required" th:minlength="1"
+                                                th:maxlength="100">
+                                                <option  th:text="${depObj.departmentName}" th:value="${depObj.departmentId}"> </option>
+                                                <option th:each="dep:${department}" th:value="${dep.departmentId}"
+                                                    th:text="${dep.departmentName}" >
+                                                </option>
+                                            </select>
+
+                                        </div> -->
+										<div class="col-md-3">
+											<label for="loc">Position</label> <input type="text"
+												class="form-control" id="employeePosition"
+												name="employeePosition" th:value="*{employeePosition}"
+												required="required" th:minlength="1" th:maxlength="100">
+										</div>
+									</div>
+
+									<div class="row">
+										<div class="col-md-3">
+											<label for="sep"> Name</label> <input type="text"
+												class="form-control" id="employeeName" name="employeeName"
+												th:field="*{employeeName}" required="required"
+												th:minlength="1" th:maxlength="100">
+										</div>
+
+										<div class="col-md-3">
+											<label for="gender">Gender</label><br> <select
+												id="gender" name="gender" th:value="*{gender}"
+												th:field="*{gender}">
+												<option value="none" selected>Gender</option>
+												<option value="male">Male</option>
+												<option value="female">Female</option>
+												<option value="other">Others</option>
+											</select>
+										</div>
+
+
+
+										<div class="col-md-3">
+											<label for="bloodGroup">Blood group</label><br> <select
+												id="bloodGroup" name="bloodGroup" th:value="*{bloodGroup}"
+												th:field="*{bloodGroup}">>
+												<option value="none" selected>Blood group</option>
+												<option value="o+">O+</option>
+												<option value="A+">A+</option>
+												<option value="B+">B+</option>
+												<option value="AB+">AB+</option>
+												<option value="O-">O-</option>
+												<option value="A-">A-</option>
+												<option value="B-">B-</option>
+												<option value="AB-">AB-</option>
+											</select>
+										</div>
+
+
+									</div>
+									<div class="row">
+										<div class="col-md-3">
+											<label for="avl"> Contact No</label> <input type="number"
+												class="form-control" id="contactNo" name="contactNo"
+												th:value="*{contactNo}"
+												oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"
+												required="required" th:minlength="1" th:maxlength="20">
+										</div>
+
+
+
+										<div class="col-md-3">
+											<label for="avl"> Address</label> <input type="text"
+												class="form-control" id="address" name="address"
+												th:value="*{address}" required="required" th:minlength="1"
+												th:maxlength="100">
+										</div>
+
+										<div class="col-md-3">
+											<label for="avl">Pincode</label> <input type="number"
+												class="form-control" id="postCode" name="postCode"
+												th:value="*{postCode}"
+												oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"
+												required="required" th:minlength="1" th:maxlength="100">
+										</div>
+									</div>
+
+									<div class="row">
+										<div class="col-md-3">
+											<label for="avl">State</label> <input type="text"
+												class="form-control" id="state" name="state"
+												th:value="*{state}" required="required" th:minlength="1"
+												th:maxlength="100">
+										</div>
+										<div class="col-md-3">
+											<label for="avl">Email</label> <input type="email"
+												class="form-control" id="email" name="email"
+												th:value="*{email}" required="required" th:minlength="1"
+												th:maxlength="100">
+										</div>
+
+
+										<span th:if="${password}==null">
+											<div class="col-md-12">
+												<label for="avl">Password</label> <input type="password"
+													class="form-control" id="password" name="password"
+													th:value="*{password}"
+													pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+													title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters"
+													th:minlength="1" th:maxlength="100">
+											</div>
+										</span>
+										<span th:if="${password}=='passwordpresent'">
+											<div class="col-md-12">
+												<input type="hidden"
+													class="form-control" id="password" name="password"
+													th:value="*{password}"
+													pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+													title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters"
+													th:minlength="1" th:maxlength="100"
+													placeholder="Password">
+											</div>
+											</span>
+									</div>
+
+									<div class="row"></div>
+
+
+									<div class="row">
+										<div class="col-md-3">
+											<label for="avl">City</label> <input type="text"
+												class="form-control" id="city" name="city"
+												th:value="*{city}" required="required" th:minlength="1"
+												th:maxlength="100">
+										</div>
+										<div class="col-md-3">
+											<label for="avl">upload profile</label> <input type="hidden"
+												id="profile" name="profile" th:value="${profile}">
+
+											<!-- <div th:each="employeeObj:${employeeObj}">
+												<span> <img
+													th:src="${'data:profile/jpeg;base64,'+{employeeObj.profile}}">
+												</span>
+											</div> -->
+											<input type="file" class="form-control" id="profile"
+												name="files">
+										</div>
+
+
+
+
+
+
+									</div>
+
+
+
+
+									<div class="row">
+
+										<div class="col-md-2">
+											<label for=""></label>
+											<button class="btn btn-danger btn-block">save</button>
+										</div>
+									</div>
+								</form>
+							</div>
+						</div>
+					</div>
+
+
+					<!-- abailablility -->
+				</div>
+			</div>
+		</div>
+		<!-- main area end -->
+		</div>
+	</main>
+
+	<!-- SCRIPTS -->
+	<script src="../js/jquery.js"></script>
+	<script src="../js/bootstrap.min.js"></script>
+	<!-- <script src="../js/jquery.sticky.js"></script>
+    <script src="../js/jquery.stellar.min.js"></script>
+    <script src="../js/wow.min.js"></script>
+    <script src="../js/smoothscroll.js"></script>
+    <script src="../js/owl.carousel.min.js"></script>
+    <script src="./assets/js/script.js"></script> -->
+</body>
+
+
+</body>
+
+</html>

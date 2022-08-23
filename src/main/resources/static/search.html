@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Cancer V care</title>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+    <meta name="author" content="#" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1"
+    />
+    <link rel="stylesheet" href="css/bootstrap.min.css" />
+    <link rel="stylesheet" href="css/font-awesome.min.css" />
+    <link rel="stylesheet" href="css/animate.css" />
+    <link rel="stylesheet" href="css/owl.carousel.css" />
+    <link rel="stylesheet" href="css/owl.theme.default.min.css" />
+    <!-- slick slider -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick-theme.min.css"
+    />
+    <!-- MAIN CSS -->
+    <link rel="stylesheet" href="css/style.css" />
+    <style type="text/css">
+      .doc-search-card {
+        margin-top: 20px;
+      }
+
+      .search-doc-info {
+        margin-left: 10px;
+      }
+
+      .search-doc-info h3 {
+        margin-top: 0px;
+      }
+
+      .doc-search-actions {
+        display: flex;
+        flex-direction: column;
+        margin-left: 30px;
+        margin-top: 20px;
+      }
+
+      .mt-10 {
+        margin-top: 10px;
+      }
+
+      .book-section {
+        margin-left: 20px;
+      }
+
+      @media (max-width: 400px) {
+        .doc-search-card {
+          flex-direction: column;
+        }
+
+        .book-section {
+          margin-left: 0px;
+        }
+      }
+      .team-info {
+        display: flex;
+      }
+      .doc-image {
+        margin-right: 20px;
+      }
+    </style>
+  </head>
+
+  <body
+    id="top"
+    data-spy="scroll"
+    data-target=".navbar-collapse"
+    data-offset="50"
+  >
+    <!-- PRE LOADER -->
+    <section class="preloader">
+      <div class="spinner">
+        <span class="spinner-rotate"></span>
+      </div>
+    </section>
+    <!-- MENU -->
+    <section class="navbar navbar-default navbar-static-top" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button
+            class="navbar-toggle"
+            data-toggle="collapse"
+            data-target=".navbar-collapse"
+          >
+            <span class="icon icon-bar"></span>
+            <span class="icon icon-bar"></span>
+            <span class="icon icon-bar"></span>
+          </button>
+          <!-- lOGO TEXT HERE -->
+          <a href="index.html" class="navbar-brand">Cancer V Care</a>
+        </div>
+        <!-- MENU LINKS -->
+        <div class="collapse navbar-collapse">
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="#about" class="smoothScroll">About Us</a></li>
+            <li><a href="#team" class="smoothScroll">Doctors</a></li>
+            <li><a href="#news" class="smoothScroll">Recognitions</a></li>
+            <li class="login-btn">
+              <!-- data-toggle="modal" data-target="#flipFlop" -->
+              <a
+                href=""
+                class="dropdown-toggle"
+                data-toggle="dropdown"
+                role="button"
+                aria-haspopup="true"
+                aria-expanded="false"
+                >Login <span class="caret"></span
+              ></a>
+              <ul class="dropdown-menu">
+                <li><b class="top-bo">Patient</b></li>
+                <li>
+                  <a href="#" data-toggle="modal" data-target="#flipFlop"
+                    >Login
+                  </a>
+                </li>
+                <li>
+                  <a href="#" data-toggle="modal" data-target="#flipFlop"
+                    >Sign Up</a
+                  >
+                </li>
+                <li><b>Doctor</b></li>
+                <li>
+                  <a href="#" data-toggle="modal" data-target="#flipFlop"
+                    >Login
+                  </a>
+                </li>
+              </ul>
+            </li>
+            <li class="appointment-btn">
+              <a href="#appointment">Book appointment</a>
+            </li>
+          </ul>
+          <form class="navbar-form navbar-left" action="/action_page.php">
+            <div class="input-group">
+              <input type="text" class="form-control" placeholder="Search" />
+              <input
+                type="text"
+                class="form-control"
+                placeholder="City, Zip Code"
+              />
+              <div class="input-group-btn">
+                <button class="btn btn-default" type="submit">
+                  <i class="fa fa-search"></i>
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12">
+            <h3 style="margin-top: 20px">Doctor search result cards</h3>
+            <div class="row">
+              <div class="col-lg-12 col-md-12">
+                <div
+                  class="team-thumb wow fadeInUp doc-search-card"
+                  data-wow-delay="0.2s"
+                >
+                  <div class="row">
+                    <div class="col-lg-6 col-md-6">
+                      <div class="team-info search-doc-info">
+                        <div class="doc-image">
+                          <img
+                            src="images/team-image1.jpg"
+                            class="img-responsive"
+                            alt=""
+                          />
+                        </div>
+                        <div class="doc-dex">
+                          <h3>Andrew Fagelman</h3>
+                          <p>General Principal - 12yrs experience as surgeon</p>
+                          <p>
+                            <i
+                              class="fa fa-map-marker"
+                              aria-hidden="true"
+                              style="margin-right: 10px"
+                            ></i
+                            >New York, NY
+                          </p>
+                          <div class="team-contact-info mt-10">
+                            <p>
+                              <i class="fa fa-star"></i>
+                              <i class="fa fa-star"></i>
+                              <i class="fa fa-star"></i>
+                              <i class="fa fa-star"></i>
+                              <i class="fa fa-star"></i>
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6">
+                      <div class="doc-search-actions">
+                        <a
+                          href="#appointment"
+                          style="background: #286090"
+                          class="app-btn text-center"
+                          >View profile</a
+                        >
+                        <!-- booking form  -->
+                        <div class="form-book">
+                          <form action="">
+                            <div class="select-date-part">
+                              <!-- slider start -->
+                              <div class="slider-time">
+                                <!-- slider one -->
+                                <div class="slider-self">
+                                  <div class="slider-time-box">
+                                    <div class="slider-header">
+                                      <span>Wed</span>
+                                      <span>Nov18</span>
+                                    </div>
+                                    <div class="slider-time-box">
+                                      <a href="#">9:30 am</a>
+                                      <a href="#">9:30 am</a>
+                                      <a href="#">9:30 am</a>
+                                    </div>
+                                  </div>
+                                </div>
+                                <!-- slider one -->
+                                <div class="slider-self">
+                                  <div class="slider-time-box">
+                                    <div class="slider-header">
+                                      <span>Wed</span>
+                                      <span>Nov18</span>
+                                    </div>
+                                    <div class="slider-time-box">
+                                      <a href="#">9:30 am</a>
+                                      <span>---</span>
+                                      <a href="#">9:30 am</a>
+                                    </div>
+                                  </div>
+                                </div>
+                                <!-- slider one -->
+                                <div class="slider-self">
+                                  <div class="slider-time-box">
+                                    <div class="slider-header">
+                                      <span>Wed</span>
+                                      <span>Nov18</span>
+                                    </div>
+                                    <div class="slider-time-box">
+                                      <a href="#">9:30 am</a>
+                                      <a href="#">9:30 am</a>
+                                      <span>---</span>
+                                    </div>
+                                  </div>
+                                </div>
+                                <!-- slider one -->
+                                <div class="slider-self">
+                                  <div class="slider-time-box">
+                                    <div class="slider-header">
+                                      <span>Wed</span>
+                                      <span>Nov18</span>
+                                    </div>
+                                    <div class="slider-time-box">
+                                      <a href="#">9:30 am</a>
+                                      <a href="#">9:30 am</a>
+                                      <a href="#">9:30 am</a>
+                                    </div>
+                                  </div>
+                                </div>
+                                <!-- slider one -->
+                                <div class="slider-self">
+                                  <div class="slider-time-box">
+                                    <div class="slider-header">
+                                      <span>Wed</span>
+                                      <span>Nov18</span>
+                                    </div>
+                                    <div class="slider-time-box">
+                                      <a href="#">9:30 am</a>
+                                      <span>---</span>
+                                      <a href="#">9:30 am</a>
+                                    </div>
+                                  </div>
+                                </div>
+                                <!-- slider one -->
+                                <div class="slider-self">
+                                  <div class="slider-time-box">
+                                    <div class="slider-header">
+                                      <span>Wed</span>
+                                      <span>Nov18</span>
+                                    </div>
+                                    <div class="slider-time-box">
+                                      <a href="#">9:30 am</a>
+                                      <span>---</span>
+                                      <a href="#">9:30 am</a>
+                                    </div>
+                                  </div>
+                                </div>
+                                <!--  -->
+                              </div>
+                            </div>
+                            <!-- slider end -->
+      
+                            <!-- button  -->
+                            <a type="submit" class="app-btn"
+                              >Book Appointment</a
+                            >
+                          </form>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer data-stellar-background-ratio="5">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-4 col-sm-4">
+            <div class="footer-thumb">
+              <h4 class="wow fadeInUp" data-wow-delay="0.4s">Contact Info</h4>
+              <p>
+                Fusce at libero iaculis, venenatis augue quis, pharetra lorem.
+                Curabitur ut dolor eu elit consequat ultricies.
+              </p>
+              <div class="contact-info">
+                <p><i class="fa fa-phone"></i> 010-070-0170</p>
+                <p>
+                  <i class="fa fa-envelope-o"></i>
+                  <a href="#">info@company.com</a>
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4 col-sm-4">
+            <div class="footer-thumb">
+              <h4 class="wow fadeInUp" data-wow-delay="0.4s">Latest News</h4>
+              <div class="latest-stories">
+                <div class="stories-image">
+                  <a href="#"
+                    ><img
+                      src="images/news-image.jpg"
+                      class="img-responsive"
+                      alt=""
+                  /></a>
+                </div>
+                <div class="stories-info">
+                  <a href="#">
+                    <h5>Amazing Technology</h5>
+                  </a>
+                  <span>March 08, 2018</span>
+                </div>
+              </div>
+              <div class="latest-stories">
+                <div class="stories-image">
+                  <a href="#"
+                    ><img
+                      src="images/news-image.jpg"
+                      class="img-responsive"
+                      alt=""
+                  /></a>
+                </div>
+                <div class="stories-info">
+                  <a href="#">
+                    <h5>New Healing Process</h5>
+                  </a>
+                  <span>February 20, 2018</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4 col-sm-4">
+            <div class="footer-thumb">
+              <div class="opening-hours">
+                <h4 class="wow fadeInUp" data-wow-delay="0.4s">
+                  Opening Hours
+                </h4>
+                <p>Monday - Friday <span>06:00 AM - 10:00 PM</span></p>
+                <p>Saturday <span>09:00 AM - 08:00 PM</span></p>
+                <p>Sunday <span>Closed</span></p>
+              </div>
+              <ul class="social-icon">
+                <li>
+                  <a
+                    href="https://www.facebook.com/#"
+                    class="fa fa-facebook-square"
+                    attr="facebook icon"
+                  ></a>
+                </li>
+                <li><a href="#" class="fa fa-twitter"></a></li>
+                <li><a href="#" class="fa fa-instagram"></a></li>
+              </ul>
+              <div class="store-btn">
+                <a href="#">
+                  <img
+                    src="./images/google.png"
+                    alt="google play button"
+                    class="img-responsive"
+                  />
+                </a>
+                <a href="#">
+                  <img
+                    src="./images/apple.png"
+                    alt="apple stoer button"
+                    class="img-responsive"
+                  />
+                </a>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-12 col-sm-12 border-top">
+            <div class="col-md-4 col-sm-6">
+              <div class="copyright-text">
+                <p>
+                  Copyright &copy; 2017 Your Company | Design:
+                  <a href="http://www.#.com" target="_parent">#</a>
+                </p>
+              </div>
+            </div>
+            <div class="col-md-6 col-sm-6">
+              <div class="footer-link">
+                <a href="#">Laboratory Tests</a>
+                <a href="#">Departments</a>
+                <a href="#">Insurance Policy</a>
+                <a href="#">Careers</a>
+              </div>
+            </div>
+            <div class="col-md-2 col-sm-2 text-align-center">
+              <div class="angle-up-btn">
+                <a
+                  href="#top"
+                  class="smoothScroll wow fadeInUp"
+                  data-wow-delay="1.2s"
+                  ><i class="fa fa-angle-up"></i
+                ></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+    <!-- The modal -->
+    <div
+      class="modal fade"
+      id="flipFlop"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="modalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+            <h4 class="modal-title" id="modalLabel">SignUp Now</h4>
+          </div>
+          <div class="modal-body">
+            <form action="" class="modal-form">
+              <div class="col-md-12 col-sm-12">
+                <label for="email">Email</label>
+                <input
+                  type="email"
+                  class="form-control"
+                  id="email"
+                  name="email"
+                  placeholder="Your Email"
+                />
+              </div>
+              <div class="col-md-12 col-sm-12">
+                <label for="email">Number</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="email"
+                  name="email"
+                  placeholder="Your Email"
+                />
+              </div>
+              <div class="col-md-12 col-sm-12">
+                <label for="email">Password</label>
+                <input
+                  type="email"
+                  class="form-control"
+                  id="email"
+                  name="email"
+                  placeholder="Your Email"
+                />
+              </div>
+              <div class="col-md-12 col-sm-12">
+                <button class="btn btn-info btn-block">
+                  SignUp / Sign Now
+                </button>
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-dismiss="modal"
+            >
+              Close
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- SCRIPTS -->
+    <script src="js/jquery.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/jquery.sticky.js"></script>
+    <script src="js/jquery.stellar.min.js"></script>
+    <script src="js/wow.min.js"></script>
+    <script src="js/smoothscroll.js"></script>
+    <script src="js/owl.carousel.min.js"></script>
+    <!-- slick slider -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.js"></script>
+    <script src="js/custom.js"></script>
+    <script>
+      //   slick slider
+      $(".slider-time").slick({
+        dots: true,
+        infinite: true,
+        speed: 300,
+        slidesToShow: 5,
+        slidesToScroll: 1,
+        autoplay: false,
+        responsive: [
+          {
+            breakpoint: 1024,
+            settings: {
+              slidesToShow: 4,
+              slidesToScroll: 1,
+              infinite: true,
+              dots: true,
+            },
+          },
+          {
+            breakpoint: 600,
+            settings: {
+              slidesToShow: 3,
+              slidesToScroll: 2,
+            },
+          },
+          {
+            breakpoint: 420,
+            settings: {
+              slidesToShow: 3,
+              slidesToScroll: 1,
+            },
+          },
+        ],
+      });
+    </script>
+  </body>
+</html>

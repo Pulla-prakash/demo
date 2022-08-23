@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<title>V care</title>
+<meta charset="UTF-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+<meta name="description" content="" />
+<meta name="keywords" content="" />
+<meta name="author" content="#" />
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, maximum-scale=1" />
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/css/intlTelInput.css" />
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/intlTelInput.min.js"></script>
+<script
+	src="https://cdn.tiny.cloud/1/xsqkidrxta3zg6czz7munozzg81prejrityd07h52wl5ixi6/tinymce/6/tinymce.min.js"
+	referrerpolicy="origin"></script>
+
+<!-- MAIN CSS -->
+<link rel="stylesheet" href="/dashboard/assets/css/final.css" />
+</head>
+
+<body>
+	<!-- header -->
+	<header class="header">
+		<div class="container-fluid">
+			<div class="header-box">
+				<h4>Vcare</h4>
+				<a href="/">LogOut</a>
+			</div>
+		</div>
+	</header>
+	<!-- header end -->
+	<main class="main">
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-xl-2 col-lg-3 col-md-4">
+					<!-- sidebar -->
+					<section class="sidebar">
+						<div class="sidebar-wrap">
+							<div class="Heading">
+								<h4>Dashboard</h4>
+							</div>
+							
+							<div class="sidebar-item">
+								<img src="/images/Icons/app.png" alt=" icon" class="img-fluid">
+								<a href="/hospital/hospitalList">Hospital</a>
+							</div>
+							
+							<div class="sidebar-item">
+								<img src="/images/Icons/cal.png" alt="icon" class="img-fluid">
+								<a th:href="@{/Drlist}">Doctor</a>
+							</div>
+							<div class="sidebar-item">
+								<img src="/images/Icons/profile.png" alt="icon" class="img-fluid">
+								<a th:href="@{/patientsList}">Patient</a>
+							</div>
+							<div class="sidebar-item">
+								<img src="/images/Icons/profile.png" alt="icon" class="img-fluid">
+								<a th:href="@{/Appointment}">Appointments</a>
+							</div>
+							
+							<div class="sidebar-item">
+								<img src="/images/Icons/profile.png" alt="icon" class="img-fluid">
+								<a th:href="@{/insurancelist/{id}(id=${session.AdminId})}">Insurance</a>
+							</div>
+
+							
+							<div class="sidebar-item">
+								<img src="/images/Icons/pprofile.png" alt="icon" class="img-fluid">
+								<a th:href="@{/news/newstable}">News</a>
+							</div>
+							
+							<div class="sidebar-item">
+								<img src="/images/Icons/pprofile.png" alt="icon" class="img-fluid">
+								<a th:href="@{/network}">Social Network</a>
+							</div>
+
+
+
+						</div>
+					</section>
+					<!-- sidebar end -->
+				</div>
+				<!-- main area -->
+				<div class="col-lg-10 col-md-8">
+					<div class="main-area">
+						<!-- page Heading -->
+						<div class="page-heading">
+							<h1>
+								<span style="color: black; font-size: 40px"
+									th:text="${branchname}"></span> <span
+									style="color: black; font-size: 40px" th:text="${Hname}"></span>
+								Branch
+							</h1>
+						</div>
+						<!-- page Heading End -->
+
+						<!-- abailablility -->
+
+						<div class="avaliability-box">
+							<div class="form-box">
+								<form id="hospBranch_form"
+									th:action="@{/hospitalBranch/saveHospitalBranch}" method="post"
+									th:object="${hospitalBranchList}" enctype="multipart/form-data"
+									novalidate>
+
+
+
+
+
+									<div class="col-md-3">
+										<input type="hidden" class="form-control"
+											id="hospitalBranchId" name="hospitalBranchId"
+											th:value="*{hospitalBranchId}" required="required">
+									</div>
+
+
+									<div class="row">
+										<div class="col-md-4">
+											<label for="name">Name</label> <input type="text"
+												class="form-control" id="hospitalBranchName"
+												name="hospitalBranchName" th:value="*{hospitalBranchName}"
+												required="required" th:minlength="1" th:maxlength="100">
+										</div>
+
+
+
+
+										<!-- <script>
+										var stateObject = {
+											
+											 "India": {
+												"Andhra Pradesh": ["Amaravati"],
+												"Arunachal Pradesh": ["Washington"],
+												"Assam": ["Washington"],
+												"Bihar": ["Washington"],
+												"Chattisgarh": ["Washington"],
+												"Goa": ["Panaji", ""],
+												"Gujarat": ["Gandhinagar"],
+												"Haryana": ["Chandigarh"],
+												"Himachal Pradesh": ["Shimla"],
+												"Jharkhand": ["Ranchi"],
+												"Karnataka": ["Bengaluru"],
+												"Kerala": ["Thiruvananthapuram"],
+												"Madhya Pradesh	": ["Bhopal"],
+												"Maharashtra": ["Mumbai"],
+												"Manipur": ["Imphal"],
+										        "Meghalaya": ["Shillong"],
+										        "Mizoram": ["Aizawl"],
+										        "Nagaland": ["Kohima"],
+										        "Odisha": ["Bhubaneswar"],
+										        "Punjab": ["Chandigarh"],
+										        "Rajasthan": ["Jaipur"],
+										        "Sikkim": ["Gangtok"],
+										        "Tamil Nadu	": ["Chennai"],
+										        "Telangana": ["Hyderabad"],
+										        "Tripura": ["Agartala"],
+										        "Uttar Pradesh": ["Lucknow"],
+										        "Uttarakhand": ["Dehradun"],
+										        "West Bengal": ["Kolkata"],
+										      },
+										}
+										window.onload = function () {
+											var countySel = document.getElementById("countySel"),
+												stateSel = document.getElementById("stateSel"),
+												districtSel = document.getElementById("districtSel");
+											for (var country in stateObject) {
+												countySel.options[countySel.options.length] = new Option(country, country);
+											}
+											countySel.onchange = function () {
+												stateSel.length = 1; // remove all options bar first
+												districtSel.length = 1; // remove all options bar first
+												if (this.selectedIndex < 1) return; // done
+												for (var state in stateObject[this.value]) {
+													stateSel.options[stateSel.options.length] = new Option(state, state);
+												}
+											}
+											countySel.onchange(); // reset in case page is reloaded
+											stateSel.onchange = function () {
+												districtSel.length = 1; // remove all options bar first
+												if (this.selectedIndex < 1) return; // done
+												var district = stateObject[countySel.value][this.value];
+												for (var i = 0; i < district.length; i++) {
+													districtSel.options[districtSel.options.length] = new Option(district[i], district[i]);
+												}
+											}
+										}
+									</script> -->
+
+										<div class="col-md-4">
+											<label for="loc">Country</label> <input type="text"
+												class="form-control" id="countySel"
+												name="hospitalBranchLocation"
+												th:value="*{hospitalBranchLocation}" required="required"
+												th:minlength="1" th:maxlength="100">
+												
+										</div>
+									
+										<div class="col-md-4">
+											<label for="loc">State</label>
+											<!-- <input type="text" class="form-control" id="hospitalState" name="hospitalState" th:value="*{hospitalState}" required="required" th:minlength="1"
+th:maxlength="100"> -->
+											<input type="text" class="form-control" id="stateSel"
+												name="hospitalBranchState" th:value="*{hospitalBranchState}"
+												required="required" th:minlength="1" th:maxlength="100">
+												
+										</div>
+										</div>
+
+
+ 
+                                         <div class="row">
+										<div class="col-md-4">
+											<label for="loc">City</label>
+											<!-- <input type="text" class="form-control" id="hospitalCity" name="hospitalCity" th:value="*{hospitalCity}" required="required" th:minlength="1"
+th:maxlength="100"> -->
+											<input type="text" class="form-control" id="districtSel"
+												name="hospitalBranchCity" th:value="*{hospitalBranchCity}"
+												required="required" th:minlength="1" th:maxlength="100">
+												
+										</div>
+									
+
+									
+										<div class="col-md-4">
+											<label for="loc">Address</label> <input type="text"
+												class="form-control" id="hospitalBranchAddress"
+												name="hospitalBranchAddress"
+												th:value="*{hospitalBranchAddress}" required="required"
+												th:minlength="1" th:maxlength="100">
+										</div>
+
+
+
+										<div class="col-md-4">
+											<label for="loc">Pincode</label> <input type="number"
+												class="form-control" id="hospitalBranchPincode"
+												name="hospitalBranchPincode"
+												th:value="*{hospitalBranchPincode}" required="required"
+												th:minlength="6" onKeyUp="validateInput()">
+
+											<div id="msg"></div>
+											<script type="text/javascript">
+												function Code(str) {
+													return /^\d{6}(-\d{6})?$/.test(str);
+												}
+
+												function validateInput() {
+													console.log("validateInput");
+													let hospitalBranchPincode = document.getElementById("hospitalBranchPincode").value;
+													let message = "";
+													if (Code(hospitalBranchPincode)) {
+														message = "Valid Pin Code";
+													} else {
+														message = "Invalid Pin Code";
+													}
+													document.getElementById("msg").innerHTML = message;
+												}
+											</script>
+
+										</div>
+
+									</div>
+
+									<div class="row">
+										<div class="col-md-4">
+											<label for="avl">Contact No</label> <input type="tel"
+												class="form-control" id="hospitalBranchNumber"
+												name="hospitalBranchNumber"
+												pattern="^(?:0|\+?91)(?:\d\s?){9,10}$"
+												th:value="*{hospitalBranchNumber}" required="required"
+												th:minlength="1" th:maxlength="100">
+
+											<script type="text/javascript">
+												var inputBox = document.getElementById("hospitalBranchNumber");
+
+
+
+												var invalidChars = [
+													"-",
+													"+",
+													"e",
+												];
+
+
+
+												inputBox.addEventListener("keydown", function (e) {
+													if (invalidChars.includes(e.key)) {
+														e.preventDefault();
+													}
+												});
+
+											</script>
+											<div class="alert alert-info" style="display: none"></div>
+											<div class="alert alert-error" style="display: none"></div>
+											<script type="text/javascript">
+												const phoneInputField = document.querySelector("#hospitalBranchNumber");
+												const phoneInput = window.intlTelInput(phoneInputField, {
+													utilsScript:
+														"https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js",
+												});
+
+												const info = document.querySelector(".alert-info");
+												const error = document.querySelector(".alert-error");
+
+												function process(event) {
+													event.preventDefault();
+
+													const phoneNumber = phoneInput.getNumber();
+
+													info.style.display = "";
+													info.innerHTML = `Phone number in E.164 format: <strong>${phoneNumber}</strong>`;
+												}
+											</script>
+										</div>
+
+
+
+										<div class="col-md-4">
+											<label for="avl">EmailId</label> <input type="email"
+												class="form-control" id="hospitalBranchEmailId"
+												name="hospitalBranchEmailId"
+												th:value="*{hospitalBranchEmailId}" required="required"
+												th:minlength="1" th:maxlength="100">
+										</div>
+									
+
+									
+										<div class="col-md-4">
+											<label for="avl">license</label> <input type="text"
+												class="form-control" id="hospitalBranchLicense"
+												name="hospitalBranchLicense"
+												th:value="*{hospitalBranchLicense}" required="required"
+												th:minlength="1" th:maxlength="100">
+										</div>
+										</div>
+
+
+
+									
+											<div class="col-md-4">
+												<label for="sep"></label> <input type="hidden"
+													class="form-control" id="hospitals" name="hospitals"
+													th:value="${foreignkey}" required="required" readonly>
+											</div>
+										
+
+                                         	<div class="row">
+										<div class="col-md-4">
+											<label for="avl">Image</label> <input type="file"
+												class="form-control" id="hospitalBranchImage" name="file"
+												th:value="*{hospitalBranchImage}" required="required"
+												th:minlength="1" th:maxlength="100">
+										</div>
+
+										<div class="col-md-4">
+											<label for="gender">Branch Type</label> <br> <select
+												id="branchType" name="branchType" th:value="*{branchType}" th:field="*{branchType}">
+												<option value="none" selected>Select</option>
+												<option value="Primary Branch">Primary Branch</option>
+												<option value="Secondary Branch">Secondary Branch</option>
+											</select>
+
+
+										</div>
+									
+										<div class="col-md-4">
+											<label for="sep">latitude</label> <input type="number"
+												class="form-control" id="latitude" name="latitude"
+												th:value="${latitude}" th:field="*{latitude}" required="required">
+										</div>
+										</div>
+
+                                           <div class="row">
+
+										<div class="col-md-3">
+											<label for="sep">longitude</label> <input type="number"
+												class="form-control" id="longitude" name="longitude"
+												th:value="${longitude}"  th:field="*{longitude}" required="required">
+										</div>
+										
+										<div class="col-md-9">
+											<label for="sep">  Description</label>
+											<textarea class="form-control" id="branchDescription"
+												name="branchDescription" th:value="*{branchDescription}" th:text= "*{branchDescription}"
+												required></textarea>
+										</div>
+									</div>
+
+									<div class="row">
+
+										<div class="col-md-2">
+											<label for=""></label>
+											<button type="submit" class="btn btn-danger btn-block"
+												th:text="save">Save</button>
+										</div>
+									</div>
+								</form>
+							</div>
+						</div>
+
+						<!-- abailablility -->
+					</div>
+				</div>
+			</div>
+			<!-- main area end -->
+		</div>
+	</main>
+
+	<!-- SCRIPTS -->
+	<script>
+    tinymce.init({
+      selector: '#branchDescription',
+      plugins: 'a11ychecker advcode casechange export formatpainter image editimage linkchecker autolink lists checklist media mediaembed pageembed permanentpen powerpaste table advtable tableofcontents tinycomments tinymcespellchecker',
+      toolbar: 'a11ycheck addcomment showcomments casechange checklist code export formatpainter image editimage pageembed permanentpen table tableofcontents',
+      toolbar_mode: 'floating',
+      tinycomments_mode: 'embedded',
+      tinycomments_author: 'Author name',
+    });
+  </script>
+	<script src="../js/jquery.js"></script>
+	<script src="../js/bootstrap.min.js"></script>
+	<!-- <script src="../js/jquery.sticky.js"></script>
+    <script src="../js/jquery.stellar.min.js"></script>
+    <script src="../js/wow.min.js"></script>
+    <script src="../js/smoothscroll.js"></script>
+    <script src="../js/owl.carousel.min.js"></script>
+    <script src="./assets/js/script.js"></script> -->
+</body>
+
+</html>

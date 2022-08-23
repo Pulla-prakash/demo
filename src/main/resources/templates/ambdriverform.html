@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Vcare</title>
+<meta charset="UTF-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+<meta name="description" content="" />
+<meta name="keywords" content="" />
+<meta name="author" content="#" />
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, maximum-scale=1" />
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
+<!-- MAIN CSS -->
+<link rel="stylesheet" href="/dashboard/assets/css/final.css" />
+
+<script th:src="@{/js/dropdown.js}"></script>
+
+
+</head>
+
+<body>
+	<!-- header -->
+	<header class="header">
+		<div class="container-fluid">
+			<div class="header-box">
+				<h4>Vcare</h4>
+				<a href="/">LogOut</a>
+			</div>
+		</div>
+	</header>
+	<!-- header end -->
+	<main class="main">
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-xl-2 col-lg-3 col-md-4">
+					<!-- sidebar -->
+					<section class="sidebar">
+						<div class="sidebar-wrap">
+							<div class="Heading">
+								<h4>Dashboard</h4>
+							</div>
+							<div class="sidebar-item">
+								<img src="/images/Icons/app.png" alt=" icon" class="img-fluid">
+								<a href="/hospital/hospitalList">Hospital</a>
+							</div>
+							<div class="sidebar-item">
+								<img src="/images/Icons/pa.png" alt="icon" class="img-fluid">
+								<a th:href="@{/Dephome}">Department</a>
+							</div>
+							<div class="sidebar-item">
+								<img src="/images/Icons/cal.png" alt="icon" class="img-fluid">
+								<a th:href="@{/Drlist}">Doctor</a>
+							</div>
+							<div class="sidebar-item">
+								<img src="/images/Icons/profile.png" alt="icon" class="img-fluid">
+								<a th:href="@{/patientsList}">Patient</a>
+							</div>
+							<div class="sidebar-item">
+								<img src="/images/Icons/pprofile.png" alt="icon" class="img-fluid">
+								<a th:href="@{/page/service}" class="active">Services</a>
+							</div>
+							<!-- <div class="sidebar-item">
+								<img src="/images/Icons/pprofile.png" alt="icon" class="img-fluid">
+								<a th:href="@{/insurancelist}" class="active">Insurances</a>
+							</div> -->
+							<div class="sidebar-item">
+								<img src="/images/Icons/pprofile.png" alt="icon" class="img-fluid">
+								<a th:href="@{/news/newstable}" class="active">News</a>
+							</div>
+
+						</div>
+					</section>
+					<!-- sidebar end -->
+				</div>
+				<!-- main area -->
+				<div class="col-lg-10 col-md-8">
+					<div class="main-area">
+						<!-- page Heading -->
+						<div class="page-heading">
+
+
+							<h1>
+								<span style="color: black; font-size: 40px" th:text="${name}"></span>
+							Ambulance Driver association
+							</h1>
+
+							
+						</div><br>
+						<!-- page Heading End -->
+
+						<!-- abailablility -->
+
+						<div class="avaliability-box">
+							<div class="form-box">
+								<form th:action="@{/saveAmbdriver}"th:object="${ambulancedriverobj}"
+									 th:method="post"
+									enctype="multipart/form-data">
+									
+									<div>
+		
+		<h3 style=color:red th:text="${msg}"> </h3>
+		</div>
+		            <div class="col-md-3">
+										<input type="hidden" class="form-control" id="hospitalbranch"
+											name="hospitalbranch" th:value="${HbranchId}" required="required">
+									</div>
+      
+									<div class="row">
+										<div class="form-group">
+											
+											
+	
+											 <label for="loc">Select ambulance</label> <select
+												class="form-control" id="ambulancetype" name="ambulancetype"
+												th:value="this.value"
+												 required="required"  >
+												<option value="-1">Select ambulance</option>
+												<option th:each="amblist:${ambulanceList}"
+													th:value="${amblist.ambulanceType}" th:text="${amblist.ambulanceType}"></option>
+											</select>
+										</div> 
+										<div class="col-md-3">
+											<label for="loc">Select Driver</label> <select
+												class="form-control" id="driverId" name="driverId"th:value="this.value"
+												 required="required">
+												<option value="-1">Select Driver</option>
+												<option th:each="driverlist:${empdriverlist}"
+													th:value="${driverlist.employeeName}" th:text="${driverlist.employeeName}"
+													></option>
+											</select> 
+										</div>
+									</div>
+									<div class="col-md-3">
+										<label for="Upload profile"></label>
+										<button class="btn btn-danger btn-block">Save</button>
+									</div>
+									</form>
+							</div>
+							
+
+
+						</div>
+					</div>
+
+					<!-- abailablility -->
+				</div>
+			</div>
+		</div>
+		<!-- main area end -->
+		</div>
+	</main>
+
+	<!-- SCRIPTS -->
+	<script src="../js/jquery.js"></script>
+	<script src="../js/bootstrap.min.js"></script>
+	<!-- <script src="../js/jquery.sticky.js"></script>
+    <script src="../js/jquery.stellar.min.js"></script>
+    <script src="../js/wow.min.js"></script>
+    <script src="../js/smoothscroll.js"></script>
+    <script src="../js/owl.carousel.min.js"></script>
+    <script src="./assets/js/script.js"></script> -->
+</body>
+</html>
+

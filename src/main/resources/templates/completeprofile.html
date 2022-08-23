@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<title>Vcare</title>
+	<meta charset="UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+	<meta name="description" content="" />
+	<meta name="keywords" content="" />
+	<meta name="author" content="#" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
+	<!-- MAIN CSS -->
+	<link rel="stylesheet" href="/dashboard/assets/css/final.css" />
+</head>
+
+<body>
+	<!-- header -->
+	<header class="header">
+		<div class="container-fluid">
+			<div class="header-box">
+				<h4>Vcare</h4>
+				<a th:href="@{/logout}">LogOut</a>
+			</div>
+		</div>
+	</header>
+	<!-- header end -->
+	<main class="main">
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-xl-2 col-lg-3 col-md-4">
+					<!-- sidebar -->
+
+					<!-- sidebar end -->
+				</div>
+				<!-- main area -->
+				<div class="col-lg-10 col-md-8">
+					<div class="main-area">
+						<!-- page Heading -->
+						<div class="page-heading">
+							<span style="color: black; font-size: 40px" th:text="${Hsptlbranchname}"></span>
+							<h2>Doctors Profile</H2>
+						</div>
+						<!-- page Heading End -->
+
+						<!-- abailablility -->
+
+						<div class="avaliability-box">
+							<div class="form-box">
+
+								<form th:action="@{/updatedDoctorProfile}" th:object="${objdoctor}" th:method="post"
+									enctype="multipart/form-data">
+
+
+									<!--  <div class="row">
+                      <div class="col-md-3">
+                        <label for="sep">Enter Your Name</label>
+                        <input type="text" class="form-control"  placeholder="Enter Your Name" th:value="${Hsptlbranchname}" readonly>
+                      </div> -->
+
+									<div class="col-md-3">
+
+										<input type="hidden" class="form-control" placeholder="Enter Your Id"
+											id="hospitalbranch" name="hospitalbranch" th:value="${Branch}">
+									</div>
+
+									<div class="row">
+										<div class="col-md-3">
+											<label for="sep">Name</label> <input type="text" class="form-control"
+												placeholder=" Name" id="doctorName" name="doctorName"
+												th:value="*{doctorName}" th:readonly="true">
+										</div>
+
+										<div class="col-md-3">
+											<label for="gender">Gender</label>
+											<!-- <select id="doctorGender"
+										name="doctorGender" th:value="${doctorGender}">
+										<option value="none" selected>Gender</option>
+										<option value="male">Male</option>
+										<option value="female">Female</option>
+										<option value="other">Others</option>
+									</select> -->
+											<input type="text" class="form-control" placeholder="Enter Your Gender"
+												id="doctorGender" name="doctorGender" th:value="*{doctorGender}"
+												th:readonly="true">
+										</div>
+
+										<div class="col-md-3">
+											<label for="">Specialization</label> <input type="text" class="form-control"
+												placeholder="Specialization" id="doctorSpecialization"
+												name="doctorSpecialization" th:value="*{doctorSpecialization}"
+												th:readonly="true">
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-md-3">
+											<label for="Branch">Years of Experience</label> <input type="number"
+												class="form-control" placeholder="Years " id="doctorExperience"
+												name="doctorExperience" th:value="*{doctorExperience}"
+												th:readonly="true">
+										</div>
+
+										<div class="col-md-3">
+											<label for="sep">Mobile Number</label> <input type="Numeric"
+												class="form-control" placeholder="MobileNumber " id="doctorMobileNo"
+												name="doctorMobileNo" th:value="*{doctorMobileNo}" th:readonly="true">
+										</div>
+
+										<div class="col-md-3">
+											<label for="gender">EmailId</label> <input type="text" class="form-control"
+												id="doctorMailId" name="doctorMailId" th:value="*{doctorMailId}"
+												th:readonly="true">
+										</div>
+
+									</div>
+									<div class="row">
+										<div class="col-md-3">
+											<label for="active">Qualification</label> <input type="text"
+												class="form-control" placeholder="Qualification" id="Qualification"
+												name="Qualification" th:value="*{Qualification}" th:readonly="true">
+										</div>
+
+										<div class="col-md-3">
+											<label for="Create">Age</label> <input type="number" class="form-control"
+												placeholder="Age" id="Age" name="Age" th:value="*{Age}"
+												th:readonly="true">
+										</div>
+
+										<div class="col-md-3">
+											<label for="Update">Address</label> <input type="text" class="form-control"
+												placeholder="Address" id="Address" name="Address" th:value="*{Address}"
+												th:readonly="true">
+										</div>
+									</div>
+									<div class="row">
+
+										<div class="col-md-3">
+											<label for="Update">Password</label> <input type="password"
+												class="form-control" placeholder="Password" id="Password"
+												name="Password" th:value="*{Password}" th:readonly="true">
+										</div>
+
+										<div class="col-md-3">
+											<label for="Updated">Medical license Number</label> <input type="Number"
+												class="form-control" placeholder="license Number" id="Medicallicense"
+												name="Medicallicense" th:value="*{Medicallicense}" th:readonly="true">
+										</div>
+										<div class="col-md-3">
+											<label for="Updated">About</label><input type="text" class="form-control"
+												placeholder="about yoursself" id="About" name="About"
+												th:value="*{About}" th:readonly="true">
+										</div>
+
+
+
+									</div>
+
+									<div class="col-md-3">
+										<label for="gender">Doctor Fee</label> <input type="text" class="form-control"
+											id="doctorFee" name="doctorFee" th:value="*{doctorFee}" th:readonly="true">
+									</div>
+									<!-- <div class="col-md-3">
+							      <label for="loc">Select HospitalbranchName</label> <select
+										class="form-control" id="hospitalBranchId"
+										name="hospitalBranchId" th:value="*{hospitalBranchId}"
+										required="required">
+								<option value="-1">SelectBranch</option>
+										<option th:each="entry:${HospitalBranchMap.entrySet()}"
+											th:value="${entry.key}" th:text="${entry.value}"
+											th:selected="${entry.key==hospitalbranchId}"></option>
+									</select>
+								</div>
+								</div>
+								<div class="row">
+								<div class="col-md-3">
+									<label for="loc">Select service</label> <select
+										class="form-control" id="serviceId" name="serviceId"
+										th:value="*{serviceId}" required="required">
+										<option value="-1">Select service</option>
+										<option th:each="entry:${ServieMap.entrySet()}"
+											th:value="${entry.key}" th:text="${entry.value}"
+											th:selected="${entry.key==serviceId}"></option>
+									</select> -->
+									<!-- </div>
+							<div class="col-md-3">
+								<label for="Upload profile"></label>
+								<button class="btn btn-danger btn-block">Save</button>
+							</div>
+						</div> -->
+
+
+								</form>
+
+							</div>
+						</div>
+
+						<!-- abailablility -->
+					</div>
+				</div>
+			</div>
+			<!-- main area end -->
+		</div>
+	</main>
+
+	<!-- SCRIPTS -->
+	<script src="../js/jquery.js"></script>
+	<script src="../js/bootstrap.min.js"></script>
+	<!-- <script src="../js/jquery.sticky.js"></script>
+    <script src="../js/jquery.stellar.min.js"></script>
+    <script src="../js/wow.min.js"></script>
+    <script src="../js/smoothscroll.js"></script>
+    <script src="../js/owl.carousel.min.js"></script>
+    <script src="./assets/js/script.js"></script> -->
+</body>
+
+</html>

@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>vcare</title>
+<meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+<meta name="description" content="" />
+<meta name="keywords" content="" />
+<meta name="author" content="#" />
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, maximum-scale=1" />
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
+
+<!-- MAIN CSS -->
+<link rel="stylesheet" th:href="@{/dashboard/assets/css/final.css}" />
+<link rel="stylesheet" th:href="@{/dashboard/assets/css/table.css}" />
+<link rel="stylesheet" type="text/css"
+	href="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.4/css/jquery.dataTables.css">
+</head>
+<body>
+	<!-- header -->
+	<header class="header">
+		<div class="container-fluid">
+			<div class="header-box">
+				<h4>Vcare</h4>
+				<a href="/">LogOut</a>
+			</div>
+		</div>
+	</header>
+	<!-- header -->
+	<main class="main">
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-xl-2 col-lg-3 col-md-4">
+					<!-- sidebar -->
+										<section class="sidebar">
+						<div class="sidebar-wrap">
+							<div class="Heading">
+								<h4>Dashboard</h4>
+							</div>
+							<div class="sidebar-item">
+								<img src="/images/Icons/app.png" alt=" icon" class="img-fluid">
+								<a href="/hospital/hospitalList">Hospital</a>
+							</div>
+							<!-- <div class="sidebar-item">
+								<img src="/images/Icons/pa.png" alt="icon" class="img-fluid">
+								<a th:href="@{/Dephome}">Department</a>
+							</div> -->
+							<!-- <div class="sidebar-item">
+								<img src="/images/Icons/cal.png" alt="icon" class="img-fluid">
+								<a th:href="@{/Drlist}">Doctor</a>
+							</div>
+							<div class="sidebar-item">
+								<img src="/images/Icons/profile.png" alt="icon" class="img-fluid">
+								<a th:href="@{/patientsList}">Patient</a>
+							</div> -->
+							<div class="sidebar-item">
+								<img src="/images/Icons/pprofile.png" alt="icon" class="img-fluid">
+								<a th:href="@{/page/service}" class="active">Services</a>
+							</div>
+							<!-- <div class="sidebar-item">
+								<img src="/images/Icons/pprofile.png" alt="icon" class="img-fluid">
+								<a th:href="@{/insurancelist}" class="active">Insurances</a>
+							</div> -->
+							<div class="sidebar-item">
+								<img src="/images/Icons/pprofile.png" alt="icon" class="img-fluid">
+								<a th:href="@{/news/newstable}" class="active">News</a>
+							</div>
+
+						</div>
+					</section>
+					<!-- sidebar end -->
+				</div>
+				<!-- main area -->
+				<div class="col-xl-10 col-lg-7 col-md-9">
+					<div class="main-area">
+						<!-- page Heading -->
+						<div class="page-heading">
+							<h1>Ambulance List</h1>
+					<div align="right">		
+		<a th:href="@{/addAmbulance/{branchId}(branchId=${hbid})}" class="img-fluid">Add Ambulance</a>
+</div>
+							
+						</div>
+						<h5 style=color:darkgreen th:text="${adminmsg}"></h5>
+						<div>
+							<h2></h2>
+							<table id="example">
+								<thead>
+									<tr>
+										
+										<th>ambulanceType</th>
+										<th>vechileType</th>
+										<th>vechileNumber</th>
+										<th>charges</th>
+										<th>Action</th>
+										
+										
+										
+									</tr>
+								</thead>
+								<tbody>
+
+									<tr th:each="ambObj : ${ambulanceList}">
+            
+										<td  th:text="${ambObj.ambulanceType}">
+										</td>
+										<td  th:text="${ambObj.vechileType}"></td>
+										<td  th:text="${ambObj.vechilenumber}">
+										</td>
+										<td  th:text="${ambObj.charges}"></td>
+									<td><select name="table"
+											onchange="location = this.value;">
+											<option>Action</option>
+												<option
+													th:value="@{/editAmbulance/{id}(id=${ambObj.ambulanceId})}">edit
+												</option>
+												<option
+													th:value="@{/deleteAmbulance/{id}(id=${ambObj.ambulanceId})}">Delete</option>
+												<!-- <option th:value="@{/empid/{id}(id=${empObj.employeeId})}">Generate IDcard</option> -->
+										</select></td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+						<!-- all appointments end -->
+					</div>
+				</div>
+				<!-- main area end -->
+			</div>
+		</div>
+	</main>
+	<!-- SCRIPTS -->
+	<script src="../js/jquery.js"></script>
+	<script src="../js/bootstrap.min.js"></script>
+	<!-- <script src="../js/jquery.sticky.js"></script>
+    <script src="../js/jquery.stellar.min.js"></script>
+    <script src="../js/wow.min.js"></script>
+    <script src="../js/smoothscroll.js"></script>
+    <script src="../js/owl.carousel.min.js"></script>
+    <script src="./assets/js/script.js"></script> -->
+
+	<script type="text/javascript" charset="utf8"
+		src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.2.min.js"></script>
+	<script type="text/javascript" charset="utf8"
+		src="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.4/jquery.dataTables.min.js"></script>
+	<script>
+  $(function(){
+    $("#example").dataTable();
+  })
+  </script>
+
+
+
+
+</body>
+</html>

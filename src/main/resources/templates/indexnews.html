@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<title>Recent News Boxes</title>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+<meta name="googlebot" content="noindex, nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+
+
+<script type="text/javascript" src="/js/lib/dummy.js"></script>
+
+
+
+<link rel="stylesheet" href="../css/bootstrap.min.css" />
+<link rel="stylesheet" href="../css/font-awesome.min.css" />
+<link rel="stylesheet" href="../css/animate.css" />
+<link rel="stylesheet" href="../css/owl.carousel.css" />
+<link rel="stylesheet" href="../css/owl.theme.default.min.css" />
+<!-- slick slider -->
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.css" />
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick-theme.min.css" />
+<!-- MAIN CSS -->
+<link rel="stylesheet" href="../css/style.css" />
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<script type="text/javascript"
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script type="text/javascript"
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<link rel="stylesheet" type="text/css"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+
+
+<style id="compiled-css" type="text/css">
+
+/*---------------------------------------
+      MENU              
+  -----------------------------------------*/
+.navbar-default {
+	background: #00234b;
+	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.075);
+	border: none;
+	margin-bottom: 0;
+	padding: 10px;
+}
+
+.navbar-default .navbar-brand {
+	color: #ffffff;
+	font-weight: 500;
+}
+
+.navbar-default .navbar-brand .fa {
+	color: #a5c422;
+}
+
+.navbar-default .navbar-nav li.appointment-btn {
+	margin: 3px 0 0 20px;
+}
+
+.navbar-default .navbar-nav li.appointment-btn a {
+	background: #01c5a2;
+	border-radius: 30px;
+	color: #ffffff;
+	font-weight: 600;
+	padding-top: 12px;
+	padding-bottom: 12px;
+}
+
+.navbar-default .navbar-nav li.login-btn a {
+	color: #01c5a2;
+	font-weight: 600;
+}
+
+@media ( max-width : 760px) {
+	.navbar-default .navbar-nav li.login-btn a {
+		margin-left: 15px;
+		margin-bottom: 10px;
+	}
+}
+
+.navbar-default .navbar-nav li.appointment-btn a:hover {
+	background: #01c5a2;
+	color: #ffffff !important;
+}
+
+.navbar-default .navbar-nav li a {
+	color: #ffffff;
+	font-size: 12px;
+	font-weight: 500;
+	padding-right: 20px;
+	padding-left: 20px;
+	-webkit-transition: all ease-in-out 0.4s;
+	transition: all ease-in-out 0.4s;
+}
+
+.navbar-default .navbar-nav>li a:hover {
+	color: #01c5a2 !important;
+}
+
+.navbar-default .navbar-nav>li>a:hover, .navbar-default .navbar-nav>li>a:focus
+	{
+	color: #555555;
+	background-color: transparent;
+}
+
+.navbar-default .navbar-nav>.active>a, .navbar-default .navbar-nav>.active>a:hover,
+	.navbar-default .navbar-nav>.active>a:focus {
+	color: #ffffff;
+	background-color: transparent;
+}
+
+.navbar-default .navbar-toggle {
+	border: none;
+	padding-top: 10px;
+}
+
+.navbar-default .navbar-toggle .icon-bar {
+	background: #fff;
+	border-color: transparent;
+}
+
+.navbar-default .navbar-toggle:hover, .navbar-default .navbar-toggle:focus
+	{
+	background-color: transparent;
+}
+
+ul.dropdown-menu {
+	padding-bottom: 20px;
+	height: 200px;
+	width: 600%;
+}
+
+/*modifications*/
+.navbar-default .navbar-nav>.open>a, .navbar-default .navbar-nav>.open>a:focus,
+	.navbar-default .navbar-nav>.open>a:hover {
+	color: #555;
+	background-color: #00234b;
+}
+
+.about-ul li {
+	font-size: 14px;
+	margin-top: 12px;
+}
+
+.dropdown-content {
+	display: none;
+	position: absolute;
+	background-color: #f9f9f9;
+	width: 100%;
+	left: 0;
+	box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+	z-index: 1;
+}
+
+.recentNews {
+	background-color: rgb(255, 255, 255)
+}
+
+.recentNews .news-title {
+	text-align: center;
+	padding-top: 30px;
+	padding-bottom: 30px;
+	font-family: 'nimbus-sans-condensed', sans-serif;
+	font-size: 55px;
+	font-weight: bold;
+	color: #fff;
+}
+
+.recentNews .row {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	margin-bottom: 30px;
+}
+
+.recentNews .ct-blog {
+	margin-bottom: 30px;
+}
+
+.ct-blog .inner {
+	background-color: #FFF;
+	padding: 10px;
+	transition: all 0.2s ease-in-out 0s;
+	cursor: pointer;
+	height: 100%;
+}
+
+.ct-blog .inner:hover {
+	background-color: #e6e6e6;
+}
+
+.ct-blog .fauxcrop {
+	height: 180px;
+	overflow: hidden;
+}
+
+.ct-blog .fauxcrop img {
+	width: 100%;
+}
+
+.ct-blog-content {
+	display: table;
+	padding: 30px 0 28px;
+}
+
+.ct-blog-content .ct-blog-date {
+	border-right: 1px solid #95A5A6;
+	display: table-cell;
+	font-family: "Lato", sans-serif;
+	padding: 0px 18px 0px 15px;
+	text-align: center;
+}
+
+.ct-blog-content .ct-blog-date span {
+	font-size: 16px;
+	color: rgb(20, 117, 175);
+	font-weight: 700;
+	display: block;
+	line-height: 1;
+}
+
+.ct-blog-content .ct-blog-date strong {
+	font-size: 25px;
+	color: rgb(20, 117, 175);
+}
+
+.ct-blog-content .ct-blog-header {
+	color: #000;
+	display: table-cell;
+	font-size: 22px;
+	font-weight: 700;
+	letter-spacing: -0.2px;
+	line-height: 1.1;
+	padding: 0 20px;
+	vertical-align: top;
+}
+
+.btn-news {
+	color: #333;
+	font-size: 14px;
+	font-weight: bold;
+	padding-bottom: 30px;
+	text-align: center;
+}
+
+.header {
+	padding: 5px;
+	text-align: left;
+	background: #1abc9c;
+	color: white;
+	font-size: 5px;
+}
+
+.btn-news.btn-contests a {
+	color: #fff;
+	font-family: 'nimbus-sans-condensed', sans-serif;
+	font-size: 24px;
+	transition: all 0.2s ease-in-out 0s;
+}
+
+.btn-news.btn-contests a:hover {
+	color: #000;
+}
+/* EOS */
+</style>
+
+
+
+<script id="insert"></script>
+
+
+
+
+</head>
+<body>
+	<section class="navbar navbar-default navbar-static-top"
+		role="navigation">
+		<div class="container">
+			<div class="navbar-header">
+				<button class="navbar-toggle" data-toggle="collapse"
+					data-target=".navbar-collapse">
+					<span class="icon icon-bar"></span> <span class="icon icon-bar"></span>
+					<span class="icon icon-bar"></span>
+				</button>
+				<!-- lOGO TEXT HERE -->
+				<a 	class="navbar-brand"> VCare News</a>
+			</div>
+			<!-- MENU LINKS -->
+			<div class="collapse navbar-collapse">
+				<ul class="nav navbar-nav navbar-right">
+					<!-- <li><a href="#about" class="smoothScroll">About Us</a></li>
+					<li><a href="#team" class="smoothScroll">Doctors</a></li> -->
+				<!-- 	<li class="login-btn"><a href="" class="dropdown-toggle"
+						data-toggle="dropdown" role="button" aria-haspopup="true"
+						aria-expanded="false">Hospitals<span class="caret"></span></a>
+						<ul class="dropdown-menu"> -->
+							<section>
+								<div th:each="hospObj : ${hospitalsList}">
+									<h6 style="color: black;">
+										<a
+											th:href="@{/hospital/hospitalPage/{id}(id=${hospObj.hospitalId})}">
+											 <span style="color: black;"
+											></span>
+										</a>
+									</h6>
+								</div>
+							</section>
+
+						</ul>
+					<!-- <li class="login-btn"><a href="" class="dropdown-toggle"
+						data-toggle="dropdown" role="button" aria-haspopup="true"
+						aria-expanded="false">Login <span class="caret"></span></a> -->
+						<!-- <ul class="dropdown-menu">
+							<li><b class="top-bo">Patient</b></li>
+							<li><a href="#" data-toggle="modal"
+								data-target="#flipFlopPatientLogin">Login </a></li>
+							<li><a href="#" data-toggle="modal"
+								data-target="#flipFlopPatientSignup">Sign Up</a></li>
+
+							<li><b>Doctor</b></li>
+							<li><a href="#" data-toggle="modal"
+								data-target="#flipFlopDoctorLog">Login </a></li>
+
+							<li><a href="#" data-toggle="modal"
+								data-target="#flipFlopDoctor">Sign Up </a></li>
+
+
+							<li><b>Admin</b></li>
+							<li><a href="#" data-toggle="modal"
+								data-target="#flipFlopAdmin">Login </a></li>
+
+
+							<li><a href="#" data-toggle="modal"
+								data-target="#flipFlopAdminSignup">Sign Up </a></li>
+
+						</ul>
+					<li class="appointment-btn"><a href="#appointment">Book
+							appointment</a></li>
+				</ul> -->
+				<!-- <form class="navbar-form navbar-left" action="/action_page.php">
+					<div class="input-group">
+						<input type="text" class="form-control" placeholder="Search">
+						<div class="input-group-btn">
+							<button class="btn btn-default" type="submit">
+								<i class="fa fa-search"></i>
+							</button>
+						</div>
+					</div>
+				</form> -->
+			</div>
+		</div>
+	</section>
+	<!-- <header class="header">
+      <div class="container-fluid">
+        <div class="header-box">
+        <center>
+          <h1>V care News</h1>
+          </center>
+         <a href="#">LogOut</a> 
+         </div>
+        </div>
+      </div>
+    </header> -->
+
+	<section class="recentNews">
+		<div class="container">
+			<h2 class="news-title">Vcare News</h2>
+
+		</div>
+
+
+		<div class="row">
+			<!-- <div class="ct-blog col-sm-6 col-md-4">
+<div class="inner">
+<div class="fauxcrop">
+<a href="#"><img alt="News Entry" src="https://www.solodev.com/assets/recent-news/news-entry-1.jpg"></a>
+</div>
+<div class="ct-blog-content">
+<div class="ct-blog-date">
+<span>March</span><strong>1</strong>
+</div>
+<h3>
+<a th:href="@{/news/newsdetails/{id}(id=${News.NewsId})}"><td
+th:text="${News.ContentName}"></td>
+</h3>
+</div>
+</div>
+</div> -->
+
+			<tr th:each="News: ${newslist}">
+				<div class="ct-blog col-sm-6 col-md-4">
+					<div class="inner">
+						<div class="fauxcrop">
+							<a href="#"><img alt=" "
+								th:src="*{'data:newsImage/jpeg;base64,'+{News.newsImage}}"
+								style="width: 450px; height: 200px;"></a>
+						</div>
+						<div class="ct-blog-content">
+							<div class="ct-blog-date">
+								<span th:text="${News.created}"></span>
+							</div>
+							<h3 class="ct-blog-header">
+								<a th:href="@{/news/newsdetails/{id}(id=${News.NewsId})}">
+									<h5>
+										<span style="color: black;" th:text="${News.ContentName}"></span>
+								</a>
+								</h5>
+							</h3>
+						</div>
+					</div>
+				</div>
+		</div>
+	</section>
+
+	<footer data-stellar-background-ratio="5">
+		<div class="container">
+			<div class="row">
+				<!-- <div class="col-md-4 col-sm-4">
+					<div class="footer-thumb">
+						<h4 class="wow fadeInUp" data-wow-delay="0.4s">Contact Info</h4>
+						<p>Fusce at libero iaculis, venenatis augue quis, pharetra
+							lorem. Curabitur ut dolor eu elit consequat ultricies.</p>
+						<div class="contact-info">
+							<p>
+								<i class="fa fa-phone"></i> 010-070-0170
+							</p>
+							<p>
+								<i class="fa fa-envelope-o"></i> <a href="#">info@company.com</a>
+							</p>
+						</div>
+					</div>
+				</div> -->
+				<!-- <div class="col-md-4 col-sm-4">
+					<div class="footer-thumb">
+						<h4 class="wow fadeInUp" data-wow-delay="0.4s">Latest News</h4>
+						<div class="latest-stories" th:each="empObj : ${newsList}">
+							<div class="stories-image">
+								<a href="#"><img src="images/news-image.jpg"
+									class="img-responsive" alt="" /></a>
+								<h5>
+									<a th:href="@{/news/newsdetails/{id}(id=${empObj.NewsId})}">
+										<span th:text="${empObj.ContentName}"></span>
+								</h5>
+								<span th:text="${empObj.created}"></span>
+							</div>
+						</div>
+					</div>
+				</div>
+
+ -->
+				<!-- <div class="col-md-4 col-sm-4">
+					<div class="footer-thumb">
+						<div class="opening-hours">
+							<h4 class="wow fadeInUp" data-wow-delay="0.4s">Opening Hours
+							</h4>
+							<p>
+								Monday - Friday <span>06:00 AM - 10:00 PM</span>
+							</p>
+							<p>
+								Saturday <span>09:00 AM - 08:00 PM</span>
+							</p>
+							<p>
+								Sunday <span>Closed</span>
+							</p>
+						</div>
+						<ul class="social-icon">
+							<li><a href="https://www.facebook.com/#"
+								class="fa fa-facebook-square" attr="facebook icon"></a></li>
+							<li><a href="#" class="fa fa-twitter"></a></li>
+							<li><a href="#" class="fa fa-instagram"></a></li>
+						</ul>
+						<div class="store-btn">
+							<a href="#"> <img src="./images/google.png"
+								alt="google play button" class="img-responsive">
+							</a> <a href="#"> <img src="./images/apple.png"
+								alt="apple stoer button" class="img-responsive">
+							</a>
+						</div>
+
+					</div>
+				</div> -->
+				<div class="col-md-12 col-sm-12 border-top">
+					<div class="col-md-4 col-sm-6">
+						<div class="copyright-text">
+							<p>
+								Copyright &copy; 2017 Your Company | Design: <a
+									href="http://www.#.com" target="_parent">#</a>
+							</p>
+						</div>
+					</div>
+					<div class="col-md-6 col-sm-6">
+						<div class="footer-link">
+							<a href="#">Laboratory Tests</a> <a href="#">Departments</a> <a
+								href="#">Insurance Policy</a> <a href="#">Careers</a>
+						</div>
+					</div>
+					<div class="col-md-2 col-sm-2 text-align-center">
+						<div class="angle-up-btn">
+							<a href="#top" class="smoothScroll wow fadeInUp"
+								data-wow-delay="1.2s"><i class="fa fa-angle-up"></i></a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</footer>
+
+	<script src="../js/jquery.js"></script>
+	<script src="../js/bootstrap.min.js"></script>
+	<script src="../js/jquery.sticky.js"></script>
+	<script src="../js/jquery.stellar.min.js"></script>
+	<script src="../js/wow.min.js"></script>
+	<script src="../js/smoothscroll.js"></script>
+	<script src="../js/owl.carousel.min.js"></script>
+	<!-- slick slider -->
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.js"></script>
+	<script src="../js/custom.js"></script>
+	<script>
+		//   slick slider
+		$(".slider-box").slick({
+			dots: true,
+			infinite: true,
+			speed: 300,
+			slidesToShow: 3,
+			slidesToScroll: 1,
+			autoplay: true,
+			responsive: [{
+				breakpoint: 1024,
+				settings: {
+					slidesToShow: 3,
+					slidesToScroll: 1,
+					infinite: true,
+					dots: true,
+				},
+			},
+			{
+				breakpoint: 600,
+				settings: {
+					slidesToShow: 2,
+					slidesToScroll: 2,
+				},
+			},
+			{
+				breakpoint: 420,
+				settings: {
+					slidesToShow: 1,
+					slidesToScroll: 1,
+				},
+			},
+			],
+		});
+		//   slick slider
+		$(".slider-box-doc").slick({
+			dots: true,
+			infinite: true,
+			speed: 300,
+			slidesToShow: 3,
+			slidesToScroll: 1,
+			autoplay: true,
+			responsive: [{
+				breakpoint: 1024,
+				settings: {
+					slidesToShow: 3,
+					slidesToScroll: 1,
+					infinite: true,
+					dots: true,
+				},
+			},
+			{
+				breakpoint: 600,
+				settings: {
+					slidesToShow: 2,
+					slidesToScroll: 2,
+				},
+			},
+			{
+				breakpoint: 420,
+				settings: {
+					slidesToShow: 1,
+					slidesToScroll: 1,
+				},
+			},
+			],
+		});
+
+	</script>
+	<script>
+	</script>
+
+	<script type="text/javascript">//<![CDATA[
+
+
+
+
+
+
+
+//]]></script>
+
+
+
+	<script>
+// tell the embed parent frame the height of the content
+if (window.parent && window.parent.parent){
+window.parent.parent.postMessage(["resultsFrame", {
+height: document.body.getBoundingClientRect().height,
+slug: "Ljrdwfws"
+}], "*")
+}
+
+
+
+// always overwrite window.name, in case users try to set it manually
+window.name = "result"
+</script>
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,217 @@
+
+<!DOCTYPE html>
+<html>
+
+<head>
+<meta charset="ISO-8859-1">
+<title>Vcare</title>
+<meta charset="UTF-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+<meta name="description" content="" />
+<meta name="keywords" content="" />
+<meta name="author" content="#" />
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, maximum-scale=1" />
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
+<!-- MAIN CSS -->
+<link rel="stylesheet" href="/dashboard/assets/css/final.css" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<script
+	src="https://cdn.tiny.cloud/1/vyae8xi0ny5tqluee5rz3sbzi3p6wdp0f51vmhh33svm0dzd/tinymce/6/tinymce.min.js"
+	referrerpolicy="origin"></script>
+
+</head>
+
+<body>
+	<!-- header -->
+	<header class="header">
+		<div class="container-fluid">
+			<div class="header-box">
+				<h4>Vcare</h4>
+				<a th:href="@{/logout}">LogOut</a>
+			</div>
+		</div>
+	</header>
+	<!-- header end -->
+	<main class="main">
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-xl-2 col-lg-3 col-md-4">
+					<!-- sidebar -->
+					<section class="sidebar">
+						<div class="sidebar-wrap">
+							<div class="Heading">
+								<h4>Dashboard</h4>
+							</div>
+
+							<div class="sidebar-item">
+                                <img src="../images/Icons/pprofile.png" alt="icon"
+                                    class="img-fluid" /> <a
+                                    th:href="@{/editEmployee/{id}(id=${employeeObj.employeeId})}">Employee
+                                    Profile</a>
+                            </div>
+							<div class="sidebar-item">
+								<img src="../images/Icons/pprofile.png" alt="icon"
+									class="img-fluid" /><a th:href="@{/Dephome}">DepartmentList</a>
+							</div>
+							<span th:if="${position =='Receptionist'}">
+								<div class="sidebar-item">
+									<img src="../images/Icons/pprofile.png" alt="icon"
+										class="img-fluid" /><a th:href="@{/BookingList}">Ambulance
+										status</a>
+								</div> <!-- <div class="sidebar-item">
+								<img src="../images/Icons/pprofile.png" alt="icon"
+									class="img-fluid" /> <a th:href="@{/}">Employee Form</a>
+							</div> -->
+								<div class="sidebar-item">
+									<img src="../images/Icons/pprofile.png" alt="icon"
+										class="img-fluid" /> <a
+										th:href="@{/selectambulancedriver/{hbranchId}(hbranchId=${hosp})}">Ambulance
+										Booking</a>
+								</div>
+							</span>
+
+						</div>
+					</section>
+					<!-- sidebar end -->
+				</div>
+				<!-- main area -->
+				<div class="col-lg-10 col-md-8">
+					<div class="main-area">
+						<!-- page Heading -->
+						<div class="page-heading">
+							<h1>Reception Screen</h1>
+						</div>
+						<!-- page Heading End -->
+
+						<!-- abailablility -->
+
+						<div class="avaliability-box">
+							<div class="form-box">
+								<span th:if="${position =='Receptionist'}">
+									<form
+										th:action="@{/offlineappform/{hbid}/{did}(hbid=${hbid},did=${docid})}"
+										th:object="${appointmentObj}" id="appointmentObj"
+										method="post" novalidate>
+
+
+
+										<!-- <div class="col-md-3">
+										<label for="name"> </label> <input type="hidden"
+											class="form-control" id="departmentId" name="departmentId"
+											th:value="*{departmentId}" >
+									</div> -->
+										<!-- <div class="col-md-4">
+										<label for="name"> </label>
+									<input type="hidden" class="form-control" id="hospitalBranchId" name="hospitalBranchId"
+											th:value="*{hospitalBranch}" required="required" th:minlength="1"
+											th:maxlength="100" placeholder="hospitalBranchId">
+									</div>
+								hj              hgdfhfjyftdghhgn	 -->
+										<input type="hidden" class="form-control"
+											name="hospitalBranch" id="hospitalBranch" th:value="${hosp}"
+											required="required"> <label for="loc">Select
+											Service</label> <select class="form-control" name="serviceName"
+											th:onchange="selectService(this.value)" th:value="this.value"
+											required>
+
+											<option th:text="${servName}"></option>
+											<option th:each="servObj:${serviceList}"
+												th:value="${servObj}" th:text="${servObj}"></option>
+										</select> <label for="loc">Select Doctor</label> <select
+											class="form-control" name="docName" id="doctorId"
+											th:onchange="doctorAvailable(this.value)">
+											<option th:text="${doctorName}"></option>
+											<option th:each="docObj:${doctorList}"
+												th:text="${docObj.doctorName}" th:value="${docObj.doctorId}"></option>
+										</select>
+
+										<!-- <label for="loc">Doctor Availability</label> -->
+
+										<!-- <select class="form-control" id="availabilityId" name="availabilityId" >
+										<option value="-1">Select Availability</option>
+										<option th:each="availObj:${availList}" th:value="${availObj.availabilityId}"
+											th:text="${availObj.startTimings}+' : '+${availObj.endTimings}" ></option>
+									</select> -->
+
+										<div class="form-book">
+											<div class="select-date-part">
+
+												<div class="col-lg-6 col-md-6">
+													<div class="slider-self">
+
+														<select class="form-control" id="date" name="date"
+															th:onchange="dateAvailable(this.value)"
+															th:value="this.value">
+															<option th:text="${selectedDate}"></option>
+															<option th:each="date,state:${date}" th:text="${date}"
+																th:value="${date}"></option>
+
+														</select>
+													</div>
+
+													<div class="slider-self">
+
+														<!-- <a th:each="map,state:${map.values}" type="radio" id="cid"
+															th:text="${map[state.index]}"></a> -->
+														<div class="slider-time-box">
+															<input class="time" type="radio" id="slot" name="slot"
+																th:each="index:${times}" th:text="${index}"
+																th:value="${index}">
+															<h5 th:text="${index}"></h5>
+															</input>
+														</div>
+														<button type="submit" class="app-btn">Book
+															Appointment</button>
+													</div>
+												</div>
+											</div>
+										</div>
+									</form>
+								</span>
+							</div>
+
+
+						</div>
+					</div>
+				</div>
+
+				<!-- abailablility -->
+
+			</div>
+		</div>
+		</div>
+		<!-- main area end -->
+		</div>
+
+	</main>
+
+
+	<!-- SCRIPTS -->
+	<script>
+      tinymce.init({
+        selector: '#description',
+        plugins: [
+          'a11ychecker','advlist','advcode','advtable','autolink','checklist','export',
+          'lists','link','image','charmap','preview','anchor','searchreplace','visualblocks',
+          'powerpaste','fullscreen','formatpainter','insertdatetime','media','table','help','wordcount'
+        ],
+        toolbar: 'undo redo | formatpainter casechange blocks | bold italic backcolor | ' +
+          'alignleft aligncenter alignright alignjustify | ' +
+          'bullist numlist checklist outdent indent | removeformat | a11ycheck code table help'
+      });
+    </script>
+	<script src="../js/jquery.js"></script>
+	<script src="../js/dropdown.js"></script>
+	<script src="../js/bootstrap.min.js"></script>
+	<!-- <script src="../js/jquery.sticky.js"></script>
+    <script src="../js/jquery.stellar.min.js"></script>
+    <script src="../js/wow.min.js"></script>
+    <script src="../js/smoothscroll.js"></script>
+    <script src="../js/owl.carousel.min.js"></script>
+    <script src="./assets/js/script.js"></script> -->
+</body>
+
+</html>
