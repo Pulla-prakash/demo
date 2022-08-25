@@ -133,12 +133,15 @@
 	</dependencies>
 
 	<build>
-	<finalName>vcare</finalName>
-		<defaultGoal>install</defaultGoal>
+		<finalName>vcare</finalName>
 		<plugins>
-		 	<plugin>
+			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+				
+					<goals>
+						<goal>repacking</goal>
+					</goals>
 				<configuration>
 					<excludes>
 						<exclude>
@@ -146,9 +149,9 @@
 							<artifactId>lombok</artifactId>
 						</exclude>
 					</excludes>
-                </configuration>
-            </plugin>
-        </plugins>
-</build>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
 
 </project>
